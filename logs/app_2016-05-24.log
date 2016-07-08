@@ -1,0 +1,81 @@
+[INFO] 2016-05-24 07:59:05,168 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-05-24 07:59:20,021 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 07:59:20,467 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 07:59:20,545 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-05-24 07:59:20,546 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-05-24 08:00:34,254 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 08:00:36,413 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 08:00:36,487 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-05-24 08:00:36,487 GUI.AdminJFrame createPrintPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-05-24 15:30:12,658 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-05-24 15:30:25,103 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 15:30:25,676 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 15:30:25,757 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 15:30:25,883 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-05-24 15:30:25,884 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[ERROR] 2016-05-24 15:30:26,100 GUI.AdminJFrame createPdfDoc - java.io.FileNotFoundException: C:\РЯЗ29.3.1932ECG.pdf (Процесс не может получить доступ к файлу, так как этот файл занят другим процессом)
+java.io.FileNotFoundException: C:\РЯЗ29.3.1932ECG.pdf (Процесс не может получить доступ к файлу, так как этот файл занят другим процессом)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:101)
+	at Logic.AddCover1.manipulatePdf(AddCover1.java:32)
+	at GUI.AdminJFrame.createPdfDoc(AdminJFrame.java:710)
+	at GUI.AdminJFrame.saveFileActionPerformed(AdminJFrame.java:468)
+	at GUI.AdminJFrame.access$900(AdminJFrame.java:36)
+	at GUI.AdminJFrame$9.actionPerformed(AdminJFrame.java:288)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2346)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6525)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3322)
+	at java.awt.Component.processEvent(Component.java:6290)
+	at java.awt.Container.processEvent(Container.java:2234)
+	at java.awt.Component.dispatchEventImpl(Component.java:4881)
+	at java.awt.Container.dispatchEventImpl(Container.java:2292)
+	at java.awt.Component.dispatchEvent(Component.java:4703)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4898)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4533)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4462)
+	at java.awt.Container.dispatchEventImpl(Container.java:2278)
+	at java.awt.Window.dispatchEventImpl(Window.java:2739)
+	at java.awt.Component.dispatchEvent(Component.java:4703)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:751)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:702)
+	at java.awt.EventQueue$3.run(EventQueue.java:696)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:75)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:724)
+	at java.awt.EventQueue$4.run(EventQueue.java:722)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:75)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:721)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[INFO] 2016-05-24 15:31:19,139 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-05-24 15:31:21,681 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 15:31:22,256 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 15:31:22,341 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 15:31:22,380 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-05-24 15:31:22,382 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-05-24 15:33:57,431 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-05-24 16:17:12,344 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-05-24 16:17:19,543 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 16:17:20,221 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 16:17:20,321 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 16:17:20,387 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-05-24 16:17:20,389 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-05-24 21:18:38,640 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-05-24 21:18:46,974 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 21:18:47,687 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 21:18:47,784 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 21:18:47,864 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-05-24 21:18:47,910 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-05-24 21:18:47,911 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
