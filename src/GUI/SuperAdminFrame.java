@@ -9,13 +9,21 @@ import DB.StartDB;
 import ExcelRead.CrbRead;
 import ExcelRead.FapRead;
 import ExcelRead.PatientRead;
+import ExtendedLogic.FillServiceParamTable;
 import ExtendedLogic.FillServiceTable;
+import ExtendedLogic.SaveParamTable;
 import ExtendedLogic.UpdateDocCodeTable;
 import TableModel.PatientTableModel;
 import java.awt.Component;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
+import java.sql.ResultSet;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -26,16 +34,21 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     /**
      * Creates new form SuperAdminFrame
      */
-    
     private StartDB con ;
     private PatientRead patient ;
     private CrbRead crb;
     private FapRead fap;
+    private boolean flagChanged;
+    private boolean flagCancel;
+    
     public SuperAdminFrame() {
         initComponents();
         con = new StartDB();
         con.Start();
         ServiceListTableShow();
+        ServiceTableShow();
+//        ParamTableShow();
+
     }
 
     /**
@@ -54,6 +67,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         ShowDocSetP = new javax.swing.JButton();
         ShowPatP = new javax.swing.JButton();
         ShowAdminP = new javax.swing.JButton();
+        ShowParam = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         LoadPatPanel = new  GradientPanel();
         LoadPatientListExcel = new javax.swing.JButton();
@@ -80,9 +94,19 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         ServiceListTable = new javax.swing.JTable();
         SaveDocServParams = new javax.swing.JButton();
+        ParamPanel =  new GradientPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        ServiceTable = new javax.swing.JTable();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        ParamTable = new javax.swing.JTable();
+        SaveParam1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1080, 720));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.CardLayout());
 
         settingsPanel.setName("settingsPanel"); // NOI18N
@@ -137,18 +161,28 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             }
         });
 
+        ShowParam.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        ShowParam.setText("Настройка параметров");
+        ShowParam.setName("ShowParam"); // NOI18N
+        ShowParam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShowParamActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ShowDocSetP, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                    .addComponent(ShowCrbP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ShowFapP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ShowPatP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ShowAdminP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ShowDocSetP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                    .addComponent(ShowCrbP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ShowFapP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ShowPatP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ShowAdminP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ShowParam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -164,7 +198,9 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                 .addComponent(ShowAdminP, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(ShowDocSetP, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(ShowParam, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(268, Short.MAX_VALUE))
         );
 
         jPanel2.setName("jPanel2"); // NOI18N
@@ -226,7 +262,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             .addGroup(LoadPatPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(LoadPatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
                     .addGroup(LoadPatPanelLayout.createSequentialGroup()
                         .addComponent(LoadPatientListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -243,7 +279,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(SavePatientList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel2.add(LoadPatPanel, "card5");
@@ -300,7 +336,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             .addGroup(CrbPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(CrbPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
                     .addGroup(CrbPanelLayout.createSequentialGroup()
                         .addComponent(LoadCrbListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -317,7 +353,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(SaveCrbList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel2.add(CrbPanel, "card4");
@@ -374,7 +410,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             .addGroup(FapPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(FapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
                     .addGroup(FapPanelLayout.createSequentialGroup()
                         .addComponent(LoadFapListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -391,7 +427,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(SaveFapList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel2.add(FapPanel, "card2");
@@ -434,7 +470,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                 .addGroup(AdminSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         AdminSetPanelLayout.setVerticalGroup(
             AdminSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -443,7 +479,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         jPanel2.add(AdminSetPanel, "card6");
@@ -515,7 +551,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                         .addComponent(SaveDocServParams, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(DocSetPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -529,10 +565,84 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SaveDocServParams, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         jPanel2.add(DocSetPanel, "card3");
+
+        ParamPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Нормы для параметров", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18))); // NOI18N
+        ParamPanel.setName("ParamPanel"); // NOI18N
+
+        jScrollPane5.setName("jScrollPane5"); // NOI18N
+
+        ServiceTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        ServiceTable.setName("ServiceTable"); // NOI18N
+        ServiceTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ServiceTableMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(ServiceTable);
+
+        jScrollPane8.setName("jScrollPane8"); // NOI18N
+
+        ParamTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        ParamTable.setName("ParamTable"); // NOI18N
+        ParamTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ParamTableKeyReleased(evt);
+            }
+        });
+        jScrollPane8.setViewportView(ParamTable);
+
+        SaveParam1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        SaveParam1.setText("Принять значения");
+        SaveParam1.setName("SaveParam1"); // NOI18N
+        SaveParam1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveParam1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ParamPanelLayout = new javax.swing.GroupLayout(ParamPanel);
+        ParamPanel.setLayout(ParamPanelLayout);
+        ParamPanelLayout.setHorizontalGroup(
+            ParamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ParamPanelLayout.createSequentialGroup()
+                .addGroup(ParamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ParamPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE))
+                    .addComponent(SaveParam1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0))
+        );
+        ParamPanelLayout.setVerticalGroup(
+            ParamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ParamPanelLayout.createSequentialGroup()
+                .addGroup(ParamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane8)
+                    .addComponent(jScrollPane5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SaveParam1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 237, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(ParamPanel, "card7");
 
         javax.swing.GroupLayout settingsPanelLayout = new javax.swing.GroupLayout(settingsPanel);
         settingsPanel.setLayout(settingsPanelLayout);
@@ -548,7 +658,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             .addGroup(settingsPanelLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
         );
 
         getContentPane().add(settingsPanel, "card4");
@@ -558,20 +668,31 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ShowAdminPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAdminPActionPerformed
-        LoadPatPanel.setVisible(false);
-        CrbPanel.setVisible(false);      
-        FapPanel.setVisible(false);
-        DocSetPanel.setVisible(false);
-        AdminSetPanel.setVisible(true);
+        ButtonPress();
+        if (!flagCancel) {
+            LoadPatPanel.setVisible(false);
+            CrbPanel.setVisible(false);      
+            FapPanel.setVisible(false);
+            DocSetPanel.setVisible(false);
+            AdminSetPanel.setVisible(true);
+            ParamPanel.setVisible(false);
+            
+        }
+        flagCancel = false;
     }//GEN-LAST:event_ShowAdminPActionPerformed
 
     private void ShowPatPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPatPActionPerformed
-        LoadPatPanel.setVisible(true);
-        CrbPanel.setVisible(false);      
-        FapPanel.setVisible(false);
-        DocSetPanel.setVisible(false);
-        AdminSetPanel.setVisible(false);
-        
+        ButtonPress();
+        if (!flagCancel) {
+            LoadPatPanel.setVisible(true);
+            CrbPanel.setVisible(false);      
+            FapPanel.setVisible(false);
+            DocSetPanel.setVisible(false);
+            AdminSetPanel.setVisible(false);
+            ParamPanel.setVisible(false);
+            
+        }
+        flagCancel = false;
     }//GEN-LAST:event_ShowPatPActionPerformed
         
     private void OpenFile(Object obj){       
@@ -603,21 +724,75 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     }
     
     private void ShowDocSetPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowDocSetPActionPerformed
-        LoadPatPanel.setVisible(false);
-        CrbPanel.setVisible(false);      
-        FapPanel.setVisible(false);
-        DocSetPanel.setVisible(true);
-        AdminSetPanel.setVisible(false);
-        
+        ButtonPress();
+        if (!flagCancel) {
+            LoadPatPanel.setVisible(false);
+            CrbPanel.setVisible(false);      
+            FapPanel.setVisible(false);
+            DocSetPanel.setVisible(true);
+            AdminSetPanel.setVisible(false);
+            ParamPanel.setVisible(false);
+            
+        }
+        flagCancel = false;
     }//GEN-LAST:event_ShowDocSetPActionPerformed
-
+    
+    public void ServiceTableShow(){
+        FillServiceParamTable service = new FillServiceParamTable();
+        PatientTableModel tm = new PatientTableModel(false, con.getConnection());          
+        try {
+            
+            tm.setDataSource(service.FillServParamTable(con.getConnection()));         
+            ServiceTable.setModel(tm);
+        } catch (Exception ex) {
+            //log.error(ex, ex);
+            System.out.println(ex);
+        }
+        ServiceTableModify();   
+    }
+    
+    public void ParamTableShow(String text){
+        FillServiceParamTable service = new FillServiceParamTable();    
+        try {
+            ResultSet rs = service.FillParamTable(con.getConnection(), text);
+            ParamTable.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception ex) {
+            //log.error(ex, ex);
+            System.out.println(ex);
+        }
+        ParamTableModify();
+    }
+    
+    private void ParamTableModify(){
+        ParamTable.getTableHeader().setFont(new java.awt.Font("Arial", 0, 13));
+        ParamTable.setFont(new java.awt.Font("Arial", 0, 14));
+        ParamTable.setRowHeight(25);
+        ParamTable.getColumnModel().getColumn(1).setHeaderValue("Параметр");
+        ParamTable.getColumnModel().getColumn(2).setHeaderValue("Ниж. граница");
+        ParamTable.getColumnModel().getColumn(3).setHeaderValue("Вер. граница");
+        ParamTable.getColumnModel().getColumn(0).setPreferredWidth(20);
+        ParamTable.getColumnModel().getColumn(0).setMaxWidth(20);
+        updateRowHeights(ParamTable);
+    }
+    
+    private void ServiceTableModify(){
+        ServiceTable.getTableHeader().setFont(new java.awt.Font("Arial", 0, 13));
+        ServiceTable.setFont(new java.awt.Font("Arial", 0, 14));
+        ServiceTable.setRowHeight(25);
+        ServiceTable.getColumnModel().getColumn(0).setHeaderValue("Код услуги");
+        ServiceTable.getColumnModel().getColumn(1).setHeaderValue("Наименование");
+        ServiceTable.getColumnModel().getColumn(0).setPreferredWidth(110);
+        ServiceTable.getColumnModel().getColumn(0).setMaxWidth(110);
+        updateRowHeights(ServiceTable);
+    }
+               
     public void ServiceListTableShow(){
         FillServiceTable service = new FillServiceTable();
         PatientTableModel tm = new PatientTableModel(false, con.getConnection());          
         try {
             
             tm.setDataSource(service.FillServiceListTable(con.getConnection()));         
-            ServiceListTable.setModel(tm); 
+            ServiceListTable.setModel(tm);
         } catch (Exception ex) {
             //log.error(ex, ex);
             System.out.println(ex);
@@ -639,40 +814,51 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         ServiceListTable.getColumnModel().getColumn(1).setHeaderValue("Наименование");
         ServiceListTable.getColumnModel().getColumn(0).setPreferredWidth(110);
         ServiceListTable.getColumnModel().getColumn(0).setMaxWidth(110);
-        updateRowHeights();
+        updateRowHeights(ServiceListTable);
     }
     
     
-    private void updateRowHeights()
+    private void updateRowHeights(JTable Table)
 {
-    for (int row = 0; row < ServiceListTable.getRowCount(); row++)
+    for (int row = 0; row < Table.getRowCount(); row++)
     {
-        int rowHeight = ServiceListTable.getRowHeight();
+        int rowHeight = Table.getRowHeight();
 
-        for (int column = 0; column < ServiceListTable.getColumnCount(); column++)
+        for (int column = 0; column < Table.getColumnCount(); column++)
         {
-            Component comp = ServiceListTable.prepareRenderer(ServiceListTable.getCellRenderer(row, column), row, column);
+            Component comp = Table.prepareRenderer(Table.getCellRenderer(row, column), row, column);
             rowHeight = Math.max(rowHeight, comp.getPreferredSize().height);
         }
 
-        ServiceListTable.setRowHeight(row, rowHeight);
+        Table.setRowHeight(row, rowHeight);
     }
 }
     
     private void ShowFapPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowFapPActionPerformed
-        LoadPatPanel.setVisible(false);
-        CrbPanel.setVisible(false);      
-        FapPanel.setVisible(true);
-        DocSetPanel.setVisible(false);
-        AdminSetPanel.setVisible(false);
+        ButtonPress();
+        if (!flagCancel) {
+            LoadPatPanel.setVisible(false);
+            CrbPanel.setVisible(false);      
+            FapPanel.setVisible(true);
+            DocSetPanel.setVisible(false);
+            AdminSetPanel.setVisible(false);
+            ParamPanel.setVisible(false);
+        }
+        flagCancel = false;
     }//GEN-LAST:event_ShowFapPActionPerformed
 
     private void ShowCrbPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowCrbPActionPerformed
-        LoadPatPanel.setVisible(false);
-        AdminSetPanel.setVisible(false);     
-        FapPanel.setVisible(false);
-        DocSetPanel.setVisible(false);
-        CrbPanel.setVisible(true);
+        ButtonPress();
+        if (!flagCancel) {
+            LoadPatPanel.setVisible(false);
+            AdminSetPanel.setVisible(false);     
+            FapPanel.setVisible(false);
+            DocSetPanel.setVisible(false);
+            CrbPanel.setVisible(true);
+            ParamPanel.setVisible(false);
+            
+        }
+        flagCancel = false;
     }//GEN-LAST:event_ShowCrbPActionPerformed
 
     private void LoadPatientListExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadPatientListExcelActionPerformed
@@ -720,7 +906,122 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     private void SaveDocServParamsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveDocServParamsActionPerformed
         
     }//GEN-LAST:event_SaveDocServParamsActionPerformed
+
+    private void ShowParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowParamActionPerformed
+        LoadPatPanel.setVisible(false);
+        AdminSetPanel.setVisible(false);     
+        FapPanel.setVisible(false);
+        DocSetPanel.setVisible(false);
+        CrbPanel.setVisible(false);
+        ParamPanel.setVisible(true);
+    }//GEN-LAST:event_ShowParamActionPerformed
+
+    private void SaveParam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveParam1ActionPerformed
+        Object[] options = {"Да", "Нет"};
+            int n = JOptionPane.showOptionDialog(null, 
+                    "Изменения произойдут во всех ЦРБ района. Желаете сохранить?", 
+                    "Сохранение", 
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE,
+                    null, 
+                    options,  
+                    options[0]);
+            if (n == 0) {
+                SaveParamTable a = new SaveParamTable();
+                a.saveToDB(ParamTable, con.getConnection());
+                flagChanged = false;
+            }
+            if (n == 1) {
+                String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
+                ParamTable.remove(this);
+                ParamTableShow(text);
+                flagChanged = false;
+            }
+            
+        
+    }//GEN-LAST:event_SaveParam1ActionPerformed
+
+    private void ServiceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ServiceTableMouseClicked
+        SaveParamTable a = new SaveParamTable();
+        if (flagChanged) {
+            Object[] options = {"Да", "Нет", "Отмена"};
+            int n = JOptionPane.showOptionDialog(null, 
+                    "Изменения произойдут во всех ЦРБ района. Желаете сохранить?", 
+                    "Сохранение", 
+                    JOptionPane.YES_NO_CANCEL_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE,
+                    null, 
+                    options,  
+                    options[0]);
+            if (n == 0) {
+                a.saveToDB(ParamTable, con.getConnection());
+                String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
+                ParamTable.remove(this);
+                ParamTableShow(text);
+                flagChanged = false;
+            }
+            if (n == 1) {
+                String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
+                ParamTable.remove(this);
+                ParamTableShow(text);
+                flagChanged = false;
+            }
+        }
+        else{
+            String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
+            ParamTable.remove(this);
+            ParamTableShow(text);
+                
+        }
+        
+        
+    }//GEN-LAST:event_ServiceTableMouseClicked
+
+    private void ParamTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ParamTableKeyReleased
+        flagChanged = true; 
+    }//GEN-LAST:event_ParamTableKeyReleased
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Object[] options = { "Да", "Нет" };
+                int n = JOptionPane.showOptionDialog(evt.getWindow(), "Завершить работу программы?",
+                                "Выход", JOptionPane.YES_NO_OPTION,
+                                JOptionPane.QUESTION_MESSAGE, null, options,
+                                options[0]);
+                if (n == 0) {
+                    evt.getWindow().setVisible(false);
+                    System.exit(0);
+                    
+                }
+    }//GEN-LAST:event_formWindowClosing
     
+    private void ButtonPress() {
+        SaveParamTable a = new SaveParamTable();
+        if (flagChanged) {
+            Object[] options = {"Да", "Нет", "Отмена"};
+            int n = JOptionPane.showOptionDialog(null, 
+                    "Изменения произойдут во всех ЦРБ района. Желаете сохранить?", 
+                    "Сохранение норм", 
+                    JOptionPane.YES_NO_CANCEL_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE,
+                    null, 
+                    options,  
+                    options[0]);
+            if (n == 0) {
+                a.saveToDB(ParamTable, con.getConnection());
+                flagChanged = false;
+            }
+            if (n == 1) {
+                String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
+                ParamTable.remove(this);
+                ParamTableShow(text);
+                flagChanged = false;
+            }
+            if (n == 2) {
+                flagCancel = true;
+            }  
+        }
+        
+    }
     
     public void getDataFromCodeTable(){
         UpdateDocCodeTable dc = new UpdateDocCodeTable(con.getConnection());
@@ -787,6 +1088,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(SuperAdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -809,16 +1111,21 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton LoadFapListExcel;
     private javax.swing.JPanel LoadPatPanel;
     private javax.swing.JButton LoadPatientListExcel;
+    private javax.swing.JPanel ParamPanel;
+    private javax.swing.JTable ParamTable;
     private javax.swing.JTable PatientTable;
     private javax.swing.JButton SaveCrbList;
     private javax.swing.JButton SaveDocServParams;
     private javax.swing.JButton SaveFapList;
+    private javax.swing.JButton SaveParam1;
     private javax.swing.JButton SavePatientList;
     private javax.swing.JTable ServiceListTable;
+    private javax.swing.JTable ServiceTable;
     private javax.swing.JButton ShowAdminP;
     private javax.swing.JButton ShowCrbP;
     private javax.swing.JButton ShowDocSetP;
     private javax.swing.JButton ShowFapP;
+    private javax.swing.JButton ShowParam;
     private javax.swing.JButton ShowPatP;
     private javax.swing.JButton addAdmin;
     private javax.swing.JPanel jPanel1;
@@ -827,8 +1134,10 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JPanel settingsPanel;
     // End of variables declaration//GEN-END:variables
 }
