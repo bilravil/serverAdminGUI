@@ -1023,18 +1023,6 @@ public class AdminJFrame extends javax.swing.JFrame {
         UsersPanelLayout.setHorizontalGroup(
             UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UsersPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(UsersPanelLayout.createSequentialGroup()
-                        .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UsersPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(261, 261, 261))))
-            .addGroup(UsersPanelLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UsersPanelLayout.createSequentialGroup()
@@ -1050,6 +1038,15 @@ public class AdminJFrame extends javax.swing.JFrame {
                             .addComponent(userPassTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                             .addComponent(userStatusCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(UsersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(UsersPanelLayout.createSequentialGroup()
+                        .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         UsersPanelLayout.setVerticalGroup(
             UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1241,7 +1238,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                                 .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(v015Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(v002Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)))
                     .addGroup(DocPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(addDoctor)
@@ -1249,7 +1246,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                         .addComponent(delDoctor)
                         .addGap(18, 18, 18)
                         .addComponent(addlputodoc)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         DocPanelLayout.setVerticalGroup(
             DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1572,8 +1569,8 @@ public class AdminJFrame extends javax.swing.JFrame {
             DocServPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DocServPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addGroup(DocServPanelLayout.createSequentialGroup()
                 .addGroup(DocServPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DocServPanelLayout.createSequentialGroup()
@@ -1583,7 +1580,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                     .addGroup(DocServPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(openServiceSettingsDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
         DocServPanelLayout.setVerticalGroup(
             DocServPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1617,7 +1614,7 @@ public class AdminJFrame extends javax.swing.JFrame {
             .addGroup(settingsPanelLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         getContentPane().add(settingsPanel, "card4");
@@ -1958,8 +1955,16 @@ public class AdminJFrame extends javax.swing.JFrame {
         String username = usernameTxt.getText();
         String password = userPassTxt.getText();
         int status = userStatusCB.getSelectedIndex();
+        if(username.equals("")){
+            JOptionPane.showMessageDialog(null, "Необходимо ввести имя пользователя.");
+            return ;
+        }
+        if(password.equals("")){
+            JOptionPane.showMessageDialog(null, "Необходимо ввести пароль.");
+            return ;
+        }
         status += 1;
-            if(userT.getUsername(con.getConnection(), username) == -1){
+            if(userT.getUsername(con.getConnection(), username) == 0){
                JOptionPane.showMessageDialog(null, "Добавляемый пользователь имеется в системе.");
                return;           
         }

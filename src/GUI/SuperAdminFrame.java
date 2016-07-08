@@ -9,14 +9,14 @@ import DB.StartDB;
 import ExcelRead.CrbRead;
 import ExcelRead.FapRead;
 import ExcelRead.PatientRead;
+import ExtendedLogic.FillAllUsersTable;
 import ExtendedLogic.FillServiceParamTable;
 import ExtendedLogic.FillServiceTable;
 import ExtendedLogic.SaveParamTable;
 import ExtendedLogic.UpdateDocCodeTable;
+import TableModel.CrbTableModel;
 import TableModel.PatientTableModel;
 import java.awt.Component;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.sql.ResultSet;
 import javax.swing.JFileChooser;
@@ -38,6 +38,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     private PatientRead patient ;
     private CrbRead crb;
     private FapRead fap;
+    private FillAllUsersTable user = new FillAllUsersTable();
     private boolean flagChanged;
     private boolean flagCancel;
     
@@ -47,6 +48,9 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         con.Start();
         ServiceListTableShow();
         ServiceTableShow();
+        SavePatientList.setEnabled(false);
+        SaveCrbList.setEnabled(false);
+        SaveFapList.setEnabled(false);
 //        ParamTableShow();
 
     }
@@ -60,6 +64,17 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialog1 = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        okButton = new javax.swing.JButton();
+        usernameTxt = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        userPassTxt = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        userStatusCB = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        crbCodeTxt = new javax.swing.JTextField();
         settingsPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         ShowCrbP = new javax.swing.JButton();
@@ -86,8 +101,9 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         FapTable = new javax.swing.JTable();
         AdminSetPanel = new GradientPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        AdminTable = new javax.swing.JTable();
+        UserTable = new javax.swing.JTable();
         addAdmin = new javax.swing.JButton();
+        delAdmin = new javax.swing.JButton();
         DocSetPanel = new GradientPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         DocCodeTable = new javax.swing.JTable();
@@ -101,7 +117,127 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         ParamTable = new javax.swing.JTable();
         SaveParam1 = new javax.swing.JButton();
 
+        dialog1.setName("dialog1"); // NOI18N
+        dialog1.setSize(436, 335);
+        dialog1.setResizable(false);
+        dialog1.setLocationRelativeTo(jPanel2);
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Добавление пользователя", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        jPanel5.setName("jPanel5"); // NOI18N
+
+        okButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        okButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/img/ok24.png"))); // NOI18N
+        okButton.setText("Приять ");
+        okButton.setName("okButton"); // NOI18N
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
+
+        usernameTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        usernameTxt.setName("usernameTxt"); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel4.setText("Имя пользователя");
+        jLabel4.setName("jLabel4"); // NOI18N
+
+        jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel15.setText("Пароль");
+        jLabel15.setName("jLabel15"); // NOI18N
+
+        userPassTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        userPassTxt.setName("userPassTxt"); // NOI18N
+
+        jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel17.setText("Права доступа");
+        jLabel17.setName("jLabel17"); // NOI18N
+
+        userStatusCB.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        userStatusCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Администатор", "Cупер-админ" }));
+        userStatusCB.setName("userStatusCB"); // NOI18N
+        userStatusCB.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                userStatusCBPropertyChange(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel5.setText("Код  ЦРБ(xxxxxx.x)");
+        jLabel5.setName("jLabel5"); // NOI18N
+
+        crbCodeTxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        crbCodeTxt.setName("crbCodeTxt"); // NOI18N
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel17)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(userStatusCB, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel15)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(userPassTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(okButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(crbCodeTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))))
+                .addContainerGap(88, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(userPassTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(userStatusCB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(crbCodeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout dialog1Layout = new javax.swing.GroupLayout(dialog1.getContentPane());
+        dialog1.getContentPane().setLayout(dialog1Layout);
+        dialog1Layout.setHorizontalGroup(
+            dialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialog1Layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        dialog1Layout.setVerticalGroup(
+            dialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialog1Layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1080, 720));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -262,7 +398,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             .addGroup(LoadPatPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(LoadPatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                     .addGroup(LoadPatPanelLayout.createSequentialGroup()
                         .addComponent(LoadPatientListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -279,7 +415,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(SavePatientList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jPanel2.add(LoadPatPanel, "card5");
@@ -336,7 +472,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             .addGroup(CrbPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(CrbPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                     .addGroup(CrbPanelLayout.createSequentialGroup()
                         .addComponent(LoadCrbListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -353,7 +489,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(SaveCrbList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jPanel2.add(CrbPanel, "card4");
@@ -410,7 +546,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             .addGroup(FapPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(FapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                     .addGroup(FapPanelLayout.createSequentialGroup()
                         .addComponent(LoadFapListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -427,7 +563,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(SaveFapList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jPanel2.add(FapPanel, "card2");
@@ -437,8 +573,8 @@ public class SuperAdminFrame extends javax.swing.JFrame {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        AdminTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        AdminTable.setModel(new javax.swing.table.DefaultTableModel(
+        UserTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        UserTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -449,17 +585,31 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                 "Учреждение", "Username"
             }
         ));
-        AdminTable.setName("AdminTable"); // NOI18N
-        AdminTable.setRowHeight(20);
-        AdminTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jScrollPane1.setViewportView(AdminTable);
-        if (AdminTable.getColumnModel().getColumnCount() > 0) {
-            AdminTable.getColumnModel().getColumn(1).setMaxWidth(120);
+        UserTable.setName("UserTable"); // NOI18N
+        UserTable.setRowHeight(20);
+        UserTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jScrollPane1.setViewportView(UserTable);
+        if (UserTable.getColumnModel().getColumnCount() > 0) {
+            UserTable.getColumnModel().getColumn(1).setMaxWidth(120);
         }
 
         addAdmin.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        addAdmin.setText("Добавить нового админ-а");
+        addAdmin.setText("Добавить нового пользователя");
         addAdmin.setName("addAdmin"); // NOI18N
+        addAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAdminActionPerformed(evt);
+            }
+        });
+
+        delAdmin.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        delAdmin.setText("Удалить пользователя");
+        delAdmin.setName("delAdmin"); // NOI18N
+        delAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delAdminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout AdminSetPanelLayout = new javax.swing.GroupLayout(AdminSetPanel);
         AdminSetPanel.setLayout(AdminSetPanelLayout);
@@ -468,18 +618,24 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             .addGroup(AdminSetPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(AdminSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(181, Short.MAX_VALUE))
+                    .addGroup(AdminSetPanelLayout.createSequentialGroup()
+                        .addComponent(addAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(delAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE))
+                .addContainerGap())
         );
         AdminSetPanelLayout.setVerticalGroup(
             AdminSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AdminSetPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(AdminSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jPanel2.add(AdminSetPanel, "card6");
@@ -551,7 +707,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                         .addComponent(SaveDocServParams, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(DocSetPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -565,7 +721,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SaveDocServParams, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jPanel2.add(DocSetPanel, "card3");
@@ -625,9 +781,9 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             .addGroup(ParamPanelLayout.createSequentialGroup()
                 .addGroup(ParamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ParamPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE))
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))
                     .addComponent(SaveParam1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0))
         );
@@ -639,7 +795,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SaveParam1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 237, Short.MAX_VALUE))
+                .addGap(0, 247, Short.MAX_VALUE))
         );
 
         jPanel2.add(ParamPanel, "card7");
@@ -675,10 +831,10 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             FapPanel.setVisible(false);
             DocSetPanel.setVisible(false);
             AdminSetPanel.setVisible(true);
-            ParamPanel.setVisible(false);
-            
+            ParamPanel.setVisible(false);           
         }
         flagCancel = false;
+        UserTableShow();
     }//GEN-LAST:event_ShowAdminPActionPerformed
 
     private void ShowPatPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPatPActionPerformed
@@ -705,16 +861,20 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                 String path = fl.getAbsolutePath();
                 if(obj instanceof PatientRead){
                     patient = new PatientRead();
-                    patient.readFromExcel(path,PatientTable); 
+                    patient.readFromExcel(path,PatientTable);
+                    SavePatientList.setEnabled(true);
                 }
                 if(obj instanceof CrbRead){
                     crb = new CrbRead();
                     crb.readFromExcel(path,CrbTable); 
+                    SaveCrbList.setEnabled(true);
                 }
                 if(obj instanceof FapRead){
                     fap = new FapRead();
                     fap.readFromExcel(path,FapTable); 
+                    SaveFapList.setEnabled(true);
                 }
+                
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -818,8 +978,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     }
     
     
-    private void updateRowHeights(JTable Table)
-{
+    private void updateRowHeights(JTable Table){
     for (int row = 0; row < Table.getRowCount(); row++)
     {
         int rowHeight = Table.getRowHeight();
@@ -869,6 +1028,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         }
         patient = new PatientRead();
         OpenFile(patient);
+        
     }//GEN-LAST:event_LoadPatientListExcelActionPerformed
 
     private void SavePatientListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavePatientListActionPerformed
@@ -883,6 +1043,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         }
         crb = new CrbRead();
         OpenFile(crb);
+        
     }//GEN-LAST:event_LoadCrbListExcelActionPerformed
 
     private void SaveCrbListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveCrbListActionPerformed
@@ -993,6 +1154,64 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     
                 }
     }//GEN-LAST:event_formWindowClosing
+
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        String username = usernameTxt.getText();
+        String password = userPassTxt.getText();
+        String status = userStatusCB.getSelectedItem().toString();
+        int st = 1;
+        if(status.equals("Cупер-админ")) {
+            st = 0;
+        }
+        if(status.equals("Администратор")) st = 1;
+        String crbCode = crbCodeTxt.getText();
+        if(username.equals("")){
+            JOptionPane.showMessageDialog(null, "Необходимо ввести имя пользователя.");
+            return ;
+        }
+        if(password.equals("")){
+            JOptionPane.showMessageDialog(null, "Необходимо ввести пароль.");
+            return ;
+        }
+        if(status.equals("Администратор")){
+            if(crbCode.equals("")){
+                JOptionPane.showMessageDialog(null, "Необходимо ввести код ЦРБ.");
+                return ;
+            }
+    }
+            if(user.getUsername(con.getConnection(), username) == 0){
+               JOptionPane.showMessageDialog(null, "Добавляемый пользователь имеется в системе.");
+               return;           
+        }
+        user.InsertUser(con.getConnection(), username, password, crbCode, String.valueOf(st)); 
+        dialog1.setVisible(false);
+        usernameTxt.setText("");
+        userPassTxt.setText("");
+        crbCodeTxt.setText("");
+        UserTableShow();    
+    }//GEN-LAST:event_okButtonActionPerformed
+
+    private void addAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAdminActionPerformed
+        dialog1.setVisible(true);
+    }//GEN-LAST:event_addAdminActionPerformed
+
+    private void delAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delAdminActionPerformed
+        int row = UserTable.getSelectedRow();
+        if(row != -1){
+            String username = UserTable.getValueAt(row, 1).toString();
+            user.DeleteUser(con.getConnection(), username);
+            UserTableShow();
+        } else{
+             JOptionPane.showMessageDialog(null, "Выберите пользователя.");
+        }
+    }//GEN-LAST:event_delAdminActionPerformed
+
+    private void userStatusCBPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_userStatusCBPropertyChange
+        if(userStatusCB.getSelectedIndex() == 1){
+            crbCodeTxt.setEditable(false);
+        }
+        else crbCodeTxt.setEditable(true);
+    }//GEN-LAST:event_userStatusCBPropertyChange
     
     private void ButtonPress() {
         SaveParamTable a = new SaveParamTable();
@@ -1021,6 +1240,36 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             }  
         }
         
+    }
+    
+    public void UserTableShow(){
+       CrbTableModel tm = new CrbTableModel(false, con.getConnection());          
+        try { 
+            tm.setDataSource(user.FillUsersTable(con.getConnection()));           
+            UserTable.setModel(tm); 
+        } catch (Exception ex) {
+        } 
+        UserTable.getTableHeader().setFont(new java.awt.Font("Arial", 0, 13));
+        UserTable.setFont(new java.awt.Font("Arial", 0, 14));
+        UserTable.setRowHeight(22);
+        UserTable.getColumnModel().getColumn(0).setHeaderValue("ID");
+        UserTable.getColumnModel().getColumn(1).setHeaderValue("Имя пользователя");       
+        UserTable.getColumnModel().getColumn(2).setHeaderValue("Права доступа");
+        UserTable.getColumnModel().getColumn(3).setHeaderValue("Код ЦРБ");
+        UserTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+        UserTable.getColumnModel().getColumn(1).setPreferredWidth(200); 
+        UserTable.getColumnModel().getColumn(2).setPreferredWidth(120);
+         
+        for (int i = 0; i < UserTable.getRowCount(); i++) {
+            if(UserTable.getValueAt(i,2).toString().contains("1")){
+                
+                UserTable.setValueAt("Администратор",i,2);
+            }
+            if(UserTable.getValueAt(i,2).toString().contains("2")){
+                
+                UserTable.setValueAt("Врач",i,2);
+            }
+        }
     }
     
     public void getDataFromCodeTable(){
@@ -1100,7 +1349,6 @@ public class SuperAdminFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdminSetPanel;
-    private javax.swing.JTable AdminTable;
     private javax.swing.JPanel CrbPanel;
     private javax.swing.JTable CrbTable;
     private javax.swing.JTable DocCodeTable;
@@ -1127,9 +1375,18 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton ShowFapP;
     private javax.swing.JButton ShowParam;
     private javax.swing.JButton ShowPatP;
+    private javax.swing.JTable UserTable;
     private javax.swing.JButton addAdmin;
+    private javax.swing.JTextField crbCodeTxt;
+    private javax.swing.JButton delAdmin;
+    private javax.swing.JDialog dialog1;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1138,6 +1395,10 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JButton okButton;
     private javax.swing.JPanel settingsPanel;
+    private javax.swing.JTextField userPassTxt;
+    private javax.swing.JComboBox<String> userStatusCB;
+    private javax.swing.JTextField usernameTxt;
     // End of variables declaration//GEN-END:variables
 }

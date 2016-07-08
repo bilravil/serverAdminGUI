@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logic;
+package ExtendedLogic;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,11 +14,9 @@ import java.sql.SQLException;
  *
  * @author Равиль
  */
-public class FillUsersTable {
-    
-    
-    public ResultSet FillUsersTable(Connection con,String crb){      
-       String query = "SELECT `id`, `username`, `status`  FROM mdk_server.users   where users.`crbID`= '"+crb+"'";      
+public class FillAllUsersTable {
+       public ResultSet FillUsersTable(Connection con){      
+       String query = "SELECT id,username,`status`,crbID  FROM mdk_server.users where `status` = '1' or `status` = '0'";      
        PreparedStatement post; 
        ResultSet rs;
         try{
@@ -72,5 +70,5 @@ public class FillUsersTable {
              System.out.println(ex);
     }       
         return 0;
-   }
+   } 
 }
