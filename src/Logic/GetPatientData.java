@@ -80,6 +80,7 @@ public class GetPatientData {
         this.pass_num = pass_num;
     }
     private int count;
+    private ArrayList<String> service_code = new ArrayList();
     private ArrayList<String> service_name = new ArrayList();
     private ArrayList<String> service_prop = new ArrayList(); 
     private ArrayList<String> service_state = new ArrayList();
@@ -104,7 +105,11 @@ public class GetPatientData {
     public ArrayList<String> getService_name() {
         return service_name;
     }
-
+    
+    public ArrayList<String> getService_code() {
+        return service_code;
+    }
+    
     public ArrayList<String> getService_prop() {
         return service_prop;
     }
@@ -262,7 +267,7 @@ public class GetPatientData {
     }
         
        public void getDoneServiceData(Connection con,String id){               
-       String query1 = "SELECT s.service_mnemonic,r.state,r.date,r.result from   mdk_server.patient_result r "
+       String query1 = "SELECT s.service_id,s.service_mnemonic,r.state,r.date,r.result from   mdk_server.patient_result r "
                + "inner join mdk_server.service_params s on(r.service_code = s.service_id) "
                + "where r.patient_id = '"+id+"' and r.state = 'Выполнено'";
         //String query1 = "SELECT s.service_name,r.state,r.date,r.rezult from   mdk_base.rezult r "
@@ -270,6 +275,7 @@ public class GetPatientData {
 
        PreparedStatement post; 
        ResultSet rs;
+        service_code.clear();
         service_name.clear();
         service_state.clear();
         service_date.clear();
@@ -278,10 +284,11 @@ public class GetPatientData {
             post = con.prepareStatement(query1);
             rs = post.executeQuery(query1);
             while(rs.next()){
-                service_name.add(rs.getString(1));
-                service_state.add(rs.getString(2));
-                service_date.add(rs.getString(3));
-                service_result.add(rs.getString(4));
+                service_code.add(rs.getString(1));
+                service_name.add(rs.getString(2));
+                service_state.add(rs.getString(3));
+                service_date.add(rs.getString(4));
+                service_result.add(rs.getString(5));
                 
             }
         }catch (SQLException ex) {
@@ -290,11 +297,12 @@ public class GetPatientData {
    }
        
        
-       public void getDoneServiceProp(Connection con,String id){               
+       public void getDoneServiceProp(Connection con,String id,String service_id){               
        String query1 = "SELECT sp.service_param FROM mdk_server.service_properties sp "
                + "inner join service_params ss on (sp.service_code = ss.service_id) "
                + "inner join mdk_server.patient_result pr on (pr.service_code = ss.service_id) "
-               + "where pr.patient_id = '"+id+"' and pr.state = 'Выполнено' order by pr.patient_code;";
+               + "where pr.patient_id = '"+id+"' and pr.state = 'Выполнено'  and ss.service_id = '"+service_id+"'"
+               + "order by pr.patient_code,sp.id;";
        
 //        String query1 = "SELECT sp.service_p FROM mdk_base.service_prop sp "
 //                + "inner join service_params ss on (sp.service_code = ss.service_id) "
@@ -325,7 +333,7 @@ public class GetPatientData {
 
        PreparedStatement post; 
        ResultSet rs;
-       service_name.clear();
+        service_name.clear();
         service_state.clear();
         service_date.clear();
         service_result.clear();

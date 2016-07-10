@@ -121,14 +121,11 @@ public class DocsCreation {
             
             data.getDoneServiceCount(con.getConnection(), id);
             data.getDoneServiceData(con.getConnection(), id);
-            data.getDoneServiceProp(con.getConnection(), id);
-            int l = data.getDoneServicePropCount(con.getConnection(), id);
-            int m = 0;
-            System.out.println(data.getCount());
+           // data.getDoneServiceProp(con.getConnection(), id,data.getService_code().get(k));
             // проведенные услуги
-            doc.add(new Paragraph("\nПроведенные услуги: \n",new Font(bf, 14, Font.BOLD)));           
-            
+            doc.add(new Paragraph("\nПроведенные услуги: \n",new Font(bf, 14, Font.BOLD)));                       
             for (int i = 0; i < data.getCount(); i++) {
+                data.getDoneServiceProp(con.getConnection(), id,data.getService_code().get(i));
                 doc.add(new Phrase(data.getService_name().get(i)+ " : \n" ,new Font(bf, 12, Font.BOLD)));
                 if(data.getService_result().get(i)!= null){
                 arr = data.getService_result().get(i).split(";");
@@ -193,11 +190,9 @@ public class DocsCreation {
 //                        doc.add(new Phrase("Левый - " + arr[1] +" ;",new Font(bf, 12)));                
 //                        break;
 //                    } 
-//</editor-fold>
-                   
-                            
+//</editor-fold>              
                     int arrSize = arr.length;     
-                    for (int j = 0 ; (j < arrSize && m<l); j++,m++) {
+                    for (int j = 0 ; (j < arrSize ); j++) {
                         
                         if (data.getService_name().get(i).contains("Электрокардиография") || data.getService_name().get(i).contains("ЭКГ")) {
                             doc.add(new Phrase("Прикреплен файл " +";\n ",new Font(bf, 12)));
@@ -206,13 +201,13 @@ public class DocsCreation {
                                 targetFile.write(data.getPDFData(con.getConnection(), id));
                                 targetFile.close();                           
                                 log.info("pdf файл для "+id+ "сохранен");
-                                m++;
+                               
                                 break;
                             } catch (Exception ex) {
                                     log.error(ex, ex);                            
                             }
                         }
-                        doc.add(new Phrase(data.getService_prop().get(m)+ " - " + arr[j] +" ;\n",new Font(bf, 12)));
+                        doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ;\n",new Font(bf, 12)));
                         
                     }
                     
@@ -256,8 +251,7 @@ public class DocsCreation {
                 
                 }
                     doc.close();  
-                    
-                    
+     
                     if(!pdfName.equals("")){
                         AddCover1 cov = new AddCover1();
                         String tempFile = fileName;
@@ -338,18 +332,10 @@ public class DocsCreation {
                 doc.add (new Phrase("№ полиса(нового образца) : ",new Font(bf, 13, Font.BOLD)));
                 doc.add (new Phrase(data.getNewPol()+"; ",new Font(bf, 13))); 
             }
+            doc.add(new Paragraph("\nПроведенные услуги: \n",new Font(bf, 14, Font.BOLD)));    
             // проведенные услуги
-            
-            data.getDoneServiceCount(con.getConnection(), id);
-            data.getDoneServiceData(con.getConnection(), id);
-            data.getDoneServiceProp(con.getConnection(), id);
-            int l = data.getDoneServicePropCount(con.getConnection(), id);
-            int m = 0;
-            System.out.println(data.getCount());
-            // проведенные услуги
-            doc.add(new Paragraph("\nПроведенные услуги: \n",new Font(bf, 14, Font.BOLD)));           
-            
             for (int i = 0; i < data.getCount(); i++) {
+                data.getDoneServiceProp(con.getConnection(), id,data.getService_code().get(i));
                 doc.add(new Phrase(data.getService_name().get(i)+ " : \n" ,new Font(bf, 12, Font.BOLD)));
                 if(data.getService_result().get(i)!= null){
                 arr = data.getService_result().get(i).split(";");
@@ -414,26 +400,24 @@ public class DocsCreation {
 //                        doc.add(new Phrase("Левый - " + arr[1] +" ;",new Font(bf, 12)));                
 //                        break;
 //                    } 
-//</editor-fold>
-                   
-                            
+//</editor-fold>              
                     int arrSize = arr.length;     
-                    for (int j = 0 ; (j < arrSize && m<l); j++,m++) {
+                    for (int j = 0 ; (j < arrSize ); j++) {
                         
                         if (data.getService_name().get(i).contains("Электрокардиография") || data.getService_name().get(i).contains("ЭКГ")) {
                             doc.add(new Phrase("Прикреплен файл " +";\n ",new Font(bf, 12)));
                             pdfName = "C:\\MDKTemp\\"+fname+"ECG.pdf";
                             try (OutputStream targetFile = new FileOutputStream(pdfName)) {
-                            targetFile.write(data.getPDFData(con.getConnection(), id));
-                            targetFile.close();                           
-                            log.info("pdf файл для "+id+ "сохранен");
-                            m++;
-                            break;
+                                targetFile.write(data.getPDFData(con.getConnection(), id));
+                                targetFile.close();                           
+                                log.info("pdf файл для "+id+ "сохранен");
+                               
+                                break;
                             } catch (Exception ex) {
                                     log.error(ex, ex);                            
                             }
                         }
-                        doc.add(new Phrase(data.getService_prop().get(m)+ " - " + arr[j] +" ;\n",new Font(bf, 12)));
+                        doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ;\n",new Font(bf, 12)));
                         
                     }
                     

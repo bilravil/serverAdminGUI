@@ -1069,3 +1069,24 @@ com.itextpdf.text.exceptions.InvalidPdfException: PDF header signature not found
 [INFO] 2016-07-10 14:56:11,821 Logic.GetPatientData getPDFData - получен pdf файл для 11
 [INFO] 2016-07-10 14:56:11,822 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
 [INFO] 2016-07-10 14:56:12,019 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:01:44,288 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-10 18:01:49,636 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:01:50,459 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:01:50,548 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-10 18:01:50,549 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-10 18:01:50,761 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:01:50,862 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:05:15,580 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-10 18:05:17,262 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:05:17,717 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:05:17,746 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-10 18:05:17,747 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-10 18:05:17,865 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:05:17,920 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:18:06,771 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-10 18:18:08,268 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:18:08,992 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:18:09,052 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-10 18:18:09,053 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-10 18:18:09,191 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-10 18:18:09,257 Logic.GetPatientData getMainData - Получены данные из базы
