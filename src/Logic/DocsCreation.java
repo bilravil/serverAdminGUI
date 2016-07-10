@@ -28,7 +28,7 @@ import org.apache.log4j.PropertyConfigurator;
  * @author Равиль
  */
 public class DocsCreation {
-   String log4jConfPath = "./src/resources/log4j.properties";
+    String log4jConfPath = "./src/resources/log4j.properties";
 
     public DocsCreation() {
         PropertyConfigurator.configure(log4jConfPath);
@@ -78,7 +78,7 @@ public class DocsCreation {
             
             BaseFont bf = BaseFont.createFont("C:\\Windows\\Fonts\\ARIAL.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             // титл
-            Paragraph title = new Paragraph("ГАУЗ Новошешминская ЦРБ\n",new Font(bf,16,Font.BOLD));
+            Paragraph title = new Paragraph(data.getCrbName()+"\n",new Font(bf,16,Font.BOLD));
             title.setAlignment(Element.ALIGN_CENTER);
             doc.add(title);
             // участок 
@@ -112,76 +112,110 @@ public class DocsCreation {
                 doc.add (new Phrase("№ полиса(нового образца) : ",new Font(bf, 13, Font.BOLD)));
                 doc.add (new Phrase(data.getNewPol()+"; ",new Font(bf, 13))); 
             }
+            
+            if(data.getPhone()!=null){
+                doc.add (new Phrase("Номер телефона ",new Font(bf, 13, Font.BOLD)));
+                doc.add (new Phrase(data.getPhone()+"; ",new Font(bf, 13))); 
+            }
             // проведенные услуги
             
             data.getDoneServiceCount(con.getConnection(), id);
             data.getDoneServiceData(con.getConnection(), id);
-                System.out.println(data.getCount());
+            data.getDoneServiceProp(con.getConnection(), id);
+            int l = data.getDoneServicePropCount(con.getConnection(), id);
+            int m = 0;
+            System.out.println(data.getCount());
             // проведенные услуги
             doc.add(new Paragraph("\nПроведенные услуги: \n",new Font(bf, 14, Font.BOLD)));           
             
             for (int i = 0; i < data.getCount(); i++) {
-                doc.add(new Phrase(data.getService_name().get(i)+ " : " ,new Font(bf, 12, Font.BOLD)));
+                doc.add(new Phrase(data.getService_name().get(i)+ " : \n" ,new Font(bf, 12, Font.BOLD)));
                 if(data.getService_result().get(i)!= null){
                 arr = data.getService_result().get(i).split(";");
-
-                switch(data.getService_name().get(i)){            
-                    
-                    case "01.Опрос(анкетирование)":
-                    doc.add(new Phrase("Курите ли вы? - " +arr[0]+ " ;\n " ,new Font(bf, 12)));
-                    break;
-                    
-                    case "02.Антропометрия":                 
-                        doc.add(new Phrase("Рост - " + arr[0] +" ; ",new Font(bf, 12)));
-                        doc.add(new Phrase("Вес - " + arr[2] +" ; ",new Font(bf, 12)));
-                        doc.add(new Phrase("Окружность талии - " + arr[1] +" ;\n ",new Font(bf, 12)));               
-                        break; 
-
-                    case "03.Измерение артериального давления":                 
-                        doc.add(new Phrase("Верхнее артериальное давление - " + arr[0] +" ; ",new Font(bf, 12)));
-                        doc.add(new Phrase("Нижнее артериальное давление - " + arr[1] +" ;",new Font(bf, 12)));
-                        doc.add(new Phrase("Пульс - " + arr[2] +" ;\n ",new Font(bf, 12)));
-                        break; 
-
-                     case "06.Электрокардиография в покое":                 
-                            {   
+                
+                             
+                //<editor-fold defaultstate="collapsed" desc="старая версия ">
+                //                switch(data.getService_name().get(i)){            
+//                    
+//                    case "01.Опрос(анкетирование)":
+//                    doc.add(new Phrase("Курите ли вы? - " +arr[0]+ " ;\n " ,new Font(bf, 12)));
+//                    break;
+//                    
+//                    case "02.Антропометрия":                 
+//                        doc.add(new Phrase("Рост - " + arr[0] +" ; ",new Font(bf, 12)));
+//                        doc.add(new Phrase("Вес - " + arr[2] +" ; ",new Font(bf, 12)));
+//                        doc.add(new Phrase("Окружность талии - " + arr[1] +" ;\n ",new Font(bf, 12)));               
+//                        break; 
+//
+//                    case "03.Измерение артериального давления":                 
+//                        doc.add(new Phrase("Верхнее артериальное давление - " + arr[0] +" ; ",new Font(bf, 12)));
+//                        doc.add(new Phrase("Нижнее артериальное давление - " + arr[1] +" ;",new Font(bf, 12)));
+//                        doc.add(new Phrase("Пульс - " + arr[2] +" ;\n ",new Font(bf, 12)));
+//                        break; 
+//
+//                     case "06.Электрокардиография в покое" :                 
+//                            
+//                     {   
+//                            doc.add(new Phrase("Прикреплен файл " +";\n ",new Font(bf, 12)));
+//                            pdfName = "C:\\MDKTemp\\"+fname+"ECG.pdf";
+//                            try (OutputStream targetFile = new FileOutputStream(pdfName)) {
+//                            targetFile.write(data.getPDFData(con.getConnection(), id));
+//                            targetFile.close();
+//                            log.info("pdf файл для "+id+ "сохранен");
+//                            } catch (Exception ex) {
+//                                    log.error(ex, ex);                            
+//                            }
+//                        }
+//                     break;         
+//
+//                     case "08.Флюорография легких":                 
+//                        doc.add(new Phrase("Патологии выявлены? - " + arr[0] +" ;\n",new Font(bf, 12)));               
+//                        break; 
+//
+//                     case "13.Общий анализ мочи":                 
+//                        doc.add(new Phrase("\nГлюкоза (моча), ммоль/л - " + arr[0] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Протеин, г/л- " + arr[1] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Кетоны, ммоль/л - " + arr[2] +" - \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Эритроциты (моча),кол-во/мкл - " + arr[3] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Лейкоциты (моча), кол-во/мкл - " + arr[4] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Удельная плотность - " + arr[5] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("pH - " + arr[6] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Уробилиноген, мкмоль/л - " + arr[7] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Аскорбиновая кислота, г/л - " + arr[8] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Нитриты - " + arr[9] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Билирубен (моча), мкмоль/л - " + arr[10] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Цвет - " + arr[11] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Мутность - " + arr[12] +" ;\n",new Font(bf, 12)));
+//                        break; 
+//
+//                        case "16.Измерение внутриглазного давления":                 
+//                        doc.add(new Phrase("Правый - " + arr[0] +" ;",new Font(bf, 12)));
+//                        doc.add(new Phrase("Левый - " + arr[1] +" ;",new Font(bf, 12)));                
+//                        break;
+//                    } 
+//</editor-fold>
+                   
+                            
+                    int arrSize = arr.length;     
+                    for (int j = 0 ; (j < arrSize && m<l); j++,m++) {
+                        
+                        if (data.getService_name().get(i).contains("Электрокардиография в покое")) {
                             doc.add(new Phrase("Прикреплен файл " +";\n ",new Font(bf, 12)));
                             pdfName = "C:\\MDKTemp\\"+fname+"ECG.pdf";
                             try (OutputStream targetFile = new FileOutputStream(pdfName)) {
                             targetFile.write(data.getPDFData(con.getConnection(), id));
-                            targetFile.close();
+                            targetFile.close();                           
                             log.info("pdf файл для "+id+ "сохранен");
+                            m++;
+                            break;
                             } catch (Exception ex) {
                                     log.error(ex, ex);                            
                             }
                         }
-                     break;         
-
-                     case "08.Флюорография легких":                 
-                        doc.add(new Phrase("Патологии выявлены? - " + arr[0] +" ;\n",new Font(bf, 12)));               
-                        break; 
-
-                     case "13.Общий анализ мочи":                 
-                        doc.add(new Phrase("\nГлюкоза (моча), ммоль/л - " + arr[0] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Протеин, г/л- " + arr[1] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Кетоны, ммоль/л - " + arr[2] +" - \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Эритроциты (моча),кол-во/мкл - " + arr[3] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Лейкоциты (моча), кол-во/мкл - " + arr[4] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Удельная плотность - " + arr[5] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("pH - " + arr[6] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Уробилиноген, мкмоль/л - " + arr[7] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Аскорбиновая кислота, г/л - " + arr[8] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Нитриты - " + arr[9] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Билирубен (моча), мкмоль/л - " + arr[10] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Цвет - " + arr[11] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Мутность - " + arr[12] +" ;\n",new Font(bf, 12)));
-                        break; 
-
-                        case "16.Измерение внутриглазного давления":                 
-                        doc.add(new Phrase("Правый - " + arr[0] +" ;",new Font(bf, 12)));
-                        doc.add(new Phrase("Левый - " + arr[1] +" ;",new Font(bf, 12)));                
-                        break;
-                    } 
+                        doc.add(new Phrase(data.getService_prop().get(m)+ " - " + arr[j] +" ;\n",new Font(bf, 12)));
+                        
+                    }
+                    
                 }
             }
                 // назначенные услуги
@@ -270,7 +304,7 @@ public class DocsCreation {
             
             BaseFont bf = BaseFont.createFont("C:\\Windows\\Fonts\\ARIAL.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             // титл
-            Paragraph title = new Paragraph("ГАУЗ Новошешминская ЦРБ\n",new Font(bf,16,Font.BOLD));
+            Paragraph title = new Paragraph(data.getCrbName()+"\n",new Font(bf,16,Font.BOLD));
             title.setAlignment(Element.ALIGN_CENTER);
             doc.add(title);
             // участок 
@@ -308,72 +342,101 @@ public class DocsCreation {
             
             data.getDoneServiceCount(con.getConnection(), id);
             data.getDoneServiceData(con.getConnection(), id);
-                System.out.println(data.getCount());
+            data.getDoneServiceProp(con.getConnection(), id);
+            int l = data.getDoneServicePropCount(con.getConnection(), id);
+            int m = 0;
+            System.out.println(data.getCount());
             // проведенные услуги
             doc.add(new Paragraph("\nПроведенные услуги: \n",new Font(bf, 14, Font.BOLD)));           
             
             for (int i = 0; i < data.getCount(); i++) {
-                doc.add(new Phrase(data.getService_name().get(i)+ " : " ,new Font(bf, 12, Font.BOLD)));
+                doc.add(new Phrase(data.getService_name().get(i)+ " : \n" ,new Font(bf, 12, Font.BOLD)));
                 if(data.getService_result().get(i)!= null){
                 arr = data.getService_result().get(i).split(";");
-
-                switch(data.getService_name().get(i)){            
-                    
-                    case "01.Опрос(анкетирование)":
-                    doc.add(new Phrase("Курите ли вы? - " +arr[0]+ " ;\n " ,new Font(bf, 12)));
-                    break;
-                    
-                    case "02.Антропометрия":                 
-                        doc.add(new Phrase("Рост - " + arr[0] +" ; ",new Font(bf, 12)));
-                        doc.add(new Phrase("Вес - " + arr[2] +" ; ",new Font(bf, 12)));
-                        doc.add(new Phrase("Окружность талии - " + arr[1] +" ;\n ",new Font(bf, 12)));               
-                        break; 
-
-                    case "03.Измерение артериального давления":                 
-                        doc.add(new Phrase("Верхнее артериальное давление - " + arr[0] +" ; ",new Font(bf, 12)));
-                        doc.add(new Phrase("Нижнее артериальное давление - " + arr[1] +" ;",new Font(bf, 12)));
-                        doc.add(new Phrase("Пульс - " + arr[2] +" ;\n ",new Font(bf, 12)));
-                        break; 
-
-                     case "06.Электрокардиография в покое":                 
-                            {   
+                
+                             
+                //<editor-fold defaultstate="collapsed" desc="старая версия ">
+                //                switch(data.getService_name().get(i)){            
+//                    
+//                    case "01.Опрос(анкетирование)":
+//                    doc.add(new Phrase("Курите ли вы? - " +arr[0]+ " ;\n " ,new Font(bf, 12)));
+//                    break;
+//                    
+//                    case "02.Антропометрия":                 
+//                        doc.add(new Phrase("Рост - " + arr[0] +" ; ",new Font(bf, 12)));
+//                        doc.add(new Phrase("Вес - " + arr[2] +" ; ",new Font(bf, 12)));
+//                        doc.add(new Phrase("Окружность талии - " + arr[1] +" ;\n ",new Font(bf, 12)));               
+//                        break; 
+//
+//                    case "03.Измерение артериального давления":                 
+//                        doc.add(new Phrase("Верхнее артериальное давление - " + arr[0] +" ; ",new Font(bf, 12)));
+//                        doc.add(new Phrase("Нижнее артериальное давление - " + arr[1] +" ;",new Font(bf, 12)));
+//                        doc.add(new Phrase("Пульс - " + arr[2] +" ;\n ",new Font(bf, 12)));
+//                        break; 
+//
+//                     case "06.Электрокардиография в покое" :                 
+//                            
+//                     {   
+//                            doc.add(new Phrase("Прикреплен файл " +";\n ",new Font(bf, 12)));
+//                            pdfName = "C:\\MDKTemp\\"+fname+"ECG.pdf";
+//                            try (OutputStream targetFile = new FileOutputStream(pdfName)) {
+//                            targetFile.write(data.getPDFData(con.getConnection(), id));
+//                            targetFile.close();
+//                            log.info("pdf файл для "+id+ "сохранен");
+//                            } catch (Exception ex) {
+//                                    log.error(ex, ex);                            
+//                            }
+//                        }
+//                     break;         
+//
+//                     case "08.Флюорография легких":                 
+//                        doc.add(new Phrase("Патологии выявлены? - " + arr[0] +" ;\n",new Font(bf, 12)));               
+//                        break; 
+//
+//                     case "13.Общий анализ мочи":                 
+//                        doc.add(new Phrase("\nГлюкоза (моча), ммоль/л - " + arr[0] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Протеин, г/л- " + arr[1] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Кетоны, ммоль/л - " + arr[2] +" - \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Эритроциты (моча),кол-во/мкл - " + arr[3] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Лейкоциты (моча), кол-во/мкл - " + arr[4] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Удельная плотность - " + arr[5] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("pH - " + arr[6] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Уробилиноген, мкмоль/л - " + arr[7] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Аскорбиновая кислота, г/л - " + arr[8] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Нитриты - " + arr[9] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Билирубен (моча), мкмоль/л - " + arr[10] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Цвет - " + arr[11] +" ; \n",new Font(bf, 12)));
+//                        doc.add(new Phrase("Мутность - " + arr[12] +" ;\n",new Font(bf, 12)));
+//                        break; 
+//
+//                        case "16.Измерение внутриглазного давления":                 
+//                        doc.add(new Phrase("Правый - " + arr[0] +" ;",new Font(bf, 12)));
+//                        doc.add(new Phrase("Левый - " + arr[1] +" ;",new Font(bf, 12)));                
+//                        break;
+//                    } 
+//</editor-fold>
+                   
+                            
+                    int arrSize = arr.length;     
+                    for (int j = 0 ; (j < arrSize && m<l); j++,m++) {
+                        
+                        if (data.getService_name().get(i).contains("Электрокардиография в покое")) {
                             doc.add(new Phrase("Прикреплен файл " +";\n ",new Font(bf, 12)));
                             pdfName = "C:\\MDKTemp\\"+fname+"ECG.pdf";
                             try (OutputStream targetFile = new FileOutputStream(pdfName)) {
                             targetFile.write(data.getPDFData(con.getConnection(), id));
-                            targetFile.close();
+                            targetFile.close();                           
                             log.info("pdf файл для "+id+ "сохранен");
+                            m++;
+                            break;
                             } catch (Exception ex) {
                                     log.error(ex, ex);                            
                             }
                         }
-                     break;         
-
-                     case "08.Флюорография легких":                 
-                        doc.add(new Phrase("Патологии выявлены? - " + arr[0] +" ;\n",new Font(bf, 12)));               
-                        break; 
-
-                     case "13.Общий анализ мочи":                 
-                        doc.add(new Phrase("\nГлюкоза (моча), ммоль/л - " + arr[0] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Протеин, г/л- " + arr[1] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Кетоны, ммоль/л - " + arr[2] +" - \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Эритроциты (моча),кол-во/мкл - " + arr[3] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Лейкоциты (моча), кол-во/мкл - " + arr[4] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Удельная плотность - " + arr[5] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("pH - " + arr[6] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Уробилиноген, мкмоль/л - " + arr[7] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Аскорбиновая кислота, г/л - " + arr[8] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Нитриты - " + arr[9] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Билирубен (моча), мкмоль/л - " + arr[10] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Цвет - " + arr[11] +" ; \n",new Font(bf, 12)));
-                        doc.add(new Phrase("Мутность - " + arr[12] +" ;\n",new Font(bf, 12)));
-                        break; 
-
-                        case "16.Измерение внутриглазного давления":                 
-                        doc.add(new Phrase("Правый - " + arr[0] +" ;",new Font(bf, 12)));
-                        doc.add(new Phrase("Левый - " + arr[0] +" ;",new Font(bf, 12)));                
-                        break;
-                    } 
+                        doc.add(new Phrase(data.getService_prop().get(m)+ " - " + arr[j] +" ;\n",new Font(bf, 12)));
+                        
+                    }
+                    
                 }
             }
                 // назначенные услуги

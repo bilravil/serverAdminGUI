@@ -15,28 +15,10 @@ import java.sql.SQLException;
  * @author Равиль
  */
 public class FillAdminTable {
-//    public ResultSet FillTable(Connection con,String d1,String d2){      
-//       String query = "SELECT distinct * FROM mdk_server.admin_view a where a.`Дата приема` between '"+d1+"' and '"+d2+"' ";
-//       if(d1.equals("null") && d2.equals("null")){
-//        query = "SELECT distinct * FROM mdk_server.admin_view ";
-//       }
-//       
-//       PreparedStatement post; 
-//       ResultSet rs;
-//        try{
-//            post = con.prepareStatement(query);
-//            rs = post.executeQuery(query);
-//            return rs;
-//        }catch (SQLException ex) {
-//            System.out.println(ex);
-//    }        
-//       return null;
-//   }
-    
-     public ResultSet FillTable(Connection con,String d1,String d2){      
-       String query = "SELECT distinct * FROM mdk_base.admin_view a where a.`Дата приема` between '"+d1+"' and '"+d2+"' ";
+    public ResultSet FillTable(Connection con,String d1,String d2){      
+       String query = "SELECT distinct * FROM mdk_server.admin_view a where a.`Дата приема` between '"+d1+"' and '"+d2+"' ";
        if(d1.equals("null") && d2.equals("null")){
-        query = "SELECT distinct * FROM mdk_base.admin_view ";
+        query = "SELECT distinct * FROM mdk_server.admin_view ";
        }
        
        PreparedStatement post; 
@@ -50,4 +32,22 @@ public class FillAdminTable {
     }        
        return null;
    }
+    
+//     public ResultSet FillTable(Connection con,String d1,String d2){      
+//       String query = "SELECT distinct * FROM mdk_base.admin_view a where a.`Дата приема` between '"+d1+"' and '"+d2+"' ";
+//       if(d1.equals("null") && d2.equals("null")){
+//        query = "SELECT distinct * FROM mdk_base.admin_view ";
+//       }
+//       
+//       PreparedStatement post; 
+//       ResultSet rs;
+//        try{
+//            post = con.prepareStatement(query);
+//            rs = post.executeQuery(query);
+//            return rs;
+//        }catch (SQLException ex) {
+//            System.out.println(ex);
+//    }        
+//       return null;
+//   }
 }
