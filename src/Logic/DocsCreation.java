@@ -199,15 +199,15 @@ public class DocsCreation {
                     int arrSize = arr.length;     
                     for (int j = 0 ; (j < arrSize && m<l); j++,m++) {
                         
-                        if (data.getService_name().get(i).contains("Электрокардиография в покое")) {
+                        if (data.getService_name().get(i).contains("Электрокардиография") || data.getService_name().get(i).contains("ЭКГ")) {
                             doc.add(new Phrase("Прикреплен файл " +";\n ",new Font(bf, 12)));
                             pdfName = "C:\\MDKTemp\\"+fname+"ECG.pdf";
                             try (OutputStream targetFile = new FileOutputStream(pdfName)) {
-                            targetFile.write(data.getPDFData(con.getConnection(), id));
-                            targetFile.close();                           
-                            log.info("pdf файл для "+id+ "сохранен");
-                            m++;
-                            break;
+                                targetFile.write(data.getPDFData(con.getConnection(), id));
+                                targetFile.close();                           
+                                log.info("pdf файл для "+id+ "сохранен");
+                                m++;
+                                break;
                             } catch (Exception ex) {
                                     log.error(ex, ex);                            
                             }
@@ -420,7 +420,7 @@ public class DocsCreation {
                     int arrSize = arr.length;     
                     for (int j = 0 ; (j < arrSize && m<l); j++,m++) {
                         
-                        if (data.getService_name().get(i).contains("Электрокардиография в покое")) {
+                        if (data.getService_name().get(i).contains("Электрокардиография") || data.getService_name().get(i).contains("ЭКГ")) {
                             doc.add(new Phrase("Прикреплен файл " +";\n ",new Font(bf, 12)));
                             pdfName = "C:\\MDKTemp\\"+fname+"ECG.pdf";
                             try (OutputStream targetFile = new FileOutputStream(pdfName)) {

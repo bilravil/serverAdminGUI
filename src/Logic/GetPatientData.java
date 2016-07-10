@@ -248,7 +248,7 @@ public class GetPatientData {
        public byte[] getPDFData(Connection conn,String id) {
         String query;
         try {
-            query =  "select pdf_bin from mdk_server.ecgpdf_directory where pat_id = '"+id+"'";
+            query =  "select dd.pdf_bin from mdk_server.ecgpdf_directory dd where pat_id = '"+id+"'";
            // query =  "select pdf_bin from mdk_base.pdf_base where id = '"+id+"'";
             Statement state = conn.createStatement();
             ResultSet rs = state.executeQuery(query);
