@@ -1090,3 +1090,399 @@ com.itextpdf.text.exceptions.InvalidPdfException: PDF header signature not found
 [INFO] 2016-07-10 18:18:09,053 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
 [INFO] 2016-07-10 18:18:09,191 Logic.GetPatientData getMainData - Получены данные из базы
 [INFO] 2016-07-10 18:18:09,257 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 10:23:06,163 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-11 10:30:48,529 GUI.AdminJFrame login - Вход осуществлен под admin
+[ERROR] 2016-07-11 10:30:55,116 GUI.AdminJFrame createPdfDoc - java.lang.NullPointerException
+java.lang.NullPointerException
+	at Logic.DocsCreation.createPdfDoc(DocsCreation.java:66)
+	at GUI.AdminJFrame.saveFileActionPerformed(AdminJFrame.java:1787)
+	at GUI.AdminJFrame.access$1600(AdminJFrame.java:45)
+	at GUI.AdminJFrame$16.actionPerformed(AdminJFrame.java:662)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6533)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6298)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[INFO] 2016-07-11 10:31:04,819 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 10:31:05,615 Logic.GetPatientData getMainData - Получены данные из базы
+[ERROR] 2016-07-11 10:31:05,646 GUI.AdminJFrame createPdfDoc - java.lang.NumberFormatException: For input string: "Да"
+java.lang.NumberFormatException: For input string: "Да"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Logic.DocsCreation.createPdfDoc(DocsCreation.java:205)
+	at GUI.AdminJFrame.saveFileActionPerformed(AdminJFrame.java:1787)
+	at GUI.AdminJFrame.access$1600(AdminJFrame.java:45)
+	at GUI.AdminJFrame$16.actionPerformed(AdminJFrame.java:662)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6533)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6298)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[INFO] 2016-07-11 10:31:19,890 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 10:31:22,542 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 10:31:23,136 Logic.GetPatientData getMainData - Получены данные из базы
+[ERROR] 2016-07-11 10:31:23,183 GUI.AdminJFrame createPdfDoc - java.lang.NumberFormatException: For input string: "Да"
+java.lang.NumberFormatException: For input string: "Да"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Logic.DocsCreation.createPdfDoc(DocsCreation.java:205)
+	at GUI.AdminJFrame.saveFileActionPerformed(AdminJFrame.java:1787)
+	at GUI.AdminJFrame.access$1600(AdminJFrame.java:45)
+	at GUI.AdminJFrame$16.actionPerformed(AdminJFrame.java:662)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6533)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6298)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[INFO] 2016-07-11 10:31:31,940 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 10:31:32,034 Logic.GetPatientData getMainData - Получены данные из базы
+[ERROR] 2016-07-11 10:31:32,081 GUI.AdminJFrame createPdfDoc - java.lang.NumberFormatException: For input string: "Да"
+java.lang.NumberFormatException: For input string: "Да"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Logic.DocsCreation.createPdfDoc(DocsCreation.java:205)
+	at GUI.AdminJFrame.saveFileActionPerformed(AdminJFrame.java:1787)
+	at GUI.AdminJFrame.access$1600(AdminJFrame.java:45)
+	at GUI.AdminJFrame$16.actionPerformed(AdminJFrame.java:662)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6533)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6298)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[INFO] 2016-07-11 10:32:41,938 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 10:32:44,855 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 10:32:45,417 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 10:32:45,542 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-11 10:32:45,557 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-11 10:32:45,760 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 10:32:45,994 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 11:41:21,841 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 11:41:32,355 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 11:41:32,947 Logic.GetPatientData getMainData - Получены данные из базы
+[ERROR] 2016-07-11 11:41:33,010 GUI.AdminJFrame createPdfDoc - java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at Logic.DocsCreation.checkExistNorm(DocsCreation.java:311)
+	at Logic.DocsCreation.createPdfDoc(DocsCreation.java:219)
+	at GUI.AdminJFrame.saveFileActionPerformed(AdminJFrame.java:1787)
+	at GUI.AdminJFrame.access$1600(AdminJFrame.java:45)
+	at GUI.AdminJFrame$16.actionPerformed(AdminJFrame.java:662)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6533)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6298)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[INFO] 2016-07-11 11:47:44,773 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 11:47:48,673 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 11:47:49,328 Logic.GetPatientData getMainData - Получены данные из базы
+[ERROR] 2016-07-11 11:49:40,753 GUI.AdminJFrame createPdfDoc - java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at Logic.DocsCreation.checkExistNorm(DocsCreation.java:312)
+	at Logic.DocsCreation.createPdfDoc(DocsCreation.java:219)
+	at GUI.AdminJFrame.saveFileActionPerformed(AdminJFrame.java:1787)
+	at GUI.AdminJFrame.access$1600(AdminJFrame.java:45)
+	at GUI.AdminJFrame$16.actionPerformed(AdminJFrame.java:662)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6533)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6298)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[INFO] 2016-07-11 11:53:04,206 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 11:53:07,404 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 11:53:07,981 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 11:55:01,369 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 11:55:05,815 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 11:55:06,423 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 11:57:18,327 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 11:57:22,024 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 11:57:22,617 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:03:05,523 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 12:03:09,331 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:03:09,861 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:04:07,846 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 12:04:11,449 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:04:12,120 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:07:18,023 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 12:07:24,606 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:07:25,246 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:07:25,417 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-11 12:07:25,417 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[ERROR] 2016-07-11 12:07:25,433 GUI.AdminJFrame createPdfDoc - java.lang.NumberFormatException: For input string: "0.8"
+java.lang.NumberFormatException: For input string: "0.8"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Logic.DocsCreation.createPdfDoc(DocsCreation.java:236)
+	at GUI.AdminJFrame.saveFileActionPerformed(AdminJFrame.java:1787)
+	at GUI.AdminJFrame.access$1600(AdminJFrame.java:45)
+	at GUI.AdminJFrame$16.actionPerformed(AdminJFrame.java:662)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6533)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6298)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[INFO] 2016-07-11 12:09:50,872 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 12:09:55,725 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:09:56,255 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:09:56,364 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-11 12:09:56,364 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-11 12:09:56,770 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:09:56,957 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:14:15,782 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 12:14:18,886 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:14:19,448 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:14:19,526 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-11 12:14:19,526 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-11 12:14:19,682 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:14:19,806 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:20:17,852 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 12:20:20,442 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:20:20,956 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:20:21,066 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-11 12:20:21,066 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-11 12:20:21,237 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:20:21,409 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:22:52,910 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 12:22:55,656 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:22:56,171 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:22:56,264 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-11 12:22:56,264 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-11 12:22:56,436 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 12:22:56,561 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 13:50:36,110 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 13:50:39,435 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 13:50:40,028 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 13:50:40,184 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-11 13:50:40,184 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-11 13:50:40,340 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 13:50:40,496 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 13:55:35,189 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-11 13:55:38,652 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 13:55:39,214 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 13:55:39,307 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-11 13:55:39,307 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-11 13:55:39,494 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-11 13:55:39,713 Logic.GetPatientData getMainData - Получены данные из базы

@@ -29,7 +29,10 @@ import org.apache.log4j.PropertyConfigurator;
  */
 public class DocsCreation {
     String log4jConfPath = "./src/resources/log4j.properties";
-
+    GetServiceNorm norm = new GetServiceNorm();
+    private boolean flagExistNorm;
+    private String[] arrNorm;
+    
     public DocsCreation() {
         PropertyConfigurator.configure(log4jConfPath);
     }
@@ -37,6 +40,7 @@ public class DocsCreation {
     
    public void createPdfDoc(JTable Table, GetPatientData data,StartDB con){
         try {
+            norm.getNorm(con.getConnection());
             int b = Table.getRowCount();
             if(b == -1){
                 return;
@@ -121,15 +125,27 @@ public class DocsCreation {
             
             data.getDoneServiceCount(con.getConnection(), id);
             data.getDoneServiceData(con.getConnection(), id);
-           // data.getDoneServiceProp(con.getConnection(), id,data.getService_code().get(k));
+            // data.getDoneServiceProp(con.getConnection(), id,data.getService_code().get(k));
             // проведенные услуги
-            doc.add(new Paragraph("\nПроведенные услуги: \n",new Font(bf, 14, Font.BOLD)));                       
+            doc.add(new Paragraph("\nПроведенные услуги: \n",new Font(bf, 14, Font.BOLD)));   
+            
             for (int i = 0; i < data.getCount(); i++) {
                 data.getDoneServiceProp(con.getConnection(), id,data.getService_code().get(i));
                 doc.add(new Phrase(data.getService_name().get(i)+ " : \n" ,new Font(bf, 12, Font.BOLD)));
                 if(data.getService_result().get(i)!= null){
-                arr = data.getService_result().get(i).split(";");
+                    arr = data.getService_result().get(i).split(";");
                 
+                    for (int l = 0; l < norm.getCode().size(); l++) {
+                        if (data.getService_code().get(i).equals(norm.getCode().get(l)) ) {
+                            flagExistNorm = true;
+                            arrNorm = norm.getNorms().get(l).split(";");
+                            break;
+                        }  
+                        else
+                            flagExistNorm = false;
+                    }    
+                
+
                              
                 //<editor-fold defaultstate="collapsed" desc="старая версия ">
                 //                switch(data.getService_name().get(i)){            
@@ -190,7 +206,8 @@ public class DocsCreation {
 //                        doc.add(new Phrase("Левый - " + arr[1] +" ;",new Font(bf, 12)));                
 //                        break;
 //                    } 
-//</editor-fold>              
+//</editor-fold>    
+//            
                     int arrSize = arr.length;     
                     for (int j = 0 ; (j < arrSize ); j++) {
                         
@@ -207,6 +224,30 @@ public class DocsCreation {
                                     log.error(ex, ex);                            
                             }
                         }
+                    if (flagExistNorm) {
+                        String[] border;
+                        border = new String[2];
+                        boolean flagNorm[] = new boolean[arrSize];
+                        border = arrNorm[j].split(" - ");
+                        if (Float.parseFloat(arr[j]) >= Float.parseFloat(border[0])) {
+                            if (Float.parseFloat(arr[j]) <= Float.parseFloat(border[1])) {
+                                // в норме все
+                                flagNorm[j] = true;
+                                doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ;\n",new Font(bf, 12)));
+                            }
+                            else{
+//                            // не в норме вывод
+                            flagNorm[j] = false;
+                            doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ! Норма ("+border[0]+" - "+border[1]+");\n",new Font(bf, 12)));
+                            }
+                        }
+                        else{
+                        // не в норме вывод
+                        flagNorm[j] = false; 
+                        doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ! Норма ("+border[0]+" - "+border[1]+");\n",new Font(bf, 12)));
+                        }
+                    }
+                    else
                         doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ;\n",new Font(bf, 12)));
                         
                     }
@@ -217,7 +258,7 @@ public class DocsCreation {
                data.getAppoitedServiceCount(con.getConnection(), id);
                data.getAppServiceData(con.getConnection(), id); 
                doc.add(new Phrase("\n\nНазначенные услуги :\n ",new Font(bf, 14,Font.BOLD)));         
-               for (int j = 0; j < data.getCount(); j++) {                               
+               for (int j = 0; j < data.getCount(); j++) {
                     if(data.getService_result().get(j) != null){
                        doc.add(new Phrase(data.getService_name().get(j)+" - ",new Font(bf, 12,Font.BOLD)));                    
                        doc.add(new Phrase(data.getService_result().get(j)+" ; ",new Font(bf, 12)));   
@@ -274,6 +315,21 @@ public class DocsCreation {
         
     }
     
+//    private boolean checkExistNorm(int i) {
+//        GetPatientData data = new GetPatientData();
+//
+//        for (int l = 0; l < norm.getCode().size(); l++) {
+//            if (data.getService_code().get(i).equals(norm.getCode().get(l)) ) {
+//                flagExistNorm = true;
+//                arrNorm = norm.getNorms().get(l).split(";");
+//                break;
+//            }  
+//            else
+//                flagExistNorm = false;
+//        }
+//        return flagExistNorm;
+//}
+   
    public void createPrintPdfDoc(JTable Table, GetPatientData data,StartDB con){
           try {
             int b = Table.getRowCount();
