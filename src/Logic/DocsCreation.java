@@ -81,6 +81,7 @@ public class DocsCreation {
             
             
             BaseFont bf = BaseFont.createFont("C:\\Windows\\Fonts\\ARIAL.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont bfn = BaseFont.createFont("C:\\Windows\\Fonts\\ARIALI.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             // титл
             Paragraph title = new Paragraph(data.getCrbName()+"\n",new Font(bf,16,Font.BOLD));
             title.setAlignment(Element.ALIGN_CENTER);
@@ -127,7 +128,7 @@ public class DocsCreation {
             data.getDoneServiceData(con.getConnection(), id);
             // data.getDoneServiceProp(con.getConnection(), id,data.getService_code().get(k));
             // проведенные услуги
-            doc.add(new Paragraph("\nПроведенные услуги: \n",new Font(bf, 14, Font.BOLD)));   
+            doc.add(new Paragraph("\nПроведенные услуги: \n",new Font(bf, 16, Font.BOLD)));   
             
             for (int i = 0; i < data.getCount(); i++) {
                 data.getDoneServiceProp(con.getConnection(), id,data.getService_code().get(i));
@@ -227,24 +228,33 @@ public class DocsCreation {
                     if (flagExistNorm) {
                         String[] border;
                         border = new String[2];
-                        boolean flagNorm[] = new boolean[arrSize];
+
                         border = arrNorm[j].split(" - ");
                         if (Float.parseFloat(arr[j]) >= Float.parseFloat(border[0])) {
                             if (Float.parseFloat(arr[j]) <= Float.parseFloat(border[1])) {
                                 // в норме все
-                                flagNorm[j] = true;
+
                                 doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ;\n",new Font(bf, 12)));
                             }
                             else{
-//                            // не в норме вывод
-                            flagNorm[j] = false;
-                            doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ! Норма ("+border[0]+" - "+border[1]+");\n",new Font(bf, 12)));
+                            // не в норме вывод
+                                doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12)));
+                                if (border[0].equals(border[1])) {
+                                    doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12)));
+                                }
+                                else
+                                    doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
                             }
                         }
                         else{
                         // не в норме вывод
-                        flagNorm[j] = false; 
-                        doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ! Норма ("+border[0]+" - "+border[1]+");\n",new Font(bf, 12)));
+                       // doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
+                        doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12)));
+                            if (border[0].equals(border[1])) {
+                                    doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12)));
+                                }
+                                else
+                                    doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
                         }
                     }
                     else
@@ -257,7 +267,7 @@ public class DocsCreation {
                 // назначенные услуги
                data.getAppoitedServiceCount(con.getConnection(), id);
                data.getAppServiceData(con.getConnection(), id); 
-               doc.add(new Phrase("\n\nНазначенные услуги :\n ",new Font(bf, 14,Font.BOLD)));         
+               doc.add(new Phrase("Назначенные услуги :\n",new Font(bf, 16,Font.BOLD)));         
                for (int j = 0; j < data.getCount(); j++) {
                     if(data.getService_result().get(j) != null){
                        doc.add(new Phrase(data.getService_name().get(j)+" - ",new Font(bf, 12,Font.BOLD)));                    
@@ -270,7 +280,7 @@ public class DocsCreation {
                     // отказ
                 data.getRenServiceCount(con.getConnection(), id);
                 data.getRenServiceData(con.getConnection(), id);
-                   doc.add(new Phrase("\n\nОтказ : ",new Font(bf, 14, Font.BOLD)));               
+                   doc.add(new Phrase("\nОтказ : ",new Font(bf, 16, Font.BOLD)));               
                   for (int i = 0; i < data.getCount(); i++) {
                       if(data.getService_name().get(i) == null){
                           doc.add(new Phrase("Нет ",new Font(bf, 12)));                          
@@ -280,7 +290,7 @@ public class DocsCreation {
                   // ранее
                 data.getEarlierServiceCount(con.getConnection(), id);
                 data.getEarServiceData(con.getConnection(), id);            
-                doc.add(new Phrase("\n\nВыполнено ранее : ",new Font(bf, 14,  Font.BOLD)));               
+                doc.add(new Phrase("\nВыполнено ранее : ",new Font(bf, 16,  Font.BOLD)));               
                   for (int i = 0; i < data.getCount(); i++) {     
                      if(data.getService_result().get(i)!= null){
                           doc.add(new Phrase(data.getService_name().get(i)+" - ",new Font(bf, 12, Font.BOLD)));                    
@@ -315,21 +325,6 @@ public class DocsCreation {
         
     }
     
-//    private boolean checkExistNorm(int i) {
-//        GetPatientData data = new GetPatientData();
-//
-//        for (int l = 0; l < norm.getCode().size(); l++) {
-//            if (data.getService_code().get(i).equals(norm.getCode().get(l)) ) {
-//                flagExistNorm = true;
-//                arrNorm = norm.getNorms().get(l).split(";");
-//                break;
-//            }  
-//            else
-//                flagExistNorm = false;
-//        }
-//        return flagExistNorm;
-//}
-   
    public void createPrintPdfDoc(JTable Table, GetPatientData data,StartDB con){
           try {
             int b = Table.getRowCount();
@@ -353,6 +348,7 @@ public class DocsCreation {
             
             
             BaseFont bf = BaseFont.createFont("C:\\Windows\\Fonts\\ARIAL.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont bfn = BaseFont.createFont("C:\\Windows\\Fonts\\ARIALI.TTF", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             // титл
             Paragraph title = new Paragraph(data.getCrbName()+"\n",new Font(bf,16,Font.BOLD));
             title.setAlignment(Element.ALIGN_CENTER);
@@ -394,8 +390,16 @@ public class DocsCreation {
                 data.getDoneServiceProp(con.getConnection(), id,data.getService_code().get(i));
                 doc.add(new Phrase(data.getService_name().get(i)+ " : \n" ,new Font(bf, 12, Font.BOLD)));
                 if(data.getService_result().get(i)!= null){
-                arr = data.getService_result().get(i).split(";");
-                
+                    arr = data.getService_result().get(i).split(";");
+                for (int l = 0; l < norm.getCode().size(); l++) {
+                        if (data.getService_code().get(i).equals(norm.getCode().get(l)) ) {
+                            flagExistNorm = true;
+                            arrNorm = norm.getNorms().get(l).split(";");
+                            break;
+                        }  
+                        else
+                            flagExistNorm = false;
+                    }
                              
                 //<editor-fold defaultstate="collapsed" desc="старая версия ">
                 //                switch(data.getService_name().get(i)){            
@@ -473,6 +477,39 @@ public class DocsCreation {
                                     log.error(ex, ex);                            
                             }
                         }
+                    if (flagExistNorm) {
+                        String[] border;
+                        border = new String[2];
+
+                        border = arrNorm[j].split(" - ");
+                        if (Float.parseFloat(arr[j]) >= Float.parseFloat(border[0])) {
+                            if (Float.parseFloat(arr[j]) <= Float.parseFloat(border[1])) {
+                                // в норме все
+
+                                doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ;\n",new Font(bf, 12)));
+                            }
+                            else{
+                            // не в норме вывод
+                                doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12)));
+                                if (border[0].equals(border[1])) {
+                                    doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12)));
+                                }
+                                else
+                                    doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
+                            }
+                        }
+                        else{
+                        // не в норме вывод
+                       // doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
+                        doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12)));
+                            if (border[0].equals(border[1])) {
+                                    doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12)));
+                                }
+                                else
+                                    doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
+                        }
+                    }
+                    else
                         doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ;\n",new Font(bf, 12)));
                         
                     }
@@ -482,8 +519,8 @@ public class DocsCreation {
                 // назначенные услуги
                data.getAppoitedServiceCount(con.getConnection(), id);
                data.getAppServiceData(con.getConnection(), id); 
-               doc.add(new Phrase("\n\nНазначенные услуги :\n ",new Font(bf, 14,Font.BOLD)));         
-               for (int j = 0; j < data.getCount(); j++) {                               
+               doc.add(new Phrase("Назначенные услуги :\n",new Font(bf, 16,Font.BOLD)));         
+               for (int j = 0; j < data.getCount(); j++) {
                     if(data.getService_result().get(j) != null){
                        doc.add(new Phrase(data.getService_name().get(j)+" - ",new Font(bf, 12,Font.BOLD)));                    
                        doc.add(new Phrase(data.getService_result().get(j)+" ; ",new Font(bf, 12)));   
@@ -495,7 +532,7 @@ public class DocsCreation {
                     // отказ
                 data.getRenServiceCount(con.getConnection(), id);
                 data.getRenServiceData(con.getConnection(), id);
-                   doc.add(new Phrase("\n\nОтказ : ",new Font(bf, 14, Font.BOLD)));               
+                   doc.add(new Phrase("\nОтказ : ",new Font(bf, 16, Font.BOLD)));               
                   for (int i = 0; i < data.getCount(); i++) {
                       if(data.getService_name().get(i) == null){
                           doc.add(new Phrase("Нет ",new Font(bf, 12)));                          
@@ -505,7 +542,7 @@ public class DocsCreation {
                   // ранее
                 data.getEarlierServiceCount(con.getConnection(), id);
                 data.getEarServiceData(con.getConnection(), id);            
-                doc.add(new Phrase("\n\nВыполнено ранее : ",new Font(bf, 14,  Font.BOLD)));               
+                doc.add(new Phrase("\nВыполнено ранее : ",new Font(bf, 16,  Font.BOLD)));               
                   for (int i = 0; i < data.getCount(); i++) {     
                      if(data.getService_result().get(i)!= null){
                           doc.add(new Phrase(data.getService_name().get(i)+" - ",new Font(bf, 12, Font.BOLD)));                    
