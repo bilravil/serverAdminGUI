@@ -1046,7 +1046,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(265, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         UsersPanelLayout.setVerticalGroup(
             UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1238,7 +1238,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                                 .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(v015Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(v002Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)))
                     .addGroup(DocPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(addDoctor)
@@ -1352,7 +1352,7 @@ public class AdminJFrame extends javax.swing.JFrame {
             .addGroup(LpuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(LpuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
                     .addGroup(LpuPanelLayout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addGap(18, 18, 18)
@@ -1455,7 +1455,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                     .addGroup(VopPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE))
                     .addGroup(VopPanelLayout.createSequentialGroup()
                         .addComponent(addDocToLpu)
                         .addGap(35, 35, 35)
@@ -1580,7 +1580,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                     .addGroup(DocServPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(openServiceSettingsDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         DocServPanelLayout.setVerticalGroup(
             DocServPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2836,7 +2836,6 @@ public class AdminJFrame extends javax.swing.JFrame {
     private javax.swing.JTable DocTable2;
     private javax.swing.JPanel FapPanel;
     private javax.swing.JTable FapTable;
-    private javax.swing.JScrollPane JScrollPane7;
     private javax.swing.JTable LpuDocTable;
     private javax.swing.JPanel LpuPanel;
     private javax.swing.JTable LpuTable;

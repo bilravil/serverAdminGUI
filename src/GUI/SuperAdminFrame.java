@@ -825,7 +825,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
 
     private void ShowAdminPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAdminPActionPerformed
         ButtonPress();
-        if (!flagCancel) {
+        if (!flagCancel && !flagChanged) {
             LoadPatPanel.setVisible(false);
             CrbPanel.setVisible(false);      
             FapPanel.setVisible(false);
@@ -839,7 +839,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
 
     private void ShowPatPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPatPActionPerformed
         ButtonPress();
-        if (!flagCancel) {
+        if (!flagCancel && !flagChanged) {
             LoadPatPanel.setVisible(true);
             CrbPanel.setVisible(false);      
             FapPanel.setVisible(false);
@@ -885,7 +885,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     
     private void ShowDocSetPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowDocSetPActionPerformed
         ButtonPress();
-        if (!flagCancel) {
+        if (!flagCancel && !flagChanged) {
             LoadPatPanel.setVisible(false);
             CrbPanel.setVisible(false);      
             FapPanel.setVisible(false);
@@ -928,8 +928,10 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         ParamTable.setFont(new java.awt.Font("Arial", 0, 14));
         ParamTable.setRowHeight(25);
         ParamTable.getColumnModel().getColumn(1).setHeaderValue("Параметр");
-        ParamTable.getColumnModel().getColumn(2).setHeaderValue("Ниж. граница");
-        ParamTable.getColumnModel().getColumn(3).setHeaderValue("Вер. граница");
+        ParamTable.getColumnModel().getColumn(2).setHeaderValue("Ниж. граница(жен.)");
+        ParamTable.getColumnModel().getColumn(3).setHeaderValue("Вер. граница(жен.");
+        ParamTable.getColumnModel().getColumn(4).setHeaderValue("Ниж. граница(муж.)");
+        ParamTable.getColumnModel().getColumn(5).setHeaderValue("Вер. граница(муж.");
         ParamTable.getColumnModel().getColumn(0).setPreferredWidth(20);
         ParamTable.getColumnModel().getColumn(0).setMaxWidth(20);
         updateRowHeights(ParamTable);
@@ -995,7 +997,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     
     private void ShowFapPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowFapPActionPerformed
         ButtonPress();
-        if (!flagCancel) {
+        if (!flagCancel && !flagChanged) {
             LoadPatPanel.setVisible(false);
             CrbPanel.setVisible(false);      
             FapPanel.setVisible(true);
@@ -1008,7 +1010,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
 
     private void ShowCrbPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowCrbPActionPerformed
         ButtonPress();
-        if (!flagCancel) {
+        if (!flagCancel && !flagChanged) {
             LoadPatPanel.setVisible(false);
             AdminSetPanel.setVisible(false);     
             FapPanel.setVisible(false);
@@ -1115,11 +1117,12 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     options,  
                     options[0]);
             if (n == 0) {
-                a.saveToDB(ParamTable, con.getConnection());
-                String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
-                ParamTable.remove(this);
-                ParamTableShow(text);
-                flagChanged = false;
+//                a.saveToDB(ParamTable, con.getConnection());
+//                String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
+//                ParamTable.remove(this);
+//        //        ParamTableShow(text);
+//                flagChanged = false;
+                flagChanged = a.saveToDB(ParamTable, con.getConnection());
             }
             if (n == 1) {
                 String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
@@ -1226,8 +1229,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     options,  
                     options[0]);
             if (n == 0) {
-                a.saveToDB(ParamTable, con.getConnection());
-                flagChanged = false;
+                flagChanged = a.saveToDB(ParamTable, con.getConnection());
             }
             if (n == 1) {
                 String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);

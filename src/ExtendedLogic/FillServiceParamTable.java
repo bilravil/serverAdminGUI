@@ -48,7 +48,8 @@ public class FillServiceParamTable {
     }
     
     public ResultSet FillParamTable(Connection con, String text){      
-       String query = "SELECT distinct id, service_param, service_border_low, service_border_up "
+       String query = "SELECT distinct id, service_param, service_border_low_woman, "
+               + "service_border_up_woman,service_border_low_man, service_border_up_man "
                + "FROM mdk_server.service_border "
                + "WHERE service_code = '"+ text +"'";
        

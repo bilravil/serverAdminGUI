@@ -19,8 +19,11 @@ public class AddParamToDB {
     }
 
 
-    public void addParam(String borderLow, String borderUp, String id){
-        String query = "UPDATE `mdk_server`.`service_border` SET service_border_low = '"+borderLow+"', service_border_up = '"+borderUp+"' WHERE `mdk_server`.`service_border`.`id` = '" + id + "'";       
+    public void addParam(String borderLowWoman, String borderUpWoman, String borderLowMan, String borderUpMan, String id){
+        String query = "UPDATE `mdk_server`.`service_border` SET service_border_low_woman = '"+borderLowWoman+"',"
+                + " service_border_up_woman = '"+borderUpWoman+"', service_border_low_man = '"+borderLowMan+"',"
+                + "service_border_up_man = '"+borderUpMan+"' "
+                + "WHERE `mdk_server`.`service_border`.`id` = '" + id + "'";       
         PreparedStatement pstmt;         
         try {
             pstmt = con.prepareStatement(query);

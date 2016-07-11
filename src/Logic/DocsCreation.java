@@ -94,7 +94,7 @@ public class DocsCreation {
             
             
             doc.add (new Phrase("ФИО: ",new Font(bf, 13, Font.BOLD)));
-            doc.add (new Phrase(data.getName()+"\n",new Font(bf, 13))); 
+            doc.add (new Phrase(data.getName()+" ("+data.getSex()+")\n",new Font(bf, 13))); 
             doc.add (new Phrase("Дата рождения: ",new Font(bf, 13, Font.BOLD)));
             doc.add (new Phrase(data.getBirth()+"\n",new Font(bf, 13))); 
             doc.add (new Phrase("Дата проведения диспансеризации: ",new Font(bf, 13, Font.BOLD)));
@@ -139,7 +139,11 @@ public class DocsCreation {
                     for (int l = 0; l < norm.getCode().size(); l++) {
                         if (data.getService_code().get(i).equals(norm.getCode().get(l)) ) {
                             flagExistNorm = true;
-                            arrNorm = norm.getNorms().get(l).split(";");
+                            if ("Ж".equals(data.getSex())) 
+                                arrNorm = norm.getNormsWoman().get(l).split(";");
+                            else
+                                arrNorm = norm.getNormsMan().get(l).split(";");
+                            
                             break;
                         }  
                         else
@@ -327,6 +331,7 @@ public class DocsCreation {
     
    public void createPrintPdfDoc(JTable Table, GetPatientData data,StartDB con){
           try {
+              norm.getNorm(con.getConnection());
             int b = Table.getRowCount();
             if(b == -1){
                 return;
@@ -361,7 +366,7 @@ public class DocsCreation {
             
             
             doc.add (new Phrase("ФИО: ",new Font(bf, 13, Font.BOLD)));
-            doc.add (new Phrase(data.getName()+"\n",new Font(bf, 13))); 
+            doc.add (new Phrase(data.getName()+" ("+data.getSex()+")\n",new Font(bf, 13))); 
             doc.add (new Phrase("Дата рождения: ",new Font(bf, 13, Font.BOLD)));
             doc.add (new Phrase(data.getBirth()+"\n",new Font(bf, 13))); 
             doc.add (new Phrase("Дата проведения диспансеризации: ",new Font(bf, 13, Font.BOLD)));
@@ -394,7 +399,10 @@ public class DocsCreation {
                 for (int l = 0; l < norm.getCode().size(); l++) {
                         if (data.getService_code().get(i).equals(norm.getCode().get(l)) ) {
                             flagExistNorm = true;
-                            arrNorm = norm.getNorms().get(l).split(";");
+                            if ("Ж".equals(data.getSex())) 
+                                arrNorm = norm.getNormsWoman().get(l).split(";");
+                            else
+                                arrNorm = norm.getNormsMan().get(l).split(";");
                             break;
                         }  
                         else
@@ -479,7 +487,6 @@ public class DocsCreation {
                         }
                     if (flagExistNorm) {
                         String[] border;
-                        border = new String[2];
 
                         border = arrNorm[j].split(" - ");
                         if (Float.parseFloat(arr[j]) >= Float.parseFloat(border[0])) {
