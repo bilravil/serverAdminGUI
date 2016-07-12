@@ -1025,28 +1025,29 @@ public class AdminJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UsersPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(UsersPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(UsersPanelLayout.createSequentialGroup()
+                                .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel15))
+                                .addGap(45, 45, 45)
+                                .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(userPassTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                                    .addComponent(userStatusCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(UsersPanelLayout.createSequentialGroup()
                         .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel15))
-                        .addGap(45, 45, 45)
-                        .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(userPassTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addComponent(userStatusCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(UsersPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(UsersPanelLayout.createSequentialGroup()
-                        .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 309, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jScrollPane1)
+                            .addGroup(UsersPanelLayout.createSequentialGroup()
+                                .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 309, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         UsersPanelLayout.setVerticalGroup(
             UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1579,9 +1580,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                         .addComponent(addDocToServ, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(delDocFromServ, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DocServPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(openServiceSettingsDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(openServiceSettingsDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(241, Short.MAX_VALUE))
         );
         DocServPanelLayout.setVerticalGroup(
@@ -1789,7 +1788,7 @@ public class AdminJFrame extends javax.swing.JFrame {
 
     private void saveFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveFileActionPerformed
         try {
-            doc.createPdfDoc(Table,data,con); 
+            doc.createPdfDoc(Table,data,con,false); 
         } catch (Exception e) {
         }
             
@@ -1814,7 +1813,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                 if (n == 0) {
                     // Печать всех пациентов
                     try {
-                        doc.createPrintPdfDoc(Table,data,con); 
+                        doc.createPdfDoc(Table,data,con,true); 
                     }catch (Exception e) {
                         System.out.println(e);
                     }
