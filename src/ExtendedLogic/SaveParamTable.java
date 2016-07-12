@@ -6,7 +6,6 @@
 package ExtendedLogic;
 
 
-import GUI.SuperAdminFrame;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -21,18 +20,13 @@ public class SaveParamTable {
     private String service_border_low_man;
     private String service_border_up_man;
     private String id;
-   
-    
-    
-    
+
+    //<editor-fold defaultstate="collapsed" desc="Считывание и Сохранение норм в базу данных в таблицу 'service_border'">
     public boolean saveToDB(JTable table,Connection con){
-        
         down = new AddParamToDB(con);
         int length = table.getRowCount();
         boolean flag = false;
         for (int i = 0; i < length; i++) {
-           // String value = table.getValueAt(i,1).toString();
-           
             id = table.getValueAt(i,0).toString();
             if (!"".equals(table.getValueAt(i,2).toString()) && !flag)
             {
@@ -41,14 +35,9 @@ public class SaveParamTable {
             else{
                 if (!flag) {
                     JOptionPane.showMessageDialog(null, "Заполните все поля таблицы");
-//                    String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
-//                ParamTable.remove(this);
-//                saf.ParamTableShow(text);
                     flag = true;
                 }
-                
             }
-           // value = table.getValueAt(i,2).toString();
             if (!"".equals(table.getValueAt(i,3).toString()) && !flag)
             {
                 service_border_up_woman = table.getValueAt(i,3).toString();
@@ -68,7 +57,6 @@ public class SaveParamTable {
                     JOptionPane.showMessageDialog(null, "Заполните все поля таблицы");
                     flag = true;
                 }
-                
             }
             if (!"".equals(table.getValueAt(i,5).toString()) && !flag)
             {
@@ -79,13 +67,10 @@ public class SaveParamTable {
                     JOptionPane.showMessageDialog(null, "Заполните все поля таблицы");
                     flag = true;
                 }
-             }
-            
-            
-             down.addParam(service_border_low_woman, service_border_up_woman, service_border_low_man, service_border_up_man, id);
+            }
+            down.addParam(service_border_low_woman, service_border_up_woman, service_border_low_man, service_border_up_man, id);
         } 
         return flag;
     }
-    
-   
+    //</editor-fold>
 }

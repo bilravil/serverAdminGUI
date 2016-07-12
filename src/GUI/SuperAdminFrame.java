@@ -1117,11 +1117,6 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     options,  
                     options[0]);
             if (n == 0) {
-//                a.saveToDB(ParamTable, con.getConnection());
-//                String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
-//                ParamTable.remove(this);
-//        //        ParamTableShow(text);
-//                flagChanged = false;
                 flagChanged = a.saveToDB(ParamTable, con.getConnection());
             }
             if (n == 1) {
@@ -1134,11 +1129,8 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         else{
             String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
             ParamTable.remove(this);
-            ParamTableShow(text);
-                
+            ParamTableShow(text);     
         }
-        
-        
     }//GEN-LAST:event_ServiceTableMouseClicked
 
     private void ParamTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ParamTableKeyReleased
@@ -1147,14 +1139,12 @@ public class SuperAdminFrame extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Object[] options = { "Да", "Нет" };
-                int n = JOptionPane.showOptionDialog(evt.getWindow(), "Завершить работу программы?",
-                                "Выход", JOptionPane.YES_NO_OPTION,
-                                JOptionPane.QUESTION_MESSAGE, null, options,
-                                options[0]);
+        int n = JOptionPane.showOptionDialog(evt.getWindow(), "Завершить работу программы?",
+                "Выход", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, 
+                null, options,options[0]);
                 if (n == 0) {
                     evt.getWindow().setVisible(false);
-                    System.exit(0);
-                    
+                    System.exit(0); 
                 }
     }//GEN-LAST:event_formWindowClosing
 

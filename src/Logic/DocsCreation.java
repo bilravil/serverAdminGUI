@@ -142,7 +142,10 @@ public class DocsCreation {
                             if ("Ж".equals(data.getSex())) 
                                 arrNorm = norm.getNormsWoman().get(l).split(";");
                             else
-                                arrNorm = norm.getNormsMan().get(l).split(";");
+                                if ("M".equals(data.getSex())) {
+                                    arrNorm = norm.getNormsMan().get(l).split(";");
+                                }
+                                
                             
                             break;
                         }  
@@ -242,23 +245,22 @@ public class DocsCreation {
                             }
                             else{
                             // не в норме вывод
-                                doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12)));
+                                doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12, Font.UNDERLINE)));
                                 if (border[0].equals(border[1])) {
-                                    doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12)));
+                                    doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12, Font.UNDERLINE)));
                                 }
                                 else
-                                    doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
+                                    doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12, Font.UNDERLINE)));
                             }
                         }
                         else{
                         // не в норме вывод
-                       // doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
-                        doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12)));
+                        doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12, Font.UNDERLINE)));
                             if (border[0].equals(border[1])) {
-                                    doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12)));
-                                }
-                                else
-                                    doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
+                                doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12, Font.UNDERLINE)));
+                            }
+                            else
+                                doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12, Font.UNDERLINE)));
                         }
                     }
                     else
@@ -497,23 +499,23 @@ public class DocsCreation {
                             }
                             else{
                             // не в норме вывод
-                                doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12)));
+                                doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12, Font.UNDERLINE)));
                                 if (border[0].equals(border[1])) {
-                                    doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12)));
+                                    doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12, Font.UNDERLINE)));
                                 }
                                 else
-                                    doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
+                                    doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12, Font.UNDERLINE)));
                             }
                         }
                         else{
                         // не в норме вывод
                        // doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
-                        doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12)));
+                        doc.add(new Phrase(data.getService_prop().get(j)+ " - " + arr[j] +" ; ",new Font(bf, 12, Font.UNDERLINE)));
                             if (border[0].equals(border[1])) {
-                                    doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12)));
+                                    doc.add(new Phrase("! (Норма "+border[0]+");\n",new Font(bfn, 12, Font.UNDERLINE)));
                                 }
                                 else
-                                    doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12)));
+                                    doc.add(new Phrase("! (Норма "+border[0]+" - "+border[1]+");\n",new Font(bfn, 12, Font.UNDERLINE)));
                         }
                     }
                     else
