@@ -39,6 +39,15 @@ public class PatientTableModel extends AbstractTableModel  {
         return columnNames.size();
     } 
     
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        switch(column){
+            case 5 : return true;
+            
+            default: return false;
+        }
+    }
+    
     
     public void removeRow(int row) {
         data.remove(row);
@@ -66,7 +75,10 @@ public class PatientTableModel extends AbstractTableModel  {
     // замена значения ячейки 
     @Override
     public void setValueAt( Object value, int row, int column){
-
+        synchronized (data) {
+        ((ArrayList)data.get(row)).set(column, value); 
+                     
+        }
     }
     
     

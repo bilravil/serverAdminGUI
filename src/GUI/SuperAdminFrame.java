@@ -116,6 +116,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         ParamTable = new javax.swing.JTable();
         SaveParam1 = new javax.swing.JButton();
+        CancelEnterNorm = new javax.swing.JButton();
 
         dialog1.setName("dialog1"); // NOI18N
         dialog1.setSize(436, 335);
@@ -250,7 +251,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(239, 239, 243));
         jPanel1.setName("jPanel1"); // NOI18N
-        jPanel1.setPreferredSize(new java.awt.Dimension(860, 720));
+        jPanel1.setPreferredSize(new java.awt.Dimension(860, 670));
 
         ShowCrbP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         ShowCrbP.setText("Загрузка ЦРБ");
@@ -334,9 +335,9 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                 .addComponent(ShowAdminP, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(ShowDocSetP, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(ShowParam, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(ShowParam, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         jPanel2.setName("jPanel2"); // NOI18N
@@ -414,8 +415,8 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(LoadPatientListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SavePatientList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2.add(LoadPatPanel, "card5");
@@ -488,8 +489,8 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(LoadCrbListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SaveCrbList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2.add(CrbPanel, "card4");
@@ -562,8 +563,8 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                     .addComponent(LoadFapListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SaveFapList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2.add(FapPanel, "card2");
@@ -593,7 +594,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             UserTable.getColumnModel().getColumn(1).setMaxWidth(120);
         }
 
-        addAdmin.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        addAdmin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         addAdmin.setText("Добавить нового пользователя");
         addAdmin.setName("addAdmin"); // NOI18N
         addAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -602,7 +603,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             }
         });
 
-        delAdmin.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        delAdmin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         delAdmin.setText("Удалить пользователя");
         delAdmin.setName("delAdmin"); // NOI18N
         delAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -619,9 +620,9 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(AdminSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AdminSetPanelLayout.createSequentialGroup()
-                        .addComponent(addAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(delAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addAdmin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(delAdmin)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE))
                 .addContainerGap())
@@ -630,19 +631,19 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             AdminSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AdminSetPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(AdminSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(delAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(AdminSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(delAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel2.add(AdminSetPanel, "card6");
 
         DocSetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Настройка соответствий \"специальность-услуга\"", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18))); // NOI18N
         DocSetPanel.setName("DocSetPanel"); // NOI18N
-        DocSetPanel.setPreferredSize(new java.awt.Dimension(651, 710));
+        DocSetPanel.setPreferredSize(new java.awt.Dimension(651, 670));
 
         jScrollPane6.setName("jScrollPane6"); // NOI18N
 
@@ -716,12 +717,12 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             DocSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DocSetPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DocSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SaveDocServParams, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGroup(DocSetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SaveDocServParams, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel2.add(DocSetPanel, "card3");
@@ -774,6 +775,15 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             }
         });
 
+        CancelEnterNorm.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        CancelEnterNorm.setText("Отменить ввод");
+        CancelEnterNorm.setName("CancelEnterNorm"); // NOI18N
+        CancelEnterNorm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelEnterNormActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ParamPanelLayout = new javax.swing.GroupLayout(ParamPanel);
         ParamPanel.setLayout(ParamPanelLayout);
         ParamPanelLayout.setHorizontalGroup(
@@ -784,18 +794,24 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))
-                    .addComponent(SaveParam1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ParamPanelLayout.createSequentialGroup()
+                        .addComponent(SaveParam1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CancelEnterNorm, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(0, 0, 0))
         );
         ParamPanelLayout.setVerticalGroup(
             ParamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ParamPanelLayout.createSequentialGroup()
-                .addGroup(ParamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane8)
+                .addGroup(ParamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                     .addComponent(jScrollPane5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SaveParam1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 247, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ParamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SaveParam1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(CancelEnterNorm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel2.add(ParamPanel, "card7");
@@ -811,10 +827,8 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         );
         settingsPanelLayout.setVerticalGroup(
             settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(settingsPanelLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         getContentPane().add(settingsPanel, "card4");
@@ -1099,9 +1113,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                 ParamTable.remove(this);
                 ParamTableShow(text);
                 flagChanged = false;
-            }
-            
-        
+            } 
     }//GEN-LAST:event_SaveParam1ActionPerformed
 
     private void ServiceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ServiceTableMouseClicked
@@ -1205,6 +1217,12 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         }
         else crbCodeTxt.setEditable(true);
     }//GEN-LAST:event_userStatusCBPropertyChange
+
+    private void CancelEnterNormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelEnterNormActionPerformed
+        String text = (String) ServiceTable.getValueAt(ServiceTable.getSelectedRow(), 0);
+        ParamTable.remove(this);
+        ParamTableShow(text);
+    }//GEN-LAST:event_CancelEnterNormActionPerformed
     
     private void ButtonPress() {
         SaveParamTable a = new SaveParamTable();
@@ -1341,6 +1359,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdminSetPanel;
+    private javax.swing.JButton CancelEnterNorm;
     private javax.swing.JPanel CrbPanel;
     private javax.swing.JTable CrbTable;
     private javax.swing.JTable DocCodeTable;

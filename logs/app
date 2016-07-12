@@ -22,3 +22,170 @@
 [INFO] 2016-07-12 10:23:05,702 Logic.GetPatientData getMainData - Получены данные из базы
 [INFO] 2016-07-12 10:23:05,874 Logic.GetPatientData getMainData - Получены данные из базы
 [INFO] 2016-07-12 10:23:05,999 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-12 10:45:29,476 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 10:47:43,841 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 10:50:28,313 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 10:58:07,996 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 11:05:00,091 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 11:17:59,347 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 11:22:37,185 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 11:24:40,233 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 11:26:14,303 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 11:27:32,445 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 11:45:26,877 GUI.AdminJFrame login - Вход осуществлен под admin
+[ERROR] 2016-07-12 11:56:14,659 GUI.AdminJFrame formWindowClosing - java.lang.NullPointerException
+java.lang.NullPointerException
+	at DB.StartDB.Stop(StartDB.java:25)
+	at GUI.AdminJFrame.formWindowClosing(AdminJFrame.java:1741)
+	at GUI.AdminJFrame.access$800(AdminJFrame.java:45)
+	at GUI.AdminJFrame$8.windowClosing(AdminJFrame.java:496)
+	at java.awt.Window.processWindowEvent(Window.java:2054)
+	at javax.swing.JFrame.processWindowEvent(JFrame.java:305)
+	at java.awt.Window.processEvent(Window.java:2013)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[ERROR] 2016-07-12 11:56:45,177 GUI.AdminJFrame formWindowClosing - java.lang.NullPointerException
+java.lang.NullPointerException
+	at DB.StartDB.Stop(StartDB.java:25)
+	at GUI.AdminJFrame.formWindowClosing(AdminJFrame.java:1741)
+	at GUI.AdminJFrame.access$800(AdminJFrame.java:45)
+	at GUI.AdminJFrame$8.windowClosing(AdminJFrame.java:496)
+	at java.awt.Window.processWindowEvent(Window.java:2054)
+	at javax.swing.JFrame.processWindowEvent(JFrame.java:305)
+	at java.awt.Window.processEvent(Window.java:2013)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[INFO] 2016-07-12 11:57:02,896 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 12:05:59,494 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 12:10:30,289 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 12:20:19,594 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:22:54,847 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:25:17,338 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:28:41,712 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:30:32,676 GUI.AdminJFrame login - Ошибка при вводе пароля
+[INFO] 2016-07-12 12:30:37,358 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:31:45,562 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:34:04,776 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:35:38,278 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:35:49,318 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:36:58,823 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:42:14,412 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:42:47,540 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:43:12,818 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 12:44:13,299 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:45:56,397 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:47:14,571 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 12:47:29,704 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:49:08,423 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:49:54,651 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:50:49,783 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 12:52:17,138 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 13:56:40,773 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 14:02:56,263 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 14:04:07,569 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 14:09:08,310 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-12 14:49:02,102 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 15:16:25,970 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 15:20:17,326 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 15:22:17,093 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-12 15:23:54,151 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-12 15:24:21,273 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-12 15:25:49,078 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 15:26:25,221 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 15:27:09,625 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 15:30:45,054 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-12 15:36:20,366 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 16:07:22,825 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 16:12:23,147 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 16:18:13,508 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 16:18:22,655 Logic.GetPatientData getMainData - Получены данные из базы
+[ERROR] 2016-07-12 16:18:23,013 GUI.AdminJFrame createPrintPdfDoc - java.io.FileNotFoundException: C:\ПЯТ23.1.1980.pdf (Отказано в доступе)
+java.io.FileNotFoundException: C:\ПЯТ23.1.1980.pdf (Отказано в доступе)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:101)
+	at Logic.DocsCreation.createPrintPdfDoc(DocsCreation.java:352)
+	at GUI.AdminJFrame.printFormActionPerformed(AdminJFrame.java:1817)
+	at GUI.AdminJFrame.access$1300(AdminJFrame.java:45)
+	at GUI.AdminJFrame$13.actionPerformed(AdminJFrame.java:621)
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+	at java.awt.Component.processMouseEvent(Component.java:6533)
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+	at java.awt.Component.processEvent(Component.java:6298)
+	at java.awt.Container.processEvent(Container.java:2236)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[INFO] 2016-07-12 16:18:42,067 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-12 16:24:53,856 GUI.AdminJFrame login - Ошибка при вводе пароля
+[INFO] 2016-07-12 16:24:59,317 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-12 16:28:42,040 GUI.AdminJFrame login - Вход осуществлен под admin

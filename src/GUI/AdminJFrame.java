@@ -601,7 +601,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "ФИО", "Пол", "Дата рождения", "Дата приема", ""
+                "ID", "ФИО", "Пол", "Дата рождения", "Дата приема", "Печать"
             }
         ));
         Table.setName("table"); // NOI18N
@@ -840,9 +840,9 @@ public class AdminJFrame extends javax.swing.JFrame {
                 .addComponent(ShowDocServ, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ShowUsersP, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backToMain, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addGap(56, 56, 56))
         );
 
         jPanel2.setName("jPanel2"); // NOI18N
@@ -910,29 +910,28 @@ public class AdminJFrame extends javax.swing.JFrame {
             .addGroup(FapPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(FapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
                     .addGroup(FapPanelLayout.createSequentialGroup()
                         .addGroup(FapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6))
                         .addGap(18, 18, 18)
-                        .addGroup(FapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(oldFapCodTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(newFapCodTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(FapPanelLayout.createSequentialGroup()
-                                .addComponent(fapNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(addFap, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(FapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(oldFapCodTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fapNameTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                            .addComponent(newFapCodTxt))
+                        .addGap(29, 29, 29)
+                        .addComponent(addFap, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 117, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         FapPanelLayout.setVerticalGroup(
             FapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FapPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
                 .addGroup(FapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(oldFapCodTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -945,7 +944,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(fapNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addFap, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(109, 109, 109))
+                .addGap(49, 49, 49))
         );
 
         jPanel2.add(FapPanel, "card2");
@@ -1023,7 +1022,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         UsersPanelLayout.setHorizontalGroup(
             UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UsersPanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UsersPanelLayout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -1041,19 +1040,20 @@ public class AdminJFrame extends javax.swing.JFrame {
             .addGroup(UsersPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(UsersPanelLayout.createSequentialGroup()
                         .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(277, Short.MAX_VALUE))
+                        .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 309, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         UsersPanelLayout.setVerticalGroup(
             UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UsersPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
                 .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -1069,7 +1069,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                 .addGroup(UsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addGap(49, 49, 49))
         );
 
         jPanel2.add(UsersPanel, "card5");
@@ -1238,7 +1238,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                                 .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(v015Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(v002Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane3)))
                     .addGroup(DocPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(addDoctor)
@@ -1252,8 +1252,8 @@ public class AdminJFrame extends javax.swing.JFrame {
             DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DocPanelLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
                 .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DocPanelLayout.createSequentialGroup()
                         .addGap(7, 7, 7)
@@ -1294,7 +1294,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                     .addComponent(addDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addlputodoc, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 47, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
 
         jPanel2.add(DocPanel, "card3");
@@ -1354,30 +1354,32 @@ public class AdminJFrame extends javax.swing.JFrame {
                 .addGroup(LpuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
                     .addGroup(LpuPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addGap(18, 18, 18)
-                        .addGroup(LpuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(addLPU, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                            .addComponent(LpuTxt))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(delLpu)
+                        .addGroup(LpuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(LpuPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(18, 18, 18)
+                                .addComponent(LpuTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(LpuPanelLayout.createSequentialGroup()
+                                .addComponent(addLPU, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(delLpu)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         LpuPanelLayout.setVerticalGroup(
             LpuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LpuPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
                 .addGroup(LpuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LpuTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addGap(18, 18, 18)
-                .addGroup(LpuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(delLpu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addLPU, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
-                .addGap(177, 177, 177))
+                .addGroup(LpuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(delLpu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addLPU, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51))
         );
 
         jPanel2.add(LpuPanel, "card4");
@@ -1468,13 +1470,13 @@ public class AdminJFrame extends javax.swing.JFrame {
             .addGroup(VopPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(VopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(jScrollPane6)
+                    .addComponent(jScrollPane5))
+                .addGap(25, 25, 25)
                 .addGroup(VopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addDocToLpu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delDocFromLpu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
 
         jPanel2.add(VopPanel, "card6");
@@ -1578,7 +1580,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(delDocFromServ, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DocServPanelLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(0, 0, 0)
                         .addComponent(openServiceSettingsDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(241, Short.MAX_VALUE))
         );
@@ -1589,13 +1591,13 @@ public class AdminJFrame extends javax.swing.JFrame {
                 .addComponent(openServiceSettingsDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(DocServPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
                 .addGroup(DocServPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addDocToServ, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delDocFromServ, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addGap(49, 49, 49))
         );
 
         jPanel2.add(DocServPanel, "card7");
@@ -1611,10 +1613,8 @@ public class AdminJFrame extends javax.swing.JFrame {
         );
         settingsPanelLayout.setVerticalGroup(
             settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(settingsPanelLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
         );
 
         getContentPane().add(settingsPanel, "card4");
@@ -1719,6 +1719,11 @@ public class AdminJFrame extends javax.swing.JFrame {
         Table.getColumnModel().getColumn(3).setPreferredWidth(140);
         Table.getColumnModel().getColumn(3).setMaxWidth(140);
         Table.getColumnModel().getColumn(2).setMaxWidth(50);
+        Table.getColumnModel().getColumn(5).setWidth(60);
+        Table.getColumnModel().getColumn(5).setPreferredWidth(60);
+        Table.getColumnModel().getColumn(5).setMaxWidth(60);
+        Table.getColumnModel().getColumn(5).setCellEditor(Table.getDefaultEditor(Boolean.class)); 
+        Table.getColumnModel().getColumn(5).setCellRenderer(Table.getDefaultRenderer(Boolean.class));
        // Table.getColumnModel().getColumn(5).setPreferredWidth(30);
        // Table.getColumnModel().getColumn(5).setMaxWidth(30);
     }
@@ -1791,13 +1796,37 @@ public class AdminJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_saveFileActionPerformed
     
     private void printFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printFormActionPerformed
-       // createPrintDoc();
-        try {
-           doc.createPrintPdfDoc(Table,data,con); 
-        } catch (Exception e) {
+    // createPrintDoc();
+        boolean flagSelect = false;
+        int count = Table.getRowCount();
+        for (int i = 0; i < count; i++) {
+            Object value = Table.getValueAt(i, 5);
+            if (value != null && value.toString().equals("true") && !flagSelect) {
+                Object[] options = {"Печать всех пациентов", "Печать выбранных пациентов", "Отмена"};
+                int n = JOptionPane.showOptionDialog(null, 
+                    "Желаете ли вы произвести печать всех пациентов или выбранных?", 
+                    "Печать", 
+                    JOptionPane.YES_NO_CANCEL_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE,
+                    null, 
+                    options,  
+                    options[0]);
+                if (n == 0) {
+                    // Печать всех пациентов
+                    try {
+                        doc.createPrintPdfDoc(Table,data,con); 
+                    }catch (Exception e) {
+                        System.out.println(e);
+                    }
+                }   
+                if (n == 1) {
+                    // Печать выбранных пациентов
+                }
+                flagSelect = true;
+            }
             
+                
         }
-       
     }//GEN-LAST:event_printFormActionPerformed
 
     private void settingsButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButActionPerformed
@@ -1935,9 +1964,9 @@ public class AdminJFrame extends javax.swing.JFrame {
         UserTable.setRowHeight(22);
         UserTable.getColumnModel().getColumn(0).setHeaderValue("ID");
         UserTable.getColumnModel().getColumn(1).setHeaderValue("Имя пользователя");
-        
         UserTable.getColumnModel().getColumn(2).setHeaderValue("Права доступа");
-        UserTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+        UserTable.getColumnModel().getColumn(0).setPreferredWidth(25);
+        UserTable.getColumnModel().getColumn(0).setMaxWidth(35);
         UserTable.getColumnModel().getColumn(1).setPreferredWidth(200);   
         for (int i = 0; i < UserTable.getRowCount(); i++) {
             if(UserTable.getValueAt(i,2).toString().contains("1")){
@@ -2283,34 +2312,6 @@ public class AdminJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DocTable1MouseClicked
     
-    private void ServiceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ServiceTableMouseClicked
-        int row = ServiceTable.getSelectedRow();
-        if(row != -1){
-            
-            String crb = crbCode.split("\\.")[0];
-            String servCode = ServiceTable.getValueAt(row,0).toString();
-            CrbTableModel tm = new CrbTableModel(false, con.getConnection()); 
-            try {           
-                tm.setDataSource(doctor.FillServDocTable(con.getConnection(), crb, servCode));
-            } catch (Exception ex) {
-                java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                DocServTable.setModel(tm);
-                LpuDocTableModify(DocServTable);   
-        }else{
-            JOptionPane.showMessageDialog(null, "Выберите услугу из таблицы"); 
-        }
-            int length = DocServTable.getRowCount();
-            
-            if(length != 0 ){
-                  
-                delDocFromServ.setEnabled(true);
-            }else{
-                    
-                delDocFromServ.setEnabled(false);
-            }        
-    }//GEN-LAST:event_ServiceTableMouseClicked
-
     private void okButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButton2ActionPerformed
        int length = ServiceTable1.getRowCount();
        
@@ -2358,61 +2359,6 @@ public class AdminJFrame extends javax.swing.JFrame {
     private void ServiceTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ServiceTable1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_ServiceTable1MouseClicked
-
-    private void openServiceSettingsDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openServiceSettingsDialogActionPerformed
-        //<editor-fold defaultstate="collapsed" desc="Открыть диалог с выбором ВОПов и СПЕЦов для услуг">
-        
-        String crb = crbCode.split("\\.")[0];
-        try{
-        dialog3.setVisible(true);        
-            ServiceSettingsTableModel tm = new ServiceSettingsTableModel(true);
-            tm.setDataSource(service.FillServiceSettingsTable(con.getConnection(), crb));
-            ServiceTable1.setModel(tm);
-        } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ServiceSettingsTableModify();
-        ServiceTable1.requestFocus();
-        service.getVopOrSpecStatus(con.getConnection(), crb, 1);
-        int length = ServiceTable1.getRowCount();
-        for (int i = 0; i < length; i++) {
-            String servCode = ServiceTable1.getValueAt(i,0).toString();
-            for (int j = 0; j < service.getVopArr().size(); j++) {
-                if(servCode.equals(service.getVopArr().get(j))){
-                    ServiceTable1.getModel().setValueAt(true, i, 2);
-                }
-            }            
-        }
-        service.getVopOrSpecStatus(con.getConnection(), crb, 2);        
-        for (int i = 0; i < length; i++) {
-            String servCode = ServiceTable1.getValueAt(i,0).toString();
-            for (int j = 0; j < service.getSpecArr().size(); j++) {
-                if(servCode.equals(service.getSpecArr().get(j))){
-                    ServiceTable1.getModel().setValueAt(true, i, 3);
-                }
-            }            
-        }
-//</editor-fold>
-    }//GEN-LAST:event_openServiceSettingsDialogActionPerformed
-
-    private void addDocToServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDocToServActionPerformed
-        int row = ServiceTable.getSelectedRow();
-        if(row != -1){
-            
-            String crb = crbCode.split("\\.")[0];
-            dialog4.setVisible(true);
-            CrbTableModel tm = new CrbTableModel(false, con.getConnection()); 
-            try {           
-                tm.setDataSource(doctor.FillDoctorTable(con.getConnection(), crb));
-            } catch (Exception ex) {
-                java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                DocTable2.setModel(tm);
-                DocTableModify(DocTable2); 
-        }else{
-            JOptionPane.showMessageDialog(null, "Выберите услугу из таблицы"); 
-        }
-    }//GEN-LAST:event_addDocToServActionPerformed
 
     private void okButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButton3ActionPerformed
         //<editor-fold defaultstate="collapsed" desc="Добавление услуги к врачу через диалоговое окно">
@@ -2479,51 +2425,6 @@ public class AdminJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DocTable2MouseClicked
 
-    private void delDocFromServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delDocFromServActionPerformed
-        int r1 = ServiceTable.getSelectedRow();
-        int r2 = DocServTable.getSelectedRow();       
-        if(r1 != -1){
-          if(r2 != -1){
-            
-            String crb = crbCode.split("\\.")[0];
-            String servCode = ServiceTable.getValueAt(r1,0).toString();
-            String v002= DocServTable.getValueAt(r2,1).toString();
-            String v015= DocServTable.getValueAt(r2,2).toString();
-            String docName = DocServTable.getValueAt(r2,0).toString();
-            String snils = doctor.getDocSnils(con.getConnection(), docName, crb, v002, v015);
-            
-            doctor.DeleteServiceFromDoctor(con.getConnection(), snils, servCode, crb, docName, v002, v015); 
-            int situation = 0;
-            String newServ = doctor.getDocService(con.getConnection(), snils, docName, crb, v002, v015);
-             
-            if(newServ.contains(",,")){
-                situation = 1;
-            }
-            String str[] = newServ.split("");           
-            int size = str.length;           
-            if(str[0].equals(",")){
-                situation = 2;
-            }
-            if(str[size-1].equals(",")){
-                situation = 3;
-            }
-            if(situation != 0){   
-                doctor.CleanCommaFromLpuString(con.getConnection(), situation, snils, crb, docName, v002, v015);
-            }
-           CrbTableModel tm = new CrbTableModel(false, con.getConnection()); 
-            try {           
-                tm.setDataSource(doctor.FillServDocTable(con.getConnection(), crb, servCode));
-            } catch (Exception ex) {
-                java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                DocServTable.setModel(tm);
-                LpuDocTableModify(DocServTable);  
-        }else JOptionPane.showMessageDialog(null, "Выберите врача."); 
-      
-        }else JOptionPane.showMessageDialog(null, "Выберите услугу."); 
-        
-    }//GEN-LAST:event_delDocFromServActionPerformed
-
     private void importDoctorsFromExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importDoctorsFromExcelActionPerformed
         DocTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2577,6 +2478,133 @@ public class AdminJFrame extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "Выберите пользователя.");
         }
     }//GEN-LAST:event_deleteUserActionPerformed
+
+    private void openServiceSettingsDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openServiceSettingsDialogActionPerformed
+        //<editor-fold defaultstate="collapsed" desc="Открыть диалог с выбором ВОПов и СПЕЦов для услуг">
+
+        String crb = crbCode.split("\\.")[0];
+        try{
+            dialog3.setVisible(true);
+            ServiceSettingsTableModel tm = new ServiceSettingsTableModel(true);
+            tm.setDataSource(service.FillServiceSettingsTable(con.getConnection(), crb));
+            ServiceTable1.setModel(tm);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ServiceSettingsTableModify();
+        ServiceTable1.requestFocus();
+        service.getVopOrSpecStatus(con.getConnection(), crb, 1);
+        int length = ServiceTable1.getRowCount();
+        for (int i = 0; i < length; i++) {
+            String servCode = ServiceTable1.getValueAt(i,0).toString();
+            for (int j = 0; j < service.getVopArr().size(); j++) {
+                if(servCode.equals(service.getVopArr().get(j))){
+                    ServiceTable1.getModel().setValueAt(true, i, 2);
+                }
+            }
+        }
+        service.getVopOrSpecStatus(con.getConnection(), crb, 2);
+        for (int i = 0; i < length; i++) {
+            String servCode = ServiceTable1.getValueAt(i,0).toString();
+            for (int j = 0; j < service.getSpecArr().size(); j++) {
+                if(servCode.equals(service.getSpecArr().get(j))){
+                    ServiceTable1.getModel().setValueAt(true, i, 3);
+                }
+            }
+        }
+        //</editor-fold>
+    }//GEN-LAST:event_openServiceSettingsDialogActionPerformed
+
+    private void delDocFromServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delDocFromServActionPerformed
+        int r1 = ServiceTable.getSelectedRow();
+        int r2 = DocServTable.getSelectedRow();
+        if(r1 != -1){
+            if(r2 != -1){
+
+                String crb = crbCode.split("\\.")[0];
+                String servCode = ServiceTable.getValueAt(r1,0).toString();
+                String v002= DocServTable.getValueAt(r2,1).toString();
+                String v015= DocServTable.getValueAt(r2,2).toString();
+                String docName = DocServTable.getValueAt(r2,0).toString();
+                String snils = doctor.getDocSnils(con.getConnection(), docName, crb, v002, v015);
+
+                doctor.DeleteServiceFromDoctor(con.getConnection(), snils, servCode, crb, docName, v002, v015);
+                int situation = 0;
+                String newServ = doctor.getDocService(con.getConnection(), snils, docName, crb, v002, v015);
+
+                if(newServ.contains(",,")){
+                    situation = 1;
+                }
+                String str[] = newServ.split("");
+                int size = str.length;
+                if(str[0].equals(",")){
+                    situation = 2;
+                }
+                if(str[size-1].equals(",")){
+                    situation = 3;
+                }
+                if(situation != 0){
+                    doctor.CleanCommaFromLpuString(con.getConnection(), situation, snils, crb, docName, v002, v015);
+                }
+                CrbTableModel tm = new CrbTableModel(false, con.getConnection());
+                try {
+                    tm.setDataSource(doctor.FillServDocTable(con.getConnection(), crb, servCode));
+                } catch (Exception ex) {
+                    java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                DocServTable.setModel(tm);
+                LpuDocTableModify(DocServTable);
+            }else JOptionPane.showMessageDialog(null, "Выберите врача.");
+
+        }else JOptionPane.showMessageDialog(null, "Выберите услугу.");
+    }//GEN-LAST:event_delDocFromServActionPerformed
+
+    private void addDocToServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDocToServActionPerformed
+        int row = ServiceTable.getSelectedRow();
+        if(row != -1){
+
+            String crb = crbCode.split("\\.")[0];
+            dialog4.setVisible(true);
+            CrbTableModel tm = new CrbTableModel(false, con.getConnection());
+            try {
+                tm.setDataSource(doctor.FillDoctorTable(con.getConnection(), crb));
+            } catch (Exception ex) {
+                java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            DocTable2.setModel(tm);
+            DocTableModify(DocTable2);
+        }else{
+            JOptionPane.showMessageDialog(null, "Выберите услугу из таблицы");
+        }
+    }//GEN-LAST:event_addDocToServActionPerformed
+
+    private void ServiceTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ServiceTableMouseClicked
+        int row = ServiceTable.getSelectedRow();
+        if(row != -1){
+
+            String crb = crbCode.split("\\.")[0];
+            String servCode = ServiceTable.getValueAt(row,0).toString();
+            CrbTableModel tm = new CrbTableModel(false, con.getConnection());
+            try {
+                tm.setDataSource(doctor.FillServDocTable(con.getConnection(), crb, servCode));
+            } catch (Exception ex) {
+                java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            DocServTable.setModel(tm);
+            LpuDocTableModify(DocServTable);
+        }else{
+            JOptionPane.showMessageDialog(null, "Выберите услугу из таблицы");
+        }
+        int length = DocServTable.getRowCount();
+
+        if(length != 0 ){
+
+            delDocFromServ.setEnabled(true);
+        }else{
+
+            delDocFromServ.setEnabled(false);
+        }
+    }//GEN-LAST:event_ServiceTableMouseClicked
    
     private void OpenFile(ReadDoctorsFromExcel readDoc){       
         JFileChooser fileopen = new JFileChooser();
@@ -2604,7 +2632,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         ServiceTable1.getColumnModel().getColumn(0).setHeaderValue("Код");
         ServiceTable1.getColumnModel().getColumn(1).setHeaderValue("Наименование");
         ServiceTable1.getColumnModel().getColumn(2).setHeaderValue("ВОП");
-        ServiceTable1.getColumnModel().getColumn(3).setHeaderValue("Спец");
+        ServiceTable1.getColumnModel().getColumn(3).setHeaderValue("Специалист");
         ServiceTable1.getColumnModel().getColumn(0).setPreferredWidth(110);
         ServiceTable1.getColumnModel().getColumn(1).setPreferredWidth(420);
         ServiceTable1.getColumnModel().getColumn(0).setMaxWidth(110);
