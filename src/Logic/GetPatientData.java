@@ -27,11 +27,18 @@ public class GetPatientData {
     private String date;
     private String lpu;
     private String snils;
-    private String oldPol;
-    private String newPol;
+    private String policy;
     private String phone;
     private String crbName;
-
+    private int count;
+    private ArrayList<String> service_code = new ArrayList();
+    private ArrayList<String> service_name = new ArrayList();
+    private ArrayList<String> service_prop = new ArrayList(); 
+    private ArrayList<String> service_state = new ArrayList();
+    private ArrayList<String> service_date = new ArrayList();
+    private ArrayList<String> service_result = new ArrayList();
+    private static final Logger log = Logger.getLogger(GetPatientData.class);
+    
     public void setCrbName(String crbName) {
         this.crbName = crbName;
     }
@@ -48,59 +55,31 @@ public class GetPatientData {
         return phone;
     }
 
-    public void setOldPol(String oldPol) {
-        this.oldPol = oldPol;
+    public void setPolicy(String policy) {
+        this.policy = policy;
     }
 
-    public void setNewPol(String newPol) {
-        this.newPol = newPol;
-    }
-
-    public String getOldPol() {
-        return oldPol;
-    }
-
-    public String getNewPol() {
-        return newPol;
+    public String getPolicy() {
+        return policy;
     }
     
-    private String pass_ser;
-    
-    private String pass_num;
+    private String docs;
 
     public void setSnils(String snils) {
         this.snils = snils;
     }
 
-    public void setPass_ser(String pass_ser) {
-        this.pass_ser = pass_ser;
+    public void setDocs(String docs) {
+        this.docs = docs;
     }
 
-    public void setPass_num(String pass_num) {
-        this.pass_num = pass_num;
-    }
-    private int count;
-    private ArrayList<String> service_code = new ArrayList();
-    private ArrayList<String> service_name = new ArrayList();
-    private ArrayList<String> service_prop = new ArrayList(); 
-    private ArrayList<String> service_state = new ArrayList();
-    private ArrayList<String> service_date = new ArrayList();
-    private ArrayList<String> service_result = new ArrayList();
-    
-    
     public String getSnils() {
         return snils;
     }
 
-    public String getPass_ser() {
-        return pass_ser;
+    public String getDocs() {
+        return docs;
     }
-
-    public String getPass_num() {
-        return pass_num;
-    }
-    
-    private static final Logger log = Logger.getLogger(GetPatientData.class);
     
     public ArrayList<String> getService_name() {
         return service_name;
@@ -188,18 +167,15 @@ public class GetPatientData {
         return sex;
     }
     
-    public void getMainData(Connection con,String id){      
+    public void getMainData(Connection con,String id,String crb){      
        System.out.println("data was got");
        String query = "SELECT  * FROM mdk_server.admin_view a where a.ID ='"+id+"' ";    
 //       String query1 = "SELECT lpu_id FROM mdk_server.admin_view  natural join mdk_server.patient_list p where p.patient_id ='"+id+"'";
       // String query = "SELECT  * FROM mdk_base.admin_view a where a.ID ='"+id+"' ";    
-       String query1 = "SELECT p.lpu_id FROM mdk_server.admin_view a  "
-               + "inner join mdk_server.patient_list p on(a.ID = p.patient_id)"
-               + " where p.patient_id ='"+id+"'";
-       String query2 = "SELECT crb_name FROM mdk_server.admin_view a "
-               + "inner join mdk_server.patient_list p on(p.patient_id = a.ID)"
-               + " inner join mdk_server.crb_directory d on (p.crb_id = d.new_reg_cod) "
-               + "where p.patient_id = '"+id+"' ";
+       String query1 = "SELECT p.N_AREA FROM mdk_server.admin_view a  "
+               + "inner join mdk_server.patient_directory p on(a.ID = p.ID)"
+               + " where p.ID ='"+id+"'";
+       String query2 = "SELECT crb_name FROM mdk_server.crb_directory where new_reg_cod = '"+crb+"'";
        
        PreparedStatement post; 
        ResultSet rs;
@@ -218,7 +194,7 @@ public class GetPatientData {
             post = con.prepareStatement(query1);
             rs = post.executeQuery(query1);
             while(rs.next()){
-                setLpu(rs.getString("lpu_id"));               
+                setLpu(rs.getString("N_AREA"));               
             }
             post = con.prepareStatement(query2);
             rs = post.executeQuery(query2);
@@ -231,19 +207,17 @@ public class GetPatientData {
     }
     
     public void getPatientDocs(Connection con,String id){
-       String query1 = "select * from mdk_server.patient_docs where id = '"+id+"'";
+       String query1 = "select DOC,SNILS,POLICY from mdk_server.patient_directory where id = '"+id+"'";
        PreparedStatement post; 
        ResultSet rs;
         try{
             post = con.prepareStatement(query1);
             rs = post.executeQuery(query1);
             while(rs.next()){
-                setSnils(rs.getString(2));
-                setPass_ser(String.valueOf(rs.getInt(3)));
-                setPass_num(String.valueOf(rs.getInt(4)));
-                setOldPol(rs.getString(5));
-                setNewPol(rs.getString(6));
-                setPhone(rs.getString("phoneNum"));
+                setSnils(rs.getString("SNILS"));
+                setDocs(rs.getString("DOC"));
+                setPolicy(rs.getString("POLICY"));
+                //setPhone(rs.getString("phoneNum"));
             }
         }catch (SQLException ex) {
             log.error("ошибка при получении док-ов  для " + id,ex);

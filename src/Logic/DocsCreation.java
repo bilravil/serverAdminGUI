@@ -37,7 +37,7 @@ public class DocsCreation {
     }
    private static final Logger log = Logger.getLogger(AdminJFrame.class);
     
-   public void createPdfDoc(JTable Table, GetPatientData data, StartDB con, boolean flag, ArrayList<String> arrPatient){
+   public void createPdfDoc(JTable Table, GetPatientData data, StartDB con, boolean flag, ArrayList<String> arrPatient,String crb){
         try {
             norm.getNorm(con.getConnection());
             int b = arrPatient.size();
@@ -66,7 +66,7 @@ public class DocsCreation {
             for (int k = 0; k < b; k++) {
             String id = arrPatient.get(k);//Table.getModel().getValueAt(k, 0).toString(); 
             data = new GetPatientData();
-            data.getMainData(con.getConnection(), id);
+            data.getMainData(con.getConnection(), id, crb);
             data.getPatientDocs(con.getConnection(), id);
             String[] arr = null;
             String fname = data.getName().replaceAll(" ","") + data.getBirth();
@@ -103,18 +103,13 @@ public class DocsCreation {
                 doc.add (new Phrase("СНИЛС : ",new Font(bf, 13, Font.BOLD)));
                 doc.add (new Phrase(data.getSnils()+"\n",new Font(bf, 13))); 
             }
-            if(data.getPass_ser()!=null){
-                doc.add (new Phrase("Паспорт серия: ",new Font(bf, 13, Font.BOLD)));
-                doc.add (new Phrase(data.getPass_ser()+"; номер: ",new Font(bf, 13))); 
-                doc.add (new Phrase(data.getPass_num()+"; \n",new Font(bf, 13))); 
+            if(data.getDocs()!=null){
+                doc.add (new Phrase("Документ: ",new Font(bf, 13, Font.BOLD)));
+                doc.add (new Phrase(data.getDocs()+ " ", new Font(bf, 13))); ; 
             }
-            if(data.getOldPol()!=null){
-                doc.add (new Phrase("№ полиса(старого образца) : ",new Font(bf, 13, Font.BOLD)));
-                doc.add (new Phrase(data.getOldPol()+";  ",new Font(bf, 13))); 
-            }
-            if(data.getNewPol()!=null){
-                doc.add (new Phrase("№ полиса(нового образца) : ",new Font(bf, 13, Font.BOLD)));
-                doc.add (new Phrase(data.getNewPol()+"; ",new Font(bf, 13))); 
+            if(data.getPolicy()!=null){
+                doc.add (new Phrase("№ полиса: ",new Font(bf, 13, Font.BOLD)));
+                doc.add (new Phrase(data.getPolicy()+"; ",new Font(bf, 13))); 
             }
             
             if(data.getPhone()!=null){
@@ -141,7 +136,7 @@ public class DocsCreation {
                             if ("Ж".equals(data.getSex())) 
                                 arrNorm = norm.getNormsWoman().get(l).split(";");
                             else
-                                if ("M".equals(data.getSex())) {
+                                if ("М".equals(data.getSex())) {
                                     arrNorm = norm.getNormsMan().get(l).split(";");
                                 }
                                 

@@ -1612,7 +1612,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         settingsPanelLayout.setVerticalGroup(
             settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
         );
 
         getContentPane().add(settingsPanel, "card4");
@@ -1700,8 +1700,8 @@ public class AdminJFrame extends javax.swing.JFrame {
 
         PatientTableModel tm = new PatientTableModel(false, con.getConnection());          
         try {
-            
-            tm.setDataSource(adminTable.FillTable(con.getConnection(),d1,d2));
+            String crb = crbCode.split("\\.")[0];
+            tm.setDataSource(adminTable.FillTable(con.getConnection(),d1,d2,crb));
             
             Table.setModel(tm); 
         } catch (Exception ex) {
@@ -1737,19 +1737,19 @@ public class AdminJFrame extends javax.swing.JFrame {
         Table.setFont(new java.awt.Font("Arial", 0, 14));
         Table.setRowHeight(25);
         Table.getColumnModel().getColumn(0).setMaxWidth(70);
-        Table.getColumnModel().getColumn(1).setPreferredWidth(160);
-        Table.getColumnModel().getColumn(1).setMaxWidth(250);
+        Table.getColumnModel().getColumn(1).setPreferredWidth(410);
+        Table.getColumnModel().getColumn(1).setMaxWidth(550);
         Table.getColumnModel().getColumn(3).setWidth(140);
         Table.getColumnModel().getColumn(3).setPreferredWidth(140);
         Table.getColumnModel().getColumn(3).setMaxWidth(140);
         Table.getColumnModel().getColumn(2).setMaxWidth(50);
+        Table.getColumnModel().getColumn(4).setMinWidth(80);
         Table.getColumnModel().getColumn(5).setWidth(60);
         Table.getColumnModel().getColumn(5).setPreferredWidth(60);
         Table.getColumnModel().getColumn(5).setMaxWidth(60);
+        Table.getColumnModel().getColumn(5).setMinWidth(60);
         Table.getColumnModel().getColumn(5).setCellEditor(Table.getDefaultEditor(Boolean.class)); 
         Table.getColumnModel().getColumn(5).setCellRenderer(Table.getDefaultRenderer(Boolean.class));
-       // Table.getColumnModel().getColumn(5).setPreferredWidth(30);
-       // Table.getColumnModel().getColumn(5).setMaxWidth(30);
     }
     
     
@@ -1817,7 +1817,7 @@ public class AdminJFrame extends javax.swing.JFrame {
             for (int i = 0; i < Table.getRowCount(); i++) {
                 arrPatient.add(Table.getValueAt(i, 0).toString());
             }
-            doc.createPdfDoc(Table,data,con,false, arrPatient); 
+            doc.createPdfDoc(Table,data,con,false, arrPatient,crbCode); 
         } catch (Exception e) {
         }
             
@@ -1830,7 +1830,7 @@ public class AdminJFrame extends javax.swing.JFrame {
             arrPatient.add(Table.getValueAt(i, 0).toString());
         }
         try {
-            doc.createPdfDoc(Table,data,con,true, arrPatient); 
+            doc.createPdfDoc(Table,data,con,true, arrPatient,crbCode); 
         }catch (Exception e) {
             System.out.println(e);
         }
@@ -2613,7 +2613,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         int length = arrPat.size();
         try {
             if (length > 0) {
-                doc.createPdfDoc(Table,data,con,true, arrPat); 
+                doc.createPdfDoc(Table,data,con,true, arrPat,crbCode); 
             }
         }catch (Exception e) {
             System.out.println(e);
