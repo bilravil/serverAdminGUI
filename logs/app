@@ -189,3 +189,136 @@ java.io.FileNotFoundException: C:\ПЯТ23.1.1980.pdf (Отказано в до�
 [INFO] 2016-07-12 16:24:53,856 GUI.AdminJFrame login - Ошибка при вводе пароля
 [INFO] 2016-07-12 16:24:59,317 GUI.AdminJFrame login - Вход осуществлен под user
 [INFO] 2016-07-12 16:28:42,040 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 11:30:39,473 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-13 11:32:09,660 GUI.AdminJFrame login - Ошибка при вводе пароля
+[INFO] 2016-07-13 11:32:11,520 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-13 11:35:15,123 GUI.AdminJFrame login - Вход осуществлен под super
+[INFO] 2016-07-13 13:20:42,766 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:21:27,509 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:21:33,306 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:21:34,931 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:21:35,462 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-13 13:21:35,462 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-13 13:21:35,571 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:21:35,728 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:21:35,853 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:22:27,723 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:22:27,817 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-13 13:22:27,832 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-13 13:22:27,895 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:22:35,958 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:22:36,036 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-13 13:22:36,036 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-13 13:22:36,098 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:24:33,791 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:24:34,025 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:24:34,135 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-13 13:24:34,135 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-13 13:24:34,354 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:24:34,463 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:24:34,604 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:34:47,338 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:35:02,557 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:36:22,938 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:37:30,980 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:38:22,496 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:38:57,396 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:39:26,318 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:42:59,517 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:45:00,999 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:46:40,828 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:52:40,021 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:53:31,823 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 13:53:51,401 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:53:51,917 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:53:52,026 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-13 13:53:52,042 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-13 13:53:52,120 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:53:52,245 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:53:52,338 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:55:48,286 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:55:48,364 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-13 13:55:48,364 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-13 13:55:48,426 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:55:48,598 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:56:49,162 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:56:49,255 Logic.GetPatientData getPDFData - получен pdf файл для 11
+[INFO] 2016-07-13 13:56:49,255 GUI.AdminJFrame createPdfDoc - pdf файл для 11сохранен
+[INFO] 2016-07-13 13:56:49,318 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 13:56:49,427 Logic.GetPatientData getMainData - Получены данные из базы
+[INFO] 2016-07-13 14:09:39,889 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 14:20:30,906 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 14:21:32,833 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 14:22:41,746 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 14:24:32,031 GUI.AdminJFrame login - Вход осуществлен под admin
+[ERROR] 2016-07-13 14:29:41,640 GUI.AdminJFrame formWindowClosing - java.lang.NullPointerException
+java.lang.NullPointerException
+	at DB.StartDB.Stop(StartDB.java:25)
+	at GUI.AdminJFrame.formWindowClosing(AdminJFrame.java:1770)
+	at GUI.AdminJFrame.access$800(AdminJFrame.java:46)
+	at GUI.AdminJFrame$8.windowClosing(AdminJFrame.java:498)
+	at java.awt.Window.processWindowEvent(Window.java:2054)
+	at javax.swing.JFrame.processWindowEvent(JFrame.java:305)
+	at java.awt.Window.processEvent(Window.java:2013)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[ERROR] 2016-07-13 14:29:49,238 GUI.AdminJFrame formWindowClosing - java.lang.NullPointerException
+java.lang.NullPointerException
+	at DB.StartDB.Stop(StartDB.java:25)
+	at GUI.AdminJFrame.formWindowClosing(AdminJFrame.java:1770)
+	at GUI.AdminJFrame.access$800(AdminJFrame.java:46)
+	at GUI.AdminJFrame$8.windowClosing(AdminJFrame.java:498)
+	at java.awt.Window.processWindowEvent(Window.java:2054)
+	at javax.swing.JFrame.processWindowEvent(JFrame.java:305)
+	at java.awt.Window.processEvent(Window.java:2013)
+	at java.awt.Component.dispatchEventImpl(Component.java:4889)
+	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+	at java.awt.Window.dispatchEventImpl(Window.java:2746)
+	at java.awt.Component.dispatchEvent(Component.java:4711)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:709)
+	at java.awt.EventQueue$3.run(EventQueue.java:703)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.awt.EventQueue$4.run(EventQueue.java:731)
+	at java.awt.EventQueue$4.run(EventQueue.java:729)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[INFO] 2016-07-13 14:30:27,813 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 14:43:53,471 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 14:46:26,269 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 14:47:15,601 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 14:59:48,767 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 15:02:56,067 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 15:03:35,081 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 15:06:30,025 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-13 15:09:52,753 GUI.AdminJFrame login - Вход осуществлен под admin

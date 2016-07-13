@@ -17,6 +17,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import javax.swing.JTable;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -36,10 +37,10 @@ public class DocsCreation {
     }
    private static final Logger log = Logger.getLogger(AdminJFrame.class);
     
-   public void createPdfDoc(JTable Table, GetPatientData data,StartDB con,boolean flag){
+   public void createPdfDoc(JTable Table, GetPatientData data, StartDB con, boolean flag, ArrayList<String> arrPatient){
         try {
             norm.getNorm(con.getConnection());
-            int b = Table.getRowCount();
+            int b = arrPatient.size();
             if(b == -1){
                 return;
             }
@@ -63,7 +64,7 @@ public class DocsCreation {
                     }
                 }
             for (int k = 0; k < b; k++) {
-            String id = Table.getModel().getValueAt(k, 0).toString(); 
+            String id = arrPatient.get(k);//Table.getModel().getValueAt(k, 0).toString(); 
             data = new GetPatientData();
             data.getMainData(con.getConnection(), id);
             data.getPatientDocs(con.getConnection(), id);
@@ -600,4 +601,8 @@ public class DocsCreation {
 //        }
 //        
 //    }
+
+   /*public void createPdfDoc(JTable Table, GetPatientData data, StartDB con, boolean b, ArrayList<String> arrPatient) {
+   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   }*/
 }

@@ -26,6 +26,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import javax.swing.JFileChooser;
@@ -53,6 +55,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         initComponents();
         con = new StartDB();
         doc = new DocsCreation();
+        
         PropertyConfigurator.configure(log4jConfPath);
         Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 14);
         UIManager.put("OptionPane.messageFont", font);
@@ -67,6 +70,10 @@ public class AdminJFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             log.error(ex, ex);
         }
+        printForm.setEnabled(false);
+        printSelectedForm.setEnabled(false);
+        saveFile.setEnabled(false);
+                
     }
     
     private static final Logger log = Logger.getLogger(AdminJFrame.class);
@@ -123,6 +130,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         saveFile = new javax.swing.JButton();
         settingsBut = new javax.swing.JButton();
+        printSelectedForm = new javax.swing.JButton();
         settingsPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         ShowFapP = new javax.swing.JButton();
@@ -197,7 +205,6 @@ public class AdminJFrame extends javax.swing.JFrame {
         delDocFromServ = new javax.swing.JButton();
         openServiceSettingsDialog = new javax.swing.JButton();
 
-        dialog1.setName("dialog1"); // NOI18N
         dialog1.setSize(250, 250);
         dialog1.setResizable(false);
         dialog1.setLocationRelativeTo(DocPanel);
@@ -250,7 +257,6 @@ public class AdminJFrame extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        dialog2.setName("dialog2"); // NOI18N
         dialog2.setSize(745, 498);
         dialog2.setResizable(false);
         dialog2.setLocationRelativeTo(DocPanel);
@@ -284,11 +290,6 @@ public class AdminJFrame extends javax.swing.JFrame {
         ));
         DocTable1.setName("DocTable1"); // NOI18N
         DocTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        DocTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                DocTable1MouseClicked(evt);
-            }
-        });
         jScrollPane8.setViewportView(DocTable1);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -328,7 +329,6 @@ public class AdminJFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        dialog3.setName("dialog3"); // NOI18N
         dialog3.setSize(892, 572);
         dialog3.setResizable(false);
         dialog3.setLocationRelativeTo(DocPanel);
@@ -363,11 +363,6 @@ public class AdminJFrame extends javax.swing.JFrame {
         ServiceTable1.setCellSelectionEnabled(true);
         ServiceTable1.setName("ServiceTable1"); // NOI18N
         ServiceTable1.getTableHeader().setReorderingAllowed(false);
-        ServiceTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ServiceTable1MouseClicked(evt);
-            }
-        });
         jScrollPane11.setViewportView(ServiceTable1);
         ServiceTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -407,7 +402,6 @@ public class AdminJFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        dialog4.setName("dialog4"); // NOI18N
         dialog4.setSize(745, 498);
         dialog4.setResizable(false);
         dialog4.setLocationRelativeTo(DocPanel);
@@ -441,11 +435,6 @@ public class AdminJFrame extends javax.swing.JFrame {
         ));
         DocTable2.setName("DocTable2"); // NOI18N
         DocTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        DocTable2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                DocTable2MouseClicked(evt);
-            }
-        });
         jScrollPane12.setViewportView(DocTable2);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -595,10 +584,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         Table.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "ФИО", "Пол", "Дата рождения", "Дата приема", "Печать"
@@ -614,7 +600,7 @@ public class AdminJFrame extends javax.swing.JFrame {
 
         printForm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         printForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/img/print24.png"))); // NOI18N
-        printForm.setText("Печать результатов");
+        printForm.setText("Печать всех результатов");
         printForm.setName("printForm"); // NOI18N
         printForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -673,6 +659,16 @@ public class AdminJFrame extends javax.swing.JFrame {
             }
         });
 
+        printSelectedForm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        printSelectedForm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/img/print24.png"))); // NOI18N
+        printSelectedForm.setText("Печать выбанных результатов");
+        printSelectedForm.setName("printSelectedForm"); // NOI18N
+        printSelectedForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printSelectedFormActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -695,12 +691,13 @@ public class AdminJFrame extends javax.swing.JFrame {
                         .addContainerGap(459, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane4)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(saveFile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(printForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(settingsBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(outAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(outAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(printSelectedForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -725,7 +722,9 @@ public class AdminJFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(printForm, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(printSelectedForm, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(saveFile, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(settingsBut, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1613,7 +1612,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         settingsPanelLayout.setVerticalGroup(
             settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         getContentPane().add(settingsPanel, "card4");
@@ -1675,19 +1674,30 @@ public class AdminJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_outAdminActionPerformed
 
     private void searchBut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBut1ActionPerformed
+        //<editor-fold defaultstate="collapsed" desc="Поиск пациентов по промежутку дат приема">
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String d1;
-        String d2;
+        String d1 = "";
+        String d2 = "";
         String s1 = ((JTextField)date1.getDateEditor().getUiComponent()).getText();
-        String s2 = ((JTextField)date1.getDateEditor().getUiComponent()).getText();
+        String s2 = ((JTextField)date2.getDateEditor().getUiComponent()).getText();
+        if (!s1.equals("") && s2.equals("")) { 
+            Date now = new Date();    
+            d1 = sdf.format(date1.getDate());
+            d2= sdf.format(now);
+        }
         if (s1.equals("") && s2.equals("")) {
            // JOptionPane.showMessageDialog(null, "Please type birthday", "Warning!", JOptionPane.ERROR_MESSAGE);
             d1 = "null";
             d2 = "null";            
-        }else{
-            d1 = sdf.format(date1.getDate());
-            d2 = sdf.format(date2.getDate());   
         }
+        if (s1.equals("") && !s2.equals("")) {
+            JOptionPane.showMessageDialog(null, "Выберите промежуток даты", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (!s1.equals("") && !s2.equals("")) {
+            d1 = sdf.format(date1.getDate());
+            d2 = sdf.format(date2.getDate());
+        }
+
         PatientTableModel tm = new PatientTableModel(false, con.getConnection());          
         try {
             
@@ -1697,7 +1707,22 @@ public class AdminJFrame extends javax.swing.JFrame {
         } catch (Exception ex) {
             log.error(ex, ex);
         }
-       TableModify();      
+       TableModify(); 
+       int count = Table.getRowCount();
+        if (count != 0) {
+            printForm.setEnabled(true);
+            printSelectedForm.setEnabled(true);
+            saveFile.setEnabled(true);
+        }
+        else{
+            printForm.setEnabled(false);
+            printSelectedForm.setEnabled(false);
+            saveFile.setEnabled(false);
+        }
+            
+       
+       
+//</editor-fold>
     }//GEN-LAST:event_searchBut1ActionPerformed
     
     private void TableModify(){
@@ -1788,7 +1813,11 @@ public class AdminJFrame extends javax.swing.JFrame {
 
     private void saveFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveFileActionPerformed
         try {
-            doc.createPdfDoc(Table,data,con,false); 
+            arrPatient.clear();
+            for (int i = 0; i < Table.getRowCount(); i++) {
+                arrPatient.add(Table.getValueAt(i, 0).toString());
+            }
+            doc.createPdfDoc(Table,data,con,false, arrPatient); 
         } catch (Exception e) {
         }
             
@@ -1796,35 +1825,14 @@ public class AdminJFrame extends javax.swing.JFrame {
     
     private void printFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printFormActionPerformed
     // createPrintDoc();
-        boolean flagSelect = false;
-        int count = Table.getRowCount();
-        for (int i = 0; i < count; i++) {
-            Object value = Table.getValueAt(i, 5);
-            if (value != null && value.toString().equals("true") && !flagSelect) {
-                Object[] options = {"Печать всех пациентов", "Печать выбранных пациентов", "Отмена"};
-                int n = JOptionPane.showOptionDialog(null, 
-                    "Желаете ли вы произвести печать всех пациентов или выбранных?", 
-                    "Печать", 
-                    JOptionPane.YES_NO_CANCEL_OPTION, 
-                    JOptionPane.QUESTION_MESSAGE,
-                    null, 
-                    options,  
-                    options[0]);
-                if (n == 0) {
-                    // Печать всех пациентов
-                    try {
-                        doc.createPdfDoc(Table,data,con,true); 
-                    }catch (Exception e) {
-                        System.out.println(e);
-                    }
-                }   
-                if (n == 1) {
-                    // Печать выбранных пациентов
-                }
-                flagSelect = true;
-            }
-            
-                
+        arrPatient.clear();
+        for (int i = 0; i < Table.getRowCount(); i++) {
+            arrPatient.add(Table.getValueAt(i, 0).toString());
+        }
+        try {
+            doc.createPdfDoc(Table,data,con,true, arrPatient); 
+        }catch (Exception e) {
+            System.out.println(e);
         }
     }//GEN-LAST:event_printFormActionPerformed
 
@@ -1984,16 +1992,16 @@ public class AdminJFrame extends javax.swing.JFrame {
         String password = userPassTxt.getText();
         int status = userStatusCB.getSelectedIndex();
         if(username.equals("")){
-            JOptionPane.showMessageDialog(null, "Необходимо ввести имя пользователя.");
+            JOptionPane.showMessageDialog(null, "Необходимо ввести имя пользователя.", "Information", JOptionPane.INFORMATION_MESSAGE);
             return ;
         }
         if(password.equals("")){
-            JOptionPane.showMessageDialog(null, "Необходимо ввести пароль.");
+            JOptionPane.showMessageDialog(null, "Необходимо ввести пароль.", "Information", JOptionPane.INFORMATION_MESSAGE);
             return ;
         }
         status += 1;
             if(userT.getUsername(con.getConnection(), username) == 0){
-               JOptionPane.showMessageDialog(null, "Добавляемый пользователь имеется в системе.");
+               JOptionPane.showMessageDialog(null, "Добавляемый пользователь имеется в системе.", "Information", JOptionPane.INFORMATION_MESSAGE);
                return;           
         }
         userT.InsertUser(con.getConnection(), username, password, crbCode, String.valueOf(status));        
@@ -2006,7 +2014,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         try {
             if(surnameTxt.getText().trim().length() == 0 || nameTxt.getText().trim().length() == 0 || snilsTxt.getText().trim().length() == 0
                    || v002Txt.getText().trim().length() == 0|| v015Txt.getText().trim().length() == 0){
-                JOptionPane.showMessageDialog(null, "Заполните все поля данных.");
+                JOptionPane.showMessageDialog(null, "Заполните все поля данных.", "Information", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             String surname = surnameTxt.getText();
@@ -2033,7 +2041,7 @@ public class AdminJFrame extends javax.swing.JFrame {
          v015Txt.setText("");
          
          } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Необходимо заполнить все поля.");
+             JOptionPane.showMessageDialog(null, "Необходимо заполнить все поля.", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_addDoctorActionPerformed
 
@@ -2045,7 +2053,7 @@ public class AdminJFrame extends javax.swing.JFrame {
             if(CheckSnils(snils)){                
             }else{                
                 JOptionPane.showMessageDialog(null, 
-                        "Ошибка при вводе номера СНИЛС! Проверьте корректность вводимых данных.");
+                        "Ошибка при вводе номера СНИЛС! Проверьте корректность вводимых данных.", "Error", JOptionPane.ERROR_MESSAGE);
             }
     }
     }//GEN-LAST:event_snilsTxtKeyReleased
@@ -2106,19 +2114,25 @@ public class AdminJFrame extends javax.swing.JFrame {
         //<editor-fold defaultstate="collapsed" desc="Добавление нового участка к ЦРБ ">
                 
         String crb = crbCode.split("\\.")[0];
-        CrbTableModel tm = new CrbTableModel(false, con.getConnection()); 
+        CrbTableModel tm = new CrbTableModel(false, con.getConnection());
+        
         String value = LpuTxt.getText();
         int length = MainLpuTable.getRowCount();
         for (int i = 0; i < length; i++) {
             String rowData = MainLpuTable.getValueAt(i, 0).toString();
             if(value.equals(rowData)){
-                JOptionPane.showMessageDialog(null, "Добавляемый участок уже присутствует в базе.");
+                JOptionPane.showMessageDialog(null, "Добавляемый участок уже присутствует в базе.", "Information", JOptionPane.INFORMATION_MESSAGE);
                 LpuTxt.setText("");
                 return;
             }
         }    
             try {
-                lpu.AddNewLpu(con.getConnection(), value, crb);
+                if (!value.equals("")) {
+                    lpu.AddNewLpu(con.getConnection(), value, crb);
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "Необходимо ввести наименование участка", "Information", JOptionPane.INFORMATION_MESSAGE);
+               // lpu.AddNewLpu(con.getConnection(), value, crb);
                 tm.setDataSource(lpu.FillLpuTable(con.getConnection(), crb));           
                 MainLpuTable.setModel(tm); 
             } catch (Exception ex) {
@@ -2148,7 +2162,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                 MainLpuTable.setModel(tm);
                 LpuTableModify(MainLpuTable);
         }else{
-           JOptionPane.showMessageDialog(null, "Выберите из таблицы участок для удаления"); 
+           JOptionPane.showMessageDialog(null, "Выберите из таблицы участок для удаления", "Information", JOptionPane.INFORMATION_MESSAGE); 
         }      
 //</editor-fold>
     }//GEN-LAST:event_delLpuActionPerformed
@@ -2171,7 +2185,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                 DocTable.setModel(tm);
                 DocTableModify(DocTable);
         }else{
-           JOptionPane.showMessageDialog(null, "Выберите из таблицы врача для удаления"); 
+           JOptionPane.showMessageDialog(null, "Выберите из таблицы врача для удаления", "Information", JOptionPane.INFORMATION_MESSAGE); 
         }  
 //</editor-fold>
     }//GEN-LAST:event_delDoctorActionPerformed
@@ -2202,7 +2216,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                 lpuList.addItem(lpu.getLpuArr().get(i));
             }         
         }else{
-            JOptionPane.showMessageDialog(null, "Выберите из таблицы врача для редактирования."); 
+            JOptionPane.showMessageDialog(null, "Выберите из таблицы врача для редактирования.", "Information", JOptionPane.INFORMATION_MESSAGE); 
         }
 //</editor-fold>      
     }//GEN-LAST:event_addlputodocActionPerformed
@@ -2223,7 +2237,7 @@ public class AdminJFrame extends javax.swing.JFrame {
             String v015= DocTable.getValueAt(row,3).toString();
             String docName = DocTable.getValueAt(row,0).toString();
             if(curLpuId.contains(lpuID)){
-                JOptionPane.showMessageDialog(null, "Выбранный участок уже присутствует у данного врача.");
+                JOptionPane.showMessageDialog(null, "Выбранный участок уже присутствует у данного врача.", "Information", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             doctor.ChangeDoctorLpu(con.getConnection(), lpuID, snils, crb);
@@ -2276,7 +2290,7 @@ public class AdminJFrame extends javax.swing.JFrame {
            UpdateLpuDocTable();
         }
         else{
-            JOptionPane.showMessageDialog(null, "Выберите врача из таблицы."); 
+            JOptionPane.showMessageDialog(null, "Выберите врача из таблицы.", "Information", JOptionPane.INFORMATION_MESSAGE); 
         }
 //</editor-fold>
     }//GEN-LAST:event_okButton1ActionPerformed
@@ -2297,7 +2311,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                 DocTable1.setModel(tm);
                 DocTableModify(DocTable1);     
         }else{
-            JOptionPane.showMessageDialog(null, "Выберите участок из таблицы."); 
+            JOptionPane.showMessageDialog(null, "Выберите участок из таблицы.", "Information", JOptionPane.INFORMATION_MESSAGE); 
         }
 //</editor-fold>       
     }//GEN-LAST:event_addDocToLpuActionPerformed
@@ -2306,10 +2320,6 @@ public class AdminJFrame extends javax.swing.JFrame {
         DelDocFromLPU();
         UpdateLpuDocTable();
     }//GEN-LAST:event_delDocFromLpuActionPerformed
-
-    private void DocTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DocTable1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DocTable1MouseClicked
     
     private void okButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButton2ActionPerformed
        int length = ServiceTable1.getRowCount();
@@ -2354,10 +2364,6 @@ public class AdminJFrame extends javax.swing.JFrame {
             dialog3.setVisible(false);
        
     }//GEN-LAST:event_okButton2ActionPerformed
-
-    private void ServiceTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ServiceTable1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ServiceTable1MouseClicked
 
     private void okButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButton3ActionPerformed
         //<editor-fold defaultstate="collapsed" desc="Добавление услуги к врачу через диалоговое окно">
@@ -2420,10 +2426,6 @@ public class AdminJFrame extends javax.swing.JFrame {
       
     }//GEN-LAST:event_okButton3ActionPerformed
 
-    private void DocTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DocTable2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DocTable2MouseClicked
-
     private void importDoctorsFromExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importDoctorsFromExcelActionPerformed
         DocTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2452,7 +2454,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         String crb = crbCode.split("\\.")[0];
         try {
              readDoc.saveToDB(DocTable, con.getConnection(), crb, doctor);
-             JOptionPane.showMessageDialog(null, "Данные успешно загружены в базу.");
+             JOptionPane.showMessageDialog(null, "Данные успешно загружены в базу.", "Information", JOptionPane.INFORMATION_MESSAGE);
              
         } catch (Exception e) {
         }
@@ -2474,7 +2476,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         userT.DeleteUser(con.getConnection(), username);
         UserTableShow();
         } else{
-             JOptionPane.showMessageDialog(null, "Выберите пользователя.");
+             JOptionPane.showMessageDialog(null, "Выберите пользователя.",  "Information", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_deleteUserActionPerformed
 
@@ -2553,9 +2555,9 @@ public class AdminJFrame extends javax.swing.JFrame {
                 }
                 DocServTable.setModel(tm);
                 LpuDocTableModify(DocServTable);
-            }else JOptionPane.showMessageDialog(null, "Выберите врача.");
+            }else JOptionPane.showMessageDialog(null, "Выберите врача.", "Information", JOptionPane.INFORMATION_MESSAGE);
 
-        }else JOptionPane.showMessageDialog(null, "Выберите услугу.");
+        }else JOptionPane.showMessageDialog(null, "Выберите услугу.", "Information", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_delDocFromServActionPerformed
 
     private void addDocToServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDocToServActionPerformed
@@ -2573,7 +2575,7 @@ public class AdminJFrame extends javax.swing.JFrame {
             DocTable2.setModel(tm);
             DocTableModify(DocTable2);
         }else{
-            JOptionPane.showMessageDialog(null, "Выберите услугу из таблицы");
+            JOptionPane.showMessageDialog(null, "Выберите услугу из таблицы", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_addDocToServActionPerformed
 
@@ -2592,7 +2594,7 @@ public class AdminJFrame extends javax.swing.JFrame {
             DocServTable.setModel(tm);
             LpuDocTableModify(DocServTable);
         }else{
-            JOptionPane.showMessageDialog(null, "Выберите услугу из таблицы");
+            JOptionPane.showMessageDialog(null, "Выберите услугу из таблицы", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
         int length = DocServTable.getRowCount();
 
@@ -2604,6 +2606,19 @@ public class AdminJFrame extends javax.swing.JFrame {
             delDocFromServ.setEnabled(false);
         }
     }//GEN-LAST:event_ServiceTableMouseClicked
+
+    private void printSelectedFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printSelectedFormActionPerformed
+        ArrayList<String> arrPat = new ArrayList();
+        arrPat = FillArrPatient();
+        int length = arrPat.size();
+        try {
+            if (length > 0) {
+                doc.createPdfDoc(Table,data,con,true, arrPat); 
+            }
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_printSelectedFormActionPerformed
    
     private void OpenFile(ReadDoctorsFromExcel readDoc){       
         JFileChooser fileopen = new JFileChooser();
@@ -2622,6 +2637,38 @@ public class AdminJFrame extends javax.swing.JFrame {
        
         
     }
+    private ArrayList<String> FillArrPatient(){
+        //<editor-fold defaultstate="collapsed" desc="Заполнение ArrayList выбранными для печати пациентами">
+        int length = Table.getRowCount();
+        int count = 0;
+        arrPatient.clear();
+        // проверка если ничего не выбрано
+        for (int i = 0; i < length; i++) {
+            Object value = Table.getValueAt(i, 5);
+            
+                if (value == null ) {
+                    count++;
+                }
+                else
+                    if (value != null && value.toString().equals("false")){
+                        count++;
+            }  
+        }
+        if (count == length) {
+            JOptionPane.showMessageDialog(null, "Выберите пациентов для печати", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            for (int i = 0; i < length; i++) {
+                Object value = Table.getValueAt(i, 5);
+                    if(value != null && value.toString().equals("true")){
+                        arrPatient.add(Table.getValueAt(i, 0).toString());
+                    }      
+            }
+        }
+        return arrPatient;
+    }
+//</editor-fold>
+        
     
     private void ServiceSettingsTableModify(){
         //<editor-fold defaultstate="collapsed" desc="Модификация таблицы с услугами(при назначении врачей)"> 
@@ -2680,9 +2727,9 @@ public class AdminJFrame extends javax.swing.JFrame {
          
            doctor.CleanCommaFromLpuString(con.getConnection(), situation, snils, crb, docName, v002, v015);
             }
-        }else JOptionPane.showMessageDialog(null, "Выберите врача."); 
+        }else JOptionPane.showMessageDialog(null, "Выберите врача.", "Information", JOptionPane.INFORMATION_MESSAGE); 
       
-        }else JOptionPane.showMessageDialog(null, "Выберите участок."); 
+        }else JOptionPane.showMessageDialog(null, "Выберите участок.", "Information", JOptionPane.INFORMATION_MESSAGE); 
     }
 //</editor-fold>
         
@@ -2840,7 +2887,11 @@ public class AdminJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminJFrame().setVisible(true);
+                
+                AdminJFrame Frame = new AdminJFrame();
+                Frame.setExtendedState(MAXIMIZED_BOTH);
+                Frame.setVisible(true);
+                    
             }
         });
     }
@@ -2854,6 +2905,7 @@ public class AdminJFrame extends javax.swing.JFrame {
     private final StartDB con;
     private GetPatientData data;
     private DocsCreation doc;
+    ArrayList<String> arrPatient = new ArrayList();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DocPanel;
     private javax.swing.JPanel DocServPanel;
@@ -2955,6 +3007,7 @@ public class AdminJFrame extends javax.swing.JFrame {
     private javax.swing.JButton outAdmin;
     private javax.swing.JPasswordField passTxt;
     private javax.swing.JButton printForm;
+    private javax.swing.JButton printSelectedForm;
     private javax.swing.JButton saveExcelDocs;
     private javax.swing.JButton saveFile;
     private javax.swing.JButton searchBut1;
