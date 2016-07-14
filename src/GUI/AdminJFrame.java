@@ -25,6 +25,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -480,7 +482,6 @@ public class AdminJFrame extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 720));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -687,15 +688,15 @@ public class AdminJFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(searchBut1))
+                                .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel10))
-                        .addContainerGap(459, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(searchBut1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(saveFile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -707,22 +708,21 @@ public class AdminJFrame extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(searchBut1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchBut1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(30, 30, 30)))
+                                    .addComponent(date2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                                    .addComponent(date1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -1211,9 +1211,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         });
 
         codeLpu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        codeLpu.setMinimumSize(new java.awt.Dimension(6, 23));
         codeLpu.setName("codeLpu"); // NOI18N
-        codeLpu.setPreferredSize(new java.awt.Dimension(6, 23));
         codeLpu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 codeLpuKeyReleased(evt);
@@ -1279,7 +1277,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                                     .addGroup(DocPanelLayout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(codeLpu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(codeLpu)
                                             .addComponent(docComboBox, 0, 217, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1314,10 +1312,11 @@ public class AdminJFrame extends javax.swing.JFrame {
                                 .addGap(31, 31, 31)
                                 .addComponent(jLabel11))
                             .addGroup(DocPanelLayout.createSequentialGroup()
-                                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(surnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel18)
-                                    .addComponent(codeLpu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(codeLpu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(surnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel18)))
                                 .addGap(10, 10, 10)
                                 .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(docComboBox)
@@ -1670,7 +1669,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         settingsPanelLayout.setVerticalGroup(
             settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
         );
 
         getContentPane().add(settingsPanel, "card4");
@@ -1740,7 +1739,16 @@ public class AdminJFrame extends javax.swing.JFrame {
         String s2 = ((JTextField)date2.getDateEditor().getUiComponent()).getText();
         if (!s1.equals("") && s2.equals("")) { 
             Date now = new Date();    
-            d1 = sdf.format(date1.getDate());
+            if(s1.length() == 8 && !s1.contains(".")){
+                s1 = s1.substring(0, 2) + "." + s1.substring(2, 4)+"."+s1.substring(4, 8);
+                DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                try {
+                    date1.setDate(format.parse(s1));
+                } catch (ParseException ex) {
+                    java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            d1 = sdf.format(date1.getDate());       
             d2= sdf.format(now);
         }
         if (s1.equals("") && s2.equals("")) {
@@ -1752,6 +1760,24 @@ public class AdminJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Выберите промежуток даты", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
         if (!s1.equals("") && !s2.equals("")) {
+            if(s1.length() == 8 && !s1.contains(".")){
+                s1 = s1.substring(0, 2) + "." + s1.substring(2, 4)+"."+s1.substring(4, 8);
+                DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                try {
+                    date1.setDate(format.parse(s1));
+                } catch (ParseException ex) {
+                    java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(s2.length() == 8 && !s2.contains(".")){
+                s2 = s2.substring(0, 2) + "." + s2.substring(2, 4)+"."+s2.substring(4, 8);
+                DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+                try {
+                    date2.setDate(format.parse(s2));
+                } catch (ParseException ex) {
+                    java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             d1 = sdf.format(date1.getDate());
             d2 = sdf.format(date2.getDate());
         }

@@ -102,3 +102,14 @@ java.lang.NullPointerException
 [INFO] 2016-07-14 16:46:55,995 GUI.AdminJFrame login - Вход осуществлен под admin
 [INFO] 2016-07-14 17:00:07,161 GUI.AdminJFrame login - Вход осуществлен под admin
 [INFO] 2016-07-14 17:11:11,846 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-14 18:20:07,469 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-14 18:22:05,850 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-14 18:26:20,948 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-14 18:42:16,151 GUI.AdminJFrame login - Вход осуществлен под admin
+[INFO] 2016-07-14 18:43:22,658 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-14 18:46:27,656 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-14 18:49:04,052 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-14 18:51:57,735 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-14 18:53:36,149 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-14 18:55:47,044 GUI.AdminJFrame login - Вход осуществлен под user
+[INFO] 2016-07-14 18:59:25,012 GUI.AdminJFrame login - Вход осуществлен под user
