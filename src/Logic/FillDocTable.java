@@ -20,7 +20,7 @@ public class FillDocTable {
    
    // заполнение таблицы докторов ЦРБ 
    public ResultSet FillDoctorTable(Connection con,String txt){      
-       String query = "SELECT docName,SNILS,V002,V015,lpuID FROM mdk_server.doctor_directory  dd where dd.crbID like( '"+txt+"%')";       
+       String query = "SELECT docName,SNILS,V002,V015,lpuID, speciality_flag FROM mdk_server.doctor_directory  dd where dd.crbID like( '"+txt+"%')";       
        PreparedStatement post; 
        ResultSet rs;
         try{
@@ -34,9 +34,9 @@ public class FillDocTable {
    }
     
    // добавление нового доктора в црб
-   public void AddNewDoctor(Connection con,String docName,String snils,String v002,String v015,String crb){
-       String query = "INSERT INTO `mdk_server`.`doctor_directory`  (`docName`, `SNILS`, `V002`, `V015`, `crbID`)"
-               + " VALUES (?,?,?,?,?) ;";
+   public void AddNewDoctor(Connection con,String docName,String snils,String v002,String v015,String lpu, String crb, String spec_flag){
+       String query = "INSERT INTO `mdk_server`.`doctor_directory`  (`docName`, `SNILS`, `V002`, `V015`,`lpuID`, `crbID`, `speciality_flag`)"
+               + " VALUES (?,?,?,?,?,?,?) ;";
        PreparedStatement pstmt;         
         try {
             pstmt = con.prepareStatement(query);
@@ -44,16 +44,56 @@ public class FillDocTable {
             pstmt.setString(2,snils);  
             pstmt.setString(3,v002);
             pstmt.setString(4,v015);
-            pstmt.setString(5,crb);
+            pstmt.setString(5,lpu);
+            pstmt.setString(6,crb);
+            pstmt.setString(7, spec_flag);
             pstmt.executeUpdate(); 
         } catch (Exception e) {
             System.out.println(e);
         }
    } 
    
+   
+   public void AddNewDoctor(Connection con,String docName,String snils,String v002,String v015,String lpu, String crb){
+       String query = "INSERT INTO `mdk_server`.`doctor_directory`  (`docName`, `SNILS`, `V002`, `V015`,`lpuID`, `crbID`)"
+               + " VALUES (?,?,?,?,?,?) ;";
+       PreparedStatement pstmt;         
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1,docName);
+            pstmt.setString(2,snils);  
+            pstmt.setString(3,v002);
+            pstmt.setString(4,v015);
+            pstmt.setString(5,lpu);
+            pstmt.setString(6,crb);
+            pstmt.executeUpdate(); 
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+   } 
+   // редактирование доктора
+   public void ChangeDoctor(Connection con,String docName,String snils,String v002,String v015,String lpu, String spec_flag, String id){
+       String query = "UPDATE `mdk_server`.`doctor_directory` SET `docName`= '"+ docName+"', "
+               + "`SNILS`='"+ snils+"', `V002`='"+ v002+"', `V015`='"+ v015+"',`lpuID`='"+ lpu+"', "
+               + " `speciality_flag`='"+ spec_flag+"' WHERE docID = '"+ id +"'";
+       PreparedStatement pstmt;         
+        try {
+            pstmt = con.prepareStatement(query);
+//            pstmt.setString(1,docName);
+//            pstmt.setString(2,snils);  
+//            pstmt.setString(3,v002);
+//            pstmt.setString(4,v015);
+//            pstmt.setString(5,lpu);
+//            pstmt.setString(6, spec_flag);
+            pstmt.executeUpdate(); 
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+   } 
    // удаление доткора из црб
-   public void DeleteDoctor(Connection con,String txt1,String txt2){
-        String query = "delete from mdk_server.doctor_directory  where SNILS = '"+txt1+"' and crbID = '"+txt2+"'";
+    public void DeleteDoctor(Connection con,String txt1,String txt2, String name, String v002, String v015){
+        String query = "delete from mdk_server.doctor_directory  where SNILS = '"+txt1+"' and crbID = '"+txt2+"'and docName ='"+name+"' and V002 = '"+v002+"' and V015 = '"+v015+"'";
+
         PreparedStatement pstmt;  
         try {
             pstmt = con.prepareStatement(query);
@@ -174,6 +214,25 @@ public class FillDocTable {
        return null;
    }
    
+    public String getDocID(Connection con,String docName,String snils,String v002,String v015,String lpu){
+        String query = "SELECT dd.docID FROM mdk_server.doctor_directory dd "
+                + "WHERE dd.SNILS = '"+snils+"' and dd.docName ='"+docName+"' and dd.V002 = '"+v002+"' and dd.V015 = '"+v015+"' and dd.lpuID = '"+lpu+"'";
+        PreparedStatement post; 
+        ResultSet rs;
+        try{
+            post = con.prepareStatement(query);
+            rs = post.executeQuery(query);
+            while(rs.next()){
+                return rs.getString(1);
+            }
+            
+            
+        }catch (SQLException ex) {
+            System.out.println(ex);
+    }  
+        return null;
+   }
+   
    // получение услуги у определ врача
    public String getDocService(Connection con,String snils,String name,String crb,String v002,String v015){
        String query = "Select dd.servCode FROM mdk_server.doctor_directory dd "
@@ -249,4 +308,20 @@ public class FillDocTable {
            System.out.println(e);
        }
    }
+   // проверка существеут ли участок
+   public String existLPU(Connection con, String lpu_id){
+        String query = "SELECT * FROM mdk_server.lpu_directory WHERE lpu_id LIKE ('"+ lpu_id +"%')";
+        PreparedStatement pstms;
+        ResultSet rs;
+        try{
+            pstms = con.prepareStatement(query);
+            rs = pstms.executeQuery(query);
+            while(rs.next()){
+                return rs.getString(1);
+            }
+        }catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
 }

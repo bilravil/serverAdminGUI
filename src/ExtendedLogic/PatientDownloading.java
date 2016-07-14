@@ -7,6 +7,8 @@ package ExtendedLogic;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -136,6 +138,16 @@ public class PatientDownloading {
             pstmt.executeUpdate(); 
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+    
+    public void UpdateStatus(String id){      
+       try{    
+            String query = "UPDATE `mdk_server`.`patient_on_mdk` rp SET rp.`ON_MDK`='no' WHERE rp.`ID`='"+id+" ';";
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);            
+        }catch (SQLException ex) {
+            System.out.println(ex);
         }
     }
 }

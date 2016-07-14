@@ -73,6 +73,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         printForm.setEnabled(false);
         printSelectedForm.setEnabled(false);
         saveFile.setEnabled(false);
+        changeDocs.setVisible(false);
                 
     }
     
@@ -182,6 +183,10 @@ public class AdminJFrame extends javax.swing.JFrame {
         addlputodoc = new javax.swing.JButton();
         importDoctorsFromExcel = new javax.swing.JButton();
         saveExcelDocs = new javax.swing.JButton();
+        codeLpu = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        docComboBox = new javax.swing.JComboBox<>();
+        changeDocs = new javax.swing.JButton();
         LpuPanel = new GradientPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         MainLpuTable = new javax.swing.JTable();
@@ -909,7 +914,7 @@ public class AdminJFrame extends javax.swing.JFrame {
             .addGroup(FapPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(FapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
                     .addGroup(FapPanelLayout.createSequentialGroup()
                         .addGroup(FapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -922,7 +927,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                             .addComponent(newFapCodTxt))
                         .addGap(29, 29, 29)
                         .addComponent(addFap, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 117, Short.MAX_VALUE)))
+                        .addGap(0, 246, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         FapPanelLayout.setVerticalGroup(
@@ -1045,7 +1050,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                                 .addComponent(addUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(deleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 309, Short.MAX_VALUE)))
+                                .addGap(0, 438, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         UsersPanelLayout.setVerticalGroup(
@@ -1148,12 +1153,17 @@ public class AdminJFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ФИО", "СНИЛС", "Код V002", "Код V015", "Участок"
+                "ФИО", "СНИЛС", "Код V002", "Код V015", "Участок", "Специализация"
             }
         ));
         DocTable.setName("DocTable"); // NOI18N
         DocTable.setRowHeight(22);
         DocTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        DocTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DocTableMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(DocTable);
         if (DocTable.getColumnModel().getColumnCount() > 0) {
             DocTable.getColumnModel().getColumn(0).setPreferredWidth(220);
@@ -1200,6 +1210,33 @@ public class AdminJFrame extends javax.swing.JFrame {
             }
         });
 
+        codeLpu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        codeLpu.setMinimumSize(new java.awt.Dimension(6, 23));
+        codeLpu.setName("codeLpu"); // NOI18N
+        codeLpu.setPreferredSize(new java.awt.Dimension(6, 23));
+        codeLpu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                codeLpuKeyReleased(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel18.setText("Участок");
+        jLabel18.setName("jLabel18"); // NOI18N
+
+        docComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        docComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Специализация", "Врач участковый", "Медсестра участковая", "Специалист", "Фельдшер-акушер", "Фельдшер-ФАП" }));
+        docComboBox.setName("docComboBox"); // NOI18N
+
+        changeDocs.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        changeDocs.setText("Изменить");
+        changeDocs.setName("changeDocs"); // NOI18N
+        changeDocs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeDocsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout DocPanelLayout = new javax.swing.GroupLayout(DocPanel);
         DocPanel.setLayout(DocPanelLayout);
         DocPanelLayout.setHorizontalGroup(
@@ -1209,27 +1246,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                     .addGroup(DocPanelLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DocPanelLayout.createSequentialGroup()
-                                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(33, 33, 33)
-                                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(DocPanelLayout.createSequentialGroup()
-                                        .addComponent(middleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(saveExcelDocs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(DocPanelLayout.createSequentialGroup()
-                                        .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(surnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(importDoctorsFromExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(DocPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(snilsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3)
                             .addGroup(DocPanelLayout.createSequentialGroup()
                                 .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13)
@@ -1238,7 +1255,39 @@ public class AdminJFrame extends javax.swing.JFrame {
                                 .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(v015Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(v002Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane3)))
+                            .addGroup(DocPanelLayout.createSequentialGroup()
+                                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(DocPanelLayout.createSequentialGroup()
+                                        .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(33, 33, 33)
+                                        .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(middleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(DocPanelLayout.createSequentialGroup()
+                                                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(nameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                                                    .addComponent(surnameTxt))
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel18))))
+                                    .addGroup(DocPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(snilsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(DocPanelLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(codeLpu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(docComboBox, 0, 217, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(saveExcelDocs, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(importDoctorsFromExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DocPanelLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(changeDocs, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(DocPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(addDoctor)
@@ -1256,44 +1305,53 @@ public class AdminJFrame extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DocPanelLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel5)
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel8)
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel11))
-                    .addGroup(DocPanelLayout.createSequentialGroup()
-                        .addComponent(surnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DocPanelLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel5)
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel8)
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel11))
+                            .addGroup(DocPanelLayout.createSequentialGroup()
+                                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(surnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel18)
+                                    .addComponent(codeLpu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10)
+                                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(docComboBox)
+                                    .addComponent(nameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(middleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DocPanelLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel12))
+                            .addGroup(DocPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(snilsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(middleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DocPanelLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel13))
+                            .addComponent(v002Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(v015Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(delDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addlputodoc, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(DocPanelLayout.createSequentialGroup()
                         .addComponent(importDoctorsFromExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(saveExcelDocs, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DocPanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel12))
-                    .addGroup(DocPanelLayout.createSequentialGroup()
+                        .addComponent(saveExcelDocs, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(snilsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DocPanelLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel13))
-                    .addComponent(v002Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(v015Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DocPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(delDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addlputodoc, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(changeDocs, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(47, 47, 47))
         );
 
@@ -1352,7 +1410,7 @@ public class AdminJFrame extends javax.swing.JFrame {
             .addGroup(LpuPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(LpuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
                     .addGroup(LpuPanelLayout.createSequentialGroup()
                         .addGroup(LpuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(LpuPanelLayout.createSequentialGroup()
@@ -1457,7 +1515,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                     .addGroup(VopPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE))
                     .addGroup(VopPanelLayout.createSequentialGroup()
                         .addComponent(addDocToLpu)
                         .addGap(35, 35, 35)
@@ -1580,7 +1638,7 @@ public class AdminJFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(delDocFromServ, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(openServiceSettingsDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addContainerGap(370, Short.MAX_VALUE))
         );
         DocServPanelLayout.setVerticalGroup(
             DocServPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1612,7 +1670,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         settingsPanelLayout.setVerticalGroup(
             settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         getContentPane().add(settingsPanel, "card4");
@@ -1901,7 +1959,32 @@ public class AdminJFrame extends javax.swing.JFrame {
         } catch (Exception ex) {
             log.error(ex, ex);
         }
-         DocTableModify(table); 
+         DocTableModify(table);
+         transcriptDocSpec();
+    }
+    private void transcriptDocSpec(){
+        for (int row = 0; row < DocTable.getRowCount(); row++) {
+            String value = DocTable.getValueAt(row, 5).toString();
+            if ("0".equals(value)) {
+                DocTable.setValueAt("", row, 5);
+            }
+            if ("1".equals(value)) {
+                DocTable.setValueAt("Врач участковый", row, 5);
+            }
+            if ("2".equals(value)) {
+                DocTable.setValueAt("Медсестра участковая", row, 5);
+            }
+            if ("3".equals(value)) {
+                DocTable.setValueAt("Специалист", row, 5);
+            }
+            if ("4".equals(value)) {
+                DocTable.setValueAt("Фельдшер-акушер", row, 5);
+            }
+            if ("5".equals(value)) {
+                DocTable.setValueAt("Фельдшер-ФАП", row, 5);
+            }
+        }
+        
     }
     
     private void DocTableModify(JTable table){
@@ -1913,6 +1996,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         table.getColumnModel().getColumn(2).setHeaderValue("V002");
         table.getColumnModel().getColumn(3).setHeaderValue("V015");
         table.getColumnModel().getColumn(4).setHeaderValue("Участок");
+        table.getColumnModel().getColumn(5).setHeaderValue("Специализация");
         table.getColumnModel().getColumn(0).setPreferredWidth(170);
         table.getColumnModel().getColumn(0).setMaxWidth(300);
         table.getColumnModel().getColumn(1).setPreferredWidth(110);
@@ -2017,6 +2101,10 @@ public class AdminJFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Заполните все поля данных.", "Information", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
+            if (flagNotExistLpu) {
+                JOptionPane.showMessageDialog(null, "Введите существующий участок.", "Information", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
             String surname = surnameTxt.getText();
             String name = nameTxt.getText();
             String middle = middleTxt.getText();
@@ -2024,9 +2112,20 @@ public class AdminJFrame extends javax.swing.JFrame {
             String snils = snilsTxt.getText();
             String v002 = v002Txt.getText();
             String v015 = v015Txt.getText();
-                
+            String lpu = codeLpu.getText();
+            String spec = String.valueOf(docComboBox.getSelectedIndex());
+            
+//            for (int i = 0; i < length; i++) {
+//            String rowData = MainLpuTable.getValueAt(i, 0).toString();
+//            if(value.equals(rowData)){
+//                JOptionPane.showMessageDialog(null, "Добавляемый участок уже присутствует в базе.", "Information", JOptionPane.INFORMATION_MESSAGE);
+//                LpuTxt.setText("");
+//                return;
+//            }
+//        }
+            
             try {
-                doctor.AddNewDoctor(con.getConnection(), fullName, snils, v002, v015, crb);
+                doctor.AddNewDoctor(con.getConnection(), fullName, snils, v002, v015, lpu, crb, spec);
                 tm.setDataSource(doctor.FillDoctorTable(con.getConnection(), crb));           
                 DocTable.setModel(tm); 
             } catch (Exception ex) {
@@ -2039,6 +2138,8 @@ public class AdminJFrame extends javax.swing.JFrame {
          snilsTxt.setText("");
          v002Txt.setText("");
          v015Txt.setText("");
+         codeLpu.setText("");
+         docComboBox.setSelectedIndex(0);
          
          } catch (Exception e) {
              JOptionPane.showMessageDialog(null, "Необходимо заполнить все поля.", "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -2051,10 +2152,11 @@ public class AdminJFrame extends javax.swing.JFrame {
             snils = snils.replaceAll(" ", "");
         if(snils.length() == 11){
             if(CheckSnils(snils)){                
-            }else{                
-                JOptionPane.showMessageDialog(null, 
+            }else{ 
+                if(evt.getKeyCode() != KeyEvent.VK_ENTER){
+                    JOptionPane.showMessageDialog(null, 
                         "Ошибка при вводе номера СНИЛС! Проверьте корректность вводимых данных.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            }}
     }
     }//GEN-LAST:event_snilsTxtKeyReleased
 
@@ -2175,7 +2277,10 @@ public class AdminJFrame extends javax.swing.JFrame {
         
             String crb = crbCode.split("\\.")[0];
             String value = DocTable.getValueAt(row,1).toString();
-            doctor.DeleteDoctor(con.getConnection(), value, crb);
+            String pname = DocTable.getValueAt(row, 0).toString();
+            String v002 = DocTable.getValueAt(row, 2).toString();
+            String v015 = DocTable.getValueAt(row, 3).toString();
+            doctor.DeleteDoctor(con.getConnection(), value, crb, pname, v002, v015);
             CrbTableModel tm = new CrbTableModel(false, con.getConnection()); 
             try {           
                 tm.setDataSource(doctor.FillDoctorTable(con.getConnection(), crb));
@@ -2619,6 +2724,96 @@ public class AdminJFrame extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_printSelectedFormActionPerformed
+
+    private void codeLpuKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codeLpuKeyReleased
+        String lpu_text = codeLpu.getText();
+        String[] arr = lpu_text.split(",");
+        char с = evt.getKeyChar();
+        for (String arr1 : arr) {
+            if ("".equals(doctor.existLPU(con.getConnection(), arr1)) || doctor.existLPU(con.getConnection(), arr1) == null) {
+                if(evt.getKeyCode() != KeyEvent.VK_ENTER){
+                    JOptionPane.showMessageDialog(null, "Введённого участка не существует", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    flagNotExistLpu = true; 
+                }
+            } else {
+                flagNotExistLpu = false;
+            }
+        }
+//        char с = evt.getKeyChar(); // ввод чисел в текст. поле
+//if (!(Character.isDigit(с) || с == KeyEvent.VK_BACKSPACE || с == KeyEvent.VK_DELETE)){
+//getToolkit().beep();
+//evt.consume();
+//}
+    }//GEN-LAST:event_codeLpuKeyReleased
+
+    private void changeDocsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeDocsActionPerformed
+        String surname = surnameTxt.getText();
+        String name = nameTxt.getText();
+        String middle = middleTxt.getText();
+        String fullName = surname + " " + name + " " + middle;
+        String snils = snilsTxt.getText();
+        String v002 = v002Txt.getText();
+        String v015 = v015Txt.getText();
+        String lpu_id = codeLpu.getText();
+        String spec = String.valueOf(docComboBox.getSelectedIndex());
+        doctor.ChangeDoctor(con.getConnection(), fullName, snils, v002, v015, lpu_id, spec, docID);
+        UpdateDoctorTable(DocTable);
+        surnameTxt.setText("");
+        nameTxt.setText("");
+        middleTxt.setText("");
+        snilsTxt.setText("");
+        v002Txt.setText("");
+        v015Txt.setText("");
+        codeLpu.setText("");
+        docComboBox.setSelectedIndex(0);
+        changeDocs.setVisible(false);
+    }//GEN-LAST:event_changeDocsActionPerformed
+
+    private void DocTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DocTableMouseClicked
+        if (DocTable.getRowCount() != -1 && DocTable.getSelectedRow() != -1) {
+            changeDocs.setVisible(true);
+            addDoctor.setEnabled(false);
+            int row = DocTable.getSelectedRow();
+            
+            String name = DocTable.getValueAt(row, 0).toString();
+            String[] arr = name.split(" ");
+            String sname = arr[0];
+            String fname = arr[1];
+            String tname = arr[2];
+            String snils = DocTable.getValueAt(row, 1).toString();
+            String v002 = DocTable.getValueAt(row, 2).toString();
+            String v015 = DocTable.getValueAt(row, 3).toString();
+            String lpu_id = DocTable.getValueAt(row, 4).toString();
+            String spec = DocTable.getValueAt(row, 5).toString();
+            docID = doctor.getDocID(con.getConnection(), name, snils, v002, v015, lpu_id);
+            nameTxt.setText(fname);
+            surnameTxt.setText(sname);
+            middleTxt.setText(tname);
+            snilsTxt.setText(snils);
+            v002Txt.setText(v002);
+            v015Txt.setText(v015);
+            codeLpu.setText(lpu_id);
+            if ("".equals(spec)) {
+                docComboBox.setSelectedIndex(0);
+            }
+            if ("Врач участковый".equals(spec)) {
+                docComboBox.setSelectedIndex(1);
+            }
+            if ("Медсестра участковая".equals(spec)) {
+                docComboBox.setSelectedIndex(2);
+            }
+            if ("Специалист".equals(spec)) {
+                docComboBox.setSelectedIndex(3);
+            }
+            if ("Фельдшер-акушер".equals(spec)) {
+                docComboBox.setSelectedIndex(4);
+            }
+            if ("Фельдшер-ФАП".equals(spec)) {
+                docComboBox.setSelectedIndex(5);
+            }
+            
+        }
+    }//GEN-LAST:event_DocTableMouseClicked
    
     private void OpenFile(ReadDoctorsFromExcel readDoc){       
         JFileChooser fileopen = new JFileChooser();
@@ -2906,6 +3101,8 @@ public class AdminJFrame extends javax.swing.JFrame {
     private GetPatientData data;
     private DocsCreation doc;
     ArrayList<String> arrPatient = new ArrayList();
+    private boolean flagNotExistLpu = false;
+    String docID;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DocPanel;
     private javax.swing.JPanel DocServPanel;
@@ -2941,6 +3138,8 @@ public class AdminJFrame extends javax.swing.JFrame {
     private javax.swing.JButton addlputodoc;
     private javax.swing.JPanel adminPanel;
     private javax.swing.JButton backToMain;
+    private javax.swing.JButton changeDocs;
+    private javax.swing.JTextField codeLpu;
     private com.toedter.calendar.JDateChooser date1;
     private com.toedter.calendar.JDateChooser date2;
     private javax.swing.JButton delDocFromLpu;
@@ -2952,6 +3151,7 @@ public class AdminJFrame extends javax.swing.JFrame {
     private javax.swing.JDialog dialog2;
     private javax.swing.JDialog dialog3;
     private javax.swing.JDialog dialog4;
+    private javax.swing.JComboBox<String> docComboBox;
     private javax.swing.JButton exitBut;
     private javax.swing.JTextField fapNameTxt;
     private javax.swing.JButton importDoctorsFromExcel;
@@ -2964,6 +3164,7 @@ public class AdminJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

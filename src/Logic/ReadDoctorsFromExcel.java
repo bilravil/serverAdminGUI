@@ -133,7 +133,7 @@ public class ReadDoctorsFromExcel {
                 else{
                     v015 = " ";
                  }
-             doctor.AddNewDoctor(con, name, snils, v002, v015, crbCode);
+             //doctor.AddNewDoctor(con, name, snils, v002, v015, lpu, crbCode);
              
         }       
     }

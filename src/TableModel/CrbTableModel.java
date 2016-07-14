@@ -66,9 +66,11 @@ public class CrbTableModel extends AbstractTableModel  {
     // замена значения ячейки 
     @Override
     public void setValueAt( Object value, int row, int column){
-
+        synchronized (data) {
+        ((ArrayList)data.get(row)).set(column, value); 
+        }  
     }
-    
+
     
     // получение данных из объекта ResultSet 
     public void setDataSource( ResultSet rs) throws Exception {

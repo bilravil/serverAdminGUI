@@ -216,6 +216,7 @@ public class PatientCsvRead {
              if(value!=null){ADDRESS = value.toString();}
              
              down.addPatientToDirectory(ID, CODE_REESTR_UL, CODE_MO, CODE_FAP, N_AREA, AREA_TYPE, ATTACH_TYPE, N_CLAIM, D_CLAIM, DOCTYPE, DOC, SNILS, FAM, IM, OT, SEX, DR, CODE_REESTR_SMO, ENP, POLICY, D_ATTACH, AOID, HOUSE, KORP, FLAT, ADDRESS);
+             down.UpdateStatus(ID);
         }
     }
     

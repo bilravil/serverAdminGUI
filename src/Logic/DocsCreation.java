@@ -14,8 +14,10 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -320,6 +322,40 @@ public class DocsCreation {
 
                     }  
                     }
+                    
+                    if(flag){
+                    if(!pdfName.equals("")){
+                    AddCover1 cov = new AddCover1();
+                    String tempFile = fileName;
+                    String ECGFile = pdfName;
+                    String res = "C:\\"+fname+"ECG.pdf";
+                    File file = new File(res);
+                    file.getParentFile().mkdirs();
+                    cov.manipulatePdf(ECGFile, res,tempFile); 
+                    File dfile = new File(fileName);
+                    if(dfile.delete()){
+    			System.out.println(dfile.getName() + " is deleted!");
+                    }else{
+                            System.out.println("Delete operation is failed.");
+                    }                       
+                    
+                    File pfile = new File(res); 
+                    try {
+                        Desktop.getDesktop().print(pfile);
+                        Thread.sleep(2000);
+                    } catch (IOException ex) {
+                                log.error(ex, ex);                   
+                    }
+                    }else{
+                    File pfile = new File(fileName); 
+                    try {
+                        Desktop.getDesktop().print(pfile);
+                        Thread.sleep(2000);
+                    } catch (IOException ex) {
+                         log.error(ex, ex);
+                        }
+                    }    
+                    }
             }
         } catch (Exception e) {
             log.error(e, e);
@@ -597,7 +633,5 @@ public class DocsCreation {
 //        
 //    }
 
-   /*public void createPdfDoc(JTable Table, GetPatientData data, StartDB con, boolean b, ArrayList<String> arrPatient) {
-   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   }*/
+
 }
