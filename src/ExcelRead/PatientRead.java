@@ -249,8 +249,8 @@ public class PatientRead {
             else{
                 phoneNum = " ";
              }
-            down.addPatient(ID, surname, name, middleName, sex, birthdate, address, lpu_id,crb_id);
-            down.addPatientDocs(ID, snils, pass_ser, pass_num, old_police, new_police,phoneNum);
+         //   down.addPatient(ID, surname, name, middleName, sex, birthdate, address, lpu_id,crb_id);
+          //  down.addPatientDocs(ID, snils, pass_ser, pass_num, old_police, new_police,phoneNum);
         }
         
     }

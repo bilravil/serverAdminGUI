@@ -97,31 +97,6 @@ public class PatientCsvRead {
                 for (int j = 1; j <= result.length; j++) {                    
                     ID = result[0]+result[11]+result[12]+result[13]+result[15];
                     
-//                    CODE_REESTR_UL = result[0];
-//                    CODE_MO = result[1];
-//                    CODE_FAP = result[2];
-//                    N_AREA = result[3];
-//                    AREA_TYPE = result[4];
-//                    ATTACH_TYPE = result[5];
-//                    N_CLAIM = result[6];
-//                    D_CLAIM = result[7];
-//                    DOCTYPE = result[8];
-//                    DOC = result[9];
-//                    SNILS = result[10];
-//                    FAM = result[11];
-//                    IM = result[12];
-//                    OT = result[13];
-//                    SEX  =result[14];
-//                    DR = result[15];
-//                    CODE_REESTR_SMO = result[16];
-//                    ENP = result[17];
-//                    POLICY = result[18];
-//                    D_ATTACH = result[19];
-//                    AOID = result[20];
-//                    HOUSE = result[21];
-//                    KORP = result[22];
-//                    FLAT = result[23];
-//                    ADDRESS = result[24];
                     data[j] = result[j-1];                   
                 }   
                     data[0] = ID;
@@ -215,8 +190,10 @@ public class PatientCsvRead {
              value = table.getValueAt(i, 25);
              if(value!=null){ADDRESS = value.toString();}
              
-             down.addPatientToDirectory(ID, CODE_REESTR_UL, CODE_MO, CODE_FAP, N_AREA, AREA_TYPE, ATTACH_TYPE, N_CLAIM, D_CLAIM, DOCTYPE, DOC, SNILS, FAM, IM, OT, SEX, DR, CODE_REESTR_SMO, ENP, POLICY, D_ATTACH, AOID, HOUSE, KORP, FLAT, ADDRESS);
-             down.UpdateStatus(ID);
+             int id = down.getID();
+             down.addPatientToDirectory(ID, CODE_REESTR_UL, FAM, IM, OT, SEX, DR, HOUSE, KORP, FLAT, ADDRESS);
+             down.addPatientToAddDirectory(id, CODE_MO, CODE_FAP, N_AREA, AREA_TYPE, ATTACH_TYPE, N_CLAIM, D_CLAIM, DOCTYPE, DOC, SNILS, CODE_REESTR_SMO, ENP, POLICY, D_ATTACH, AOID, HOUSE, KORP, FLAT, ADDRESS);
+             down.UpdateStatus(id);
         }
     }
     

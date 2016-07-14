@@ -91,7 +91,6 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         PatientTable = new javax.swing.JTable();
         SavePatientList = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         CrbPanel = new GradientPanel();
         LoadCrbListExcel = new javax.swing.JButton();
         SaveCrbList = new javax.swing.JButton();
@@ -410,14 +409,6 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout LoadPatPanelLayout = new javax.swing.GroupLayout(LoadPatPanel);
         LoadPatPanel.setLayout(LoadPatPanelLayout);
         LoadPatPanelLayout.setHorizontalGroup(
@@ -430,8 +421,6 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                         .addComponent(LoadPatientListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(SavePatientList, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -439,11 +428,9 @@ public class SuperAdminFrame extends javax.swing.JFrame {
             LoadPatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LoadPatPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(LoadPatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(LoadPatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(LoadPatientListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(SavePatientList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(LoadPatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LoadPatientListExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SavePatientList, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                 .addContainerGap())
@@ -921,7 +908,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                 if(obj instanceof PatientCsvRead){
                     csv = new PatientCsvRead();
                     csv.read(path,PatientTable);
-                    
+                    SaveFapList.setEnabled(true);
                 }
                 
             } catch (Exception e) {
@@ -1072,21 +1059,14 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ShowCrbPActionPerformed
 
     private void LoadPatientListExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadPatientListExcelActionPerformed
-//        DefaultTableModel dm = (DefaultTableModel) PatientTable.getModel();
-//        int rowCount = dm.getRowCount();
-//        for (int i = rowCount - 1; i >= 0; i--) {
-//            dm.removeRow(i);
-//        }
-//        patient = new PatientRead();
-//        OpenFile(patient);
+        PatientCsvRead cv = new PatientCsvRead();
+        OpenFile(cv);
         
-        PatientCsvRead read = new PatientCsvRead();
-        read.insertIntoDB(PatientTable, con.getConnection());
-        System.out.println(PatientTable.getRowCount());
     }//GEN-LAST:event_LoadPatientListExcelActionPerformed
 
     private void SavePatientListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavePatientListActionPerformed
-        patient.saveToDB(PatientTable,con.getConnection());
+        PatientCsvRead read = new PatientCsvRead();
+        read.insertIntoDB(PatientTable, con.getConnection());
     }//GEN-LAST:event_SavePatientListActionPerformed
 
     private void LoadCrbListExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadCrbListExcelActionPerformed
@@ -1275,11 +1255,6 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                 
             }
     }//GEN-LAST:event_CancelEnterNormActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PatientCsvRead cv = new PatientCsvRead();
-        OpenFile(cv);
-    }//GEN-LAST:event_jButton1ActionPerformed
     
     private void ButtonPress() {
         SaveParamTable a = new SaveParamTable();
@@ -1448,7 +1423,6 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     private javax.swing.JTextField crbCodeTxt;
     private javax.swing.JButton delAdmin;
     private javax.swing.JDialog dialog1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel4;

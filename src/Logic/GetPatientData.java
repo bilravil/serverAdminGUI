@@ -207,7 +207,7 @@ public class GetPatientData {
     }
     
     public void getPatientDocs(Connection con,String id){
-       String query1 = "select DOC,SNILS,POLICY from mdk_server.patient_directory where id = '"+id+"'";
+       String query1 = "select DOC,SNILS,POLICY from mdk_server.patient_add_directory where id = '"+id+"'";
        PreparedStatement post; 
        ResultSet rs;
         try{
