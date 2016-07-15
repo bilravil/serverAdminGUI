@@ -55,6 +55,20 @@ public class FillLpuTable {
    }
     
     
+    public ResultSet FillLpuList(Connection con,String txt){      
+       String query = "SELECT lpu_id,checkBox  FROM mdk_server.lpu_directory  dd where dd.crbID like( '"+txt+"%') ORDER BY lpu_id";       
+       PreparedStatement post; 
+       ResultSet rs;
+        try{
+            post = con.prepareStatement(query);
+            rs = post.executeQuery(query);
+            return rs;
+        }catch (SQLException ex) {
+            System.out.println(ex);
+    }        
+       return null;
+   }
+    
     public void AddNewLpu(Connection con,String lpu,String crb){
        String query = "INSERT INTO `mdk_server`.`lpu_directory` "
                + " VALUES (?,?) ;";

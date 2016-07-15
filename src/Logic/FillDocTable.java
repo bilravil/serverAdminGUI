@@ -52,7 +52,20 @@ public class FillDocTable {
             System.out.println(e);
         }
    } 
-   
+   // параллельно добавляется в таблицу врач-участок
+   public void AddToDoctorLPU(Connection con,String docID,String lpu){
+       String query = "INSERT INTO `mdk_server`.`doctor_lpu`  "
+               + " VALUES (?,?) ;";
+       PreparedStatement pstmt;         
+        try {
+            pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,Integer.parseInt(docID));
+            pstmt.setString(2,lpu);  
+            pstmt.executeUpdate(); 
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+   } 
    
    public void AddNewDoctor(Connection con,String docName,String snils,String v002,String v015,String lpu, String crb){
        String query = "INSERT INTO `mdk_server`.`doctor_directory`  (`docName`, `SNILS`, `V002`, `V015`,`lpuID`, `crbID`)"
@@ -224,9 +237,7 @@ public class FillDocTable {
             rs = post.executeQuery(query);
             while(rs.next()){
                 return rs.getString(1);
-            }
-            
-            
+            } 
         }catch (SQLException ex) {
             System.out.println(ex);
     }  

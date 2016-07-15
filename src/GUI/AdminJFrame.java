@@ -17,6 +17,7 @@ import Logic.FillUsersTable;
 import Logic.GetPatientData;
 import Logic.ReadDoctorsFromExcel;
 import TableModel.CrbTableModel;
+import TableModel.LpuListTableModel;
 import TableModel.PatientTableModel;
 import TableModel.ServiceSettingsTableModel;
 import java.awt.Font;
@@ -96,7 +97,9 @@ public class AdminJFrame extends javax.swing.JFrame {
         dialog1 = new javax.swing.JDialog();
         jPanel4 = new GradientPanel();
         okButton = new javax.swing.JButton();
-        lpuList = new javax.swing.JComboBox<>();
+        cancelBut = new javax.swing.JButton();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        lpuListTable = new javax.swing.JTable();
         dialog2 = new javax.swing.JDialog();
         jPanel5 = new GradientPanel();
         okButton1 = new javax.swing.JButton();
@@ -212,7 +215,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         delDocFromServ = new javax.swing.JButton();
         openServiceSettingsDialog = new javax.swing.JButton();
 
-        dialog1.setSize(250, 250);
+        dialog1.setSize(380, 560);
         dialog1.setResizable(false);
         dialog1.setLocationRelativeTo(DocPanel);
 
@@ -229,39 +232,69 @@ public class AdminJFrame extends javax.swing.JFrame {
             }
         });
 
-        lpuList.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lpuList.setName("lpuList"); // NOI18N
+        cancelBut.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        cancelBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/img/exit.png"))); // NOI18N
+        cancelBut.setText("Отменить");
+        cancelBut.setName("cancelBut"); // NOI18N
+        cancelBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButActionPerformed(evt);
+            }
+        });
+
+        jScrollPane13.setName("jScrollPane13"); // NOI18N
+
+        lpuListTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2"
+            }
+        ));
+        lpuListTable.setName("lpuListTable"); // NOI18N
+        jScrollPane13.setViewportView(lpuListTable);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lpuList, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(cancelBut, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(lpuList, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addComponent(okButton)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelBut)
+                    .addComponent(okButton))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dialog1Layout = new javax.swing.GroupLayout(dialog1.getContentPane());
         dialog1.getContentPane().setLayout(dialog1Layout);
         dialog1Layout.setHorizontalGroup(
             dialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         dialog1Layout.setVerticalGroup(
             dialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(dialog1Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         dialog2.setSize(745, 498);
@@ -1987,8 +2020,9 @@ public class AdminJFrame extends javax.swing.JFrame {
             log.error(ex, ex);
         }
          DocTableModify(table);
-         transcriptDocSpec();
+         
     }
+    
     private void transcriptDocSpec(){
         for (int row = 0; row < DocTable.getRowCount(); row++) {
             String value = DocTable.getValueAt(row, 5).toString();
@@ -2028,6 +2062,7 @@ public class AdminJFrame extends javax.swing.JFrame {
         table.getColumnModel().getColumn(0).setMaxWidth(300);
         table.getColumnModel().getColumn(1).setPreferredWidth(110);
         table.getColumnModel().getColumn(1).setWidth(110);
+        transcriptDocSpec();
     }
     
     private void ShowLpuPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowLpuPActionPerformed
@@ -2142,17 +2177,18 @@ public class AdminJFrame extends javax.swing.JFrame {
             String lpu = codeLpu.getText();
             String spec = String.valueOf(docComboBox.getSelectedIndex());
             
-//            for (int i = 0; i < length; i++) {
-//            String rowData = MainLpuTable.getValueAt(i, 0).toString();
-//            if(value.equals(rowData)){
-//                JOptionPane.showMessageDialog(null, "Добавляемый участок уже присутствует в базе.", "Information", JOptionPane.INFORMATION_MESSAGE);
-//                LpuTxt.setText("");
-//                return;
-//            }
-//        }
             
             try {
                 doctor.AddNewDoctor(con.getConnection(), fullName, snils, v002, v015, lpu, crb, spec);
+                    String docID = doctor.getDocID(con.getConnection(), fullName, snils, v002, v015, lpu);
+                    if(lpu.contains(",")){
+                    String[] arr = lpu.split(",");              
+                    for(String arr1 : arr){
+                        doctor.AddToDoctorLPU(con.getConnection(), docID, arr1);             
+                    }
+                } else{              
+                    doctor.AddToDoctorLPU(con.getConnection(), docID, lpu);
+                    }
                 tm.setDataSource(doctor.FillDoctorTable(con.getConnection(), crb));           
                 DocTable.setModel(tm); 
             } catch (Exception ex) {
@@ -2338,15 +2374,16 @@ public class AdminJFrame extends javax.swing.JFrame {
         //<editor-fold defaultstate="collapsed" desc="Вызов диалога для добавления учатка к врачу с панели ВРАЧИ">
         int row = DocTable.getSelectedRow();
         if( row != -1){
-            dialog1.setVisible(true);
-            
+            dialog1.setVisible(true);            
             String crb = crbCode.split("\\.")[0];
-            lpu.GetLpuList(con.getConnection(), crb);
-            int l = lpu.getLpuArr().size();
-            lpuList.removeAllItems();
-            for (int i = 0; i < l; i++) {
-                lpuList.addItem(lpu.getLpuArr().get(i));
-            }         
+            LpuListTableModel tm = new LpuListTableModel(false, con.getConnection()); 
+            try {           
+                tm.setDataSource(lpu.FillLpuList(con.getConnection(), crb));
+            } catch (Exception ex) {
+                java.util.logging.Logger.getLogger(AdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                lpuListTable.setModel(tm);
+                lpuListTableModify();     
         }else{
             JOptionPane.showMessageDialog(null, "Выберите из таблицы врача для редактирования.", "Information", JOptionPane.INFORMATION_MESSAGE); 
         }
@@ -2356,24 +2393,33 @@ public class AdminJFrame extends javax.swing.JFrame {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         //<editor-fold defaultstate="collapsed" desc="Добавление участка к врачу в панели ВРАЧ">
             int row = DocTable.getSelectedRow();
-            String snils = DocTable.getValueAt(row, 1).toString();    
-            
+            int row1 = lpuListTable.getSelectedRow();
+            String snils = DocTable.getValueAt(row, 1).toString();                
             String crb = crbCode.split("\\.")[0];
             String curLpuId = "";
+            String v002= DocTable.getValueAt(row,2).toString();
+            String v015= DocTable.getValueAt(row,3).toString();
+            String docName = DocTable.getValueAt(row,0).toString();
             Object  value = DocTable.getValueAt(row, 4);
             if(value != null){
                 curLpuId = value.toString();
             }
-            String lpuID = lpuList.getSelectedItem().toString();             
-            String v002= DocTable.getValueAt(row,2).toString();
-            String v015= DocTable.getValueAt(row,3).toString();
-            String docName = DocTable.getValueAt(row,0).toString();
-            if(curLpuId.contains(lpuID)){
-                JOptionPane.showMessageDialog(null, "Выбранный участок уже присутствует у данного врача.", "Information", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-            doctor.ChangeDoctorLpu(con.getConnection(), lpuID, snils, crb);
-            int situation = 0;
+            
+            for (int i = 0; i < lpuListTable.getRowCount(); i++) {
+                Object v = lpuListTable.getValueAt(i, 1);
+                if(v!= null && v.toString().equals("true")){  
+                    
+                    String lpuID = lpuListTable.getValueAt(i, 0).toString();    
+                    System.out.println(lpuID);
+                    if(curLpuId.contains(lpuID)){
+                        JOptionPane.showMessageDialog(null, "Участок "+ lpuID  +"уже присутствует у данного врача.", "Information", JOptionPane.INFORMATION_MESSAGE);
+                        return;
+                    }
+                    
+                    String docID = doctor.getDocID(con.getConnection(), docName, snils, v002, v015, curLpuId);
+                    doctor.ChangeDoctorLpu(con.getConnection(), lpuID, snils, crb); 
+                    doctor.AddToDoctorLPU(con.getConnection(), docID, lpuID);
+                    int situation = 0;
             String newLpu = doctor.getDocLpu(con.getConnection(), snils, docName, crb, v002, v015);
             System.out.println(newLpu);
             if(newLpu.contains(",,")){
@@ -2393,7 +2439,10 @@ public class AdminJFrame extends javax.swing.JFrame {
                 
                 doctor.CleanCommaFromLpuString(con.getConnection(), situation, snils, crb, docName, v002, v015);
             }
-            CrbTableModel tm = new CrbTableModel(false, con.getConnection()); 
+            
+                }
+            }
+                CrbTableModel tm = new CrbTableModel(false, con.getConnection()); 
             try {           
                 tm.setDataSource(doctor.FillDoctorTable(con.getConnection(), crb));
             } catch (Exception ex) {
@@ -2841,6 +2890,10 @@ public class AdminJFrame extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_DocTableMouseClicked
+
+    private void cancelButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButActionPerformed
+        dialog1.setVisible(false);
+    }//GEN-LAST:event_cancelButActionPerformed
    
     private void OpenFile(ReadDoctorsFromExcel readDoc){       
         JFileChooser fileopen = new JFileChooser();
@@ -2913,6 +2966,20 @@ public class AdminJFrame extends javax.swing.JFrame {
 //</editor-fold>
 
     
+    private void lpuListTableModify(){
+        //<editor-fold defaultstate="collapsed" desc="Модификация таблицы с участками в диаолог окне"> 
+        lpuListTable.getTableHeader().setFont(new java.awt.Font("Arial", 0, 13));
+        lpuListTable.setFont(new java.awt.Font("Arial", 0, 14));
+        lpuListTable.setRowHeight(22);
+        lpuListTable.getColumnModel().getColumn(0).setHeaderValue("Номер участка");
+        lpuListTable.getColumnModel().getColumn(1).setHeaderValue("Выбор");
+        lpuListTable.getColumnModel().getColumn(0).setPreferredWidth(110);
+        lpuListTable.getColumnModel().getColumn(0).setMaxWidth(110);
+        lpuListTable.getColumnModel().getColumn(1).setCellEditor(ServiceTable1.getDefaultEditor(Boolean.class)); 
+        lpuListTable.getColumnModel().getColumn(1).setCellRenderer(ServiceTable1.getDefaultRenderer(Boolean.class));      
+    }        
+//</editor-fold>
+    
     public void DelDocFromLPU(){
         //<editor-fold defaultstate="collapsed" desc="Удаление врача из участка">
         int r1 = LpuTable.getSelectedRow();
@@ -2964,7 +3031,7 @@ public class AdminJFrame extends javax.swing.JFrame {
             
             String crb = crbCode.split("\\.")[0];
             String lpuID = LpuTable.getValueAt(row,0).toString();
-              CrbTableModel tm = new CrbTableModel(false, con.getConnection()); 
+            CrbTableModel tm = new CrbTableModel(false, con.getConnection()); 
             try {           
                 tm.setDataSource(doctor.FillLpuDocTable(con.getConnection(),crb,lpuID));
             } catch (Exception ex) {
@@ -3165,6 +3232,7 @@ public class AdminJFrame extends javax.swing.JFrame {
     private javax.swing.JButton addlputodoc;
     private javax.swing.JPanel adminPanel;
     private javax.swing.JButton backToMain;
+    private javax.swing.JButton cancelBut;
     private javax.swing.JButton changeDocs;
     private javax.swing.JTextField codeLpu;
     private com.toedter.calendar.JDateChooser date1;
@@ -3211,6 +3279,7 @@ public class AdminJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -3222,7 +3291,7 @@ public class AdminJFrame extends javax.swing.JFrame {
     private javax.swing.JButton loginBut;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JTextField loginTxt;
-    private javax.swing.JComboBox<String> lpuList;
+    private javax.swing.JTable lpuListTable;
     private javax.swing.JTextField middleTxt;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JFormattedTextField newFapCodTxt;
