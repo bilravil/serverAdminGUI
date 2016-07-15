@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CsvRead;
+package CsvReader;
 
 import ExtendedLogic.PatientDownloading;
 import java.nio.file.Files;
@@ -109,6 +109,7 @@ public class PatientCsvRead {
     
     public void insertIntoDB(JTable table,Connection con){
         down = new PatientDownloading(con);
+        int id = down.getID();
         for (int i = 0; i < table.getRowCount(); i++) {
              Object value = new Object();
              cleanAllFields();
@@ -190,10 +191,13 @@ public class PatientCsvRead {
              value = table.getValueAt(i, 25);
              if(value!=null){ADDRESS = value.toString();}
              
-             int id = down.getID();
-             down.addPatientToDirectory(ID, CODE_REESTR_UL, FAM, IM, OT, SEX, DR, HOUSE, KORP, FLAT, ADDRESS);
-             down.addPatientToAddDirectory(id, CODE_MO, CODE_FAP, N_AREA, AREA_TYPE, ATTACH_TYPE, N_CLAIM, D_CLAIM, DOCTYPE, DOC, SNILS, CODE_REESTR_SMO, ENP, POLICY, D_ATTACH, AOID, HOUSE, KORP, FLAT, ADDRESS);
+             
+             down.addPatientToDirectory(ID, CODE_REESTR_UL,N_AREA, FAM, IM, OT, SEX, DR, HOUSE, KORP, FLAT, ADDRESS);
+             id++;
+             System.out.println(id);
+             down.addPatientToAddDirectory(id, CODE_MO, CODE_FAP,  AREA_TYPE, ATTACH_TYPE, N_CLAIM, D_CLAIM, DOCTYPE, DOC, SNILS, CODE_REESTR_SMO, ENP, POLICY, D_ATTACH, AOID, HOUSE, KORP, FLAT, ADDRESS);
              down.UpdateStatus(id);
+             
         }
     }
     

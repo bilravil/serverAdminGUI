@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import CsvRead.PatientCsvRead;
+import CsvReader.PatientCsvRead;
 import DB.StartDB;
 import ExcelRead.CrbRead;
 import ExcelRead.FapRead;
@@ -18,6 +18,7 @@ import ExtendedLogic.UpdateDocCodeTable;
 import TableModel.CrbTableModel;
 import TableModel.PatientTableModel;
 import java.awt.Component;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.File;
 import java.sql.ResultSet;
 import javax.swing.JFileChooser;
@@ -30,7 +31,7 @@ import net.proteanit.sql.DbUtils;
  *
  * @author Равиль
  */
-public class SuperAdminFrame extends javax.swing.JFrame {
+public class SuperAdminFrame extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form SuperAdminFrame
@@ -908,7 +909,7 @@ public class SuperAdminFrame extends javax.swing.JFrame {
                 if(obj instanceof PatientCsvRead){
                     csv = new PatientCsvRead();
                     csv.read(path,PatientTable);
-                    SaveFapList.setEnabled(true);
+                    SavePatientList.setEnabled(true);
                 }
                 
             } catch (Exception e) {
@@ -1065,10 +1066,18 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_LoadPatientListExcelActionPerformed
 
     private void SavePatientListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavePatientListActionPerformed
-        PatientCsvRead read = new PatientCsvRead();
-        read.insertIntoDB(PatientTable, con.getConnection());
+        Thread thread = new Thread(this);
+        thread.start();
+        
     }//GEN-LAST:event_SavePatientListActionPerformed
 
+    @Override
+    public void run() {
+        PatientCsvRead read = new PatientCsvRead();
+        read.insertIntoDB(PatientTable, con.getConnection());
+        JOptionPane.showMessageDialog(null, "Данные успешно загружены в базу");
+    }
+    
     private void LoadCrbListExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadCrbListExcelActionPerformed
         DefaultTableModel dm = (DefaultTableModel) CrbTable.getModel();
         int rowCount = dm.getRowCount();
@@ -1384,7 +1393,9 @@ public class SuperAdminFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SuperAdminFrame().setVisible(true);
+                SuperAdminFrame frame = new SuperAdminFrame();
+                frame.setExtendedState(MAXIMIZED_BOTH);
+                frame.setVisible(true);
             }
         });
     }
@@ -1444,4 +1455,6 @@ public class SuperAdminFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> userStatusCB;
     private javax.swing.JTextField usernameTxt;
     // End of variables declaration//GEN-END:variables
+
+    
 }

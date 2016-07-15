@@ -1690,7 +1690,8 @@ public class AdminJFrame extends javax.swing.JFrame {
                 System.out.println(login.getCrbCode());
                 log.info("Вход осуществлен под " + username); 
                 if(login.getStatus() == 0){
-                   SuperAdminFrame sadmin = new SuperAdminFrame();
+                   SuperAdminFrame sadmin = new SuperAdminFrame();                   
+                   sadmin.setExtendedState(MAXIMIZED_BOTH);               
                    sadmin.setVisible(true);
                    this.setVisible(false);
                    return; 

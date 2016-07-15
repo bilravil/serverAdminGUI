@@ -38,7 +38,7 @@ public class PatientDownloading {
             rs = pstmt.executeQuery();
             rs.afterLast();
             while(rs.previous()){
-                id = rs.getInt("ID");
+               return  rs.getInt("ID");
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -50,7 +50,6 @@ public class PatientDownloading {
              int ID,
              String CODE_MO,
              String CODE_FAP,
-             String N_AREA,
              String AREA_TYPE,
              String ATTACH_TYPE,
              String N_CLAIM,
@@ -69,7 +68,7 @@ public class PatientDownloading {
              String ADDRESS)
     {
         String query = "INSERT INTO `mdk_server`.`patient_add_directory`  "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement pstmt;         
         try {
@@ -77,23 +76,22 @@ public class PatientDownloading {
             pstmt.setInt(1,ID);
             pstmt.setString(2,CODE_MO);
             pstmt.setString(3,CODE_FAP);
-            pstmt.setString(4,N_AREA);
-            pstmt.setString(5,AREA_TYPE);
-            pstmt.setString(6,ATTACH_TYPE);
-            pstmt.setString(7,N_CLAIM);
-            pstmt.setString(8,D_CLAIM);
-            pstmt.setString(9,DOCTYPE);
-            pstmt.setString(10,(DOC));
-            pstmt.setString(11,SNILS);  
-            pstmt.setString(12,CODE_REESTR_SMO);
-            pstmt.setString(13,ENP);
-            pstmt.setString(14,POLICY);
-            pstmt.setString(15,D_ATTACH);
-            pstmt.setString(16,AOID);
-            pstmt.setString(17,HOUSE);
-            pstmt.setString(18,KORP);
-            pstmt.setString(19,FLAT);
-            pstmt.setString(20,ADDRESS);
+            pstmt.setString(4,AREA_TYPE);
+            pstmt.setString(5,ATTACH_TYPE);
+            pstmt.setString(6,N_CLAIM);
+            pstmt.setString(7,D_CLAIM);
+            pstmt.setString(8,DOCTYPE);
+            pstmt.setString(9,(DOC));
+            pstmt.setString(10,SNILS);  
+            pstmt.setString(11,CODE_REESTR_SMO);
+            pstmt.setString(12,ENP);
+            pstmt.setString(13,POLICY);
+            pstmt.setString(14,D_ATTACH);
+            pstmt.setString(15,AOID);
+            pstmt.setString(16,HOUSE);
+            pstmt.setString(17,KORP);
+            pstmt.setString(18,FLAT);
+            pstmt.setString(19,ADDRESS);
             pstmt.executeUpdate(); 
         } catch (Exception e) {
             System.out.println(e);
@@ -102,7 +100,8 @@ public class PatientDownloading {
     
     public void addPatientToDirectory(
              String ID, 
-             String CODE_REESTR_UL,            
+             String CODE_REESTR_UL,  
+             String N_AREA,
              String FAM,
              String IM,
              String OT,
@@ -113,21 +112,22 @@ public class PatientDownloading {
              String FLAT,
              String ADDRESS)
     {
-        String query = "INSERT INTO `mdk_server`.`patient_directory` (`REESTR_ID`, `CODE_REESTR_UL`, `FAM`, `IM`, `OT`, `SEX`, `DR`, `HOUSE`, `KORP`, `FLAT`, `ADDRESS`)  "
-                + "VALUES (?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO `mdk_server`.`patient_directory` (`REESTR_ID`, `CODE_REESTR_UL`,`N_AREA`, `FAM`, `IM`, `OT`, `SEX`, `DR`, `ADDRESS`)  "
+                + "VALUES (?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement pstmt;         
         try {
             pstmt = con.prepareStatement(query);          
             pstmt.setString(1,ID);
-            pstmt.setString(2,CODE_REESTR_UL);    
-            pstmt.setString(3,FAM);
-            pstmt.setString(4,IM);
-            pstmt.setString(5,OT);
-            pstmt.setString(6,SEX);
-            pstmt.setString(7,DR);
-            String address = ADDRESS + KORP+ HOUSE+ FLAT;
-            pstmt.setString(8,address);
+            pstmt.setString(2,CODE_REESTR_UL); 
+            pstmt.setString(3, N_AREA);
+            pstmt.setString(4,FAM);
+            pstmt.setString(5,IM);
+            pstmt.setString(6,OT);
+            pstmt.setString(7,SEX);
+            pstmt.setString(8,DR);
+            String address = ADDRESS +" корп.( "+ KORP+" )  д.( "+ HOUSE+" )  кв.( "+FLAT+" )";
+            pstmt.setString(9,address);
             id++;
             pstmt.executeUpdate(); 
         } catch (Exception e) {
@@ -135,9 +135,9 @@ public class PatientDownloading {
         }
     }
     
-    public void UpdateStatus(int id){      
+    public void UpdateStatus(int idd){      
        try{    
-            String query = "UPDATE `mdk_server`.`patient_on_mdk` rp SET rp.`ON_MDK`='no' WHERE rp.`ID`='"+id+" ';";
+            String query = "insert into `mdk_server`.`patient_on_mdk` values('"+idd+"','no')";
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);            
         }catch (SQLException ex) {
